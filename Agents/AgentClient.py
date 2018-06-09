@@ -162,7 +162,7 @@ def buscar():
         nombre = request.form['nombre']
         marca = request.form['marca']
         precio_max = request.form['precio_max']
-        peso = request.form['peso']
+
 
         if nombre:
             body_nombre = ONT['restriccion_de_nombre' + str(get_count())]
@@ -176,11 +176,7 @@ def buscar():
             gr.add((body_marca, ONT.marca, Literal(marca, datatype=XSD.string)))
             gr.add((msgResult, ONT.Restringe, URIRef(body_marca)))
 
-        if peso:
-            body_peso = ONT['restriccion_de_peso' + str(get_count())]
-            gr.add((body_peso, RDF.type, ONT.restriccion_de_peso))
-            gr.add((body_peso, ONT.peso, Literal(peso, datatype=XSD.float)))
-            gr.add((msgResult, ONT.Restringe, URIRef(body_peso)))
+
 
         if precio_max:
             body_precio = ONT['restriccion_de_precio' + str(get_count())]

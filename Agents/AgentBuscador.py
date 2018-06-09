@@ -180,16 +180,12 @@ def comunicacion():
                         marca = gm.value(subject=restriccion, predicate=ONT.marca)
                         logger.info('marca: '+ marca)
                         restricciones_busqueda['marca'] = marca
-                    elif gm.value(subject=restriccion, predicate=RDF.type) == ONT.restriccion_de_peso:
-                        peso = gm.value(subject=restriccion, predicate=ONT.peso)
-                        logger.info('peso: '+ peso)
-                        restricciones_busqueda['peso'] = peso
                     elif gm.value(subject=restriccion, predicate=RDF.type) == ONT.restriccion_de_precio:
                         precio_max = gm.value(subject=restriccion, predicate=ONT.precio_max)
                         logger.info('precio_max: '+ precio_max)
                         restricciones_busqueda['precio_max'] = precio_max
 
-                    gr = findProducts(**restricciones_busqueda)
+                    gr = search(**restricciones_busqueda)
 
     mss_cnt += 1
 
@@ -197,7 +193,7 @@ def comunicacion():
 
     return gr.serialize(format='xml')
 
-def findProducts(nombre=None, marca=None, max_price=sys.float_info.max):
+def search(nombre=None, marca=None, max_price=sys.float_info.max):
     graph = Graph()
     ontologyFile = open('../Data/product.rdf')
     graph.parse(ontologyFile, format='turtle')
@@ -244,7 +240,9 @@ def findProducts(nombre=None, marca=None, max_price=sys.float_info.max):
         nombre = row.nombre
         marca = row.marca
         precio = row.precio
-        logger.info(nombre, marca, precio)
+        logger.info(nombre)
+        logger.info(marca)
+        logger.info(precio)
         peso = row.peso
         subject = row.producto
         product_count += 1
