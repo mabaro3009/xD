@@ -43,7 +43,7 @@ args = parser.parse_args()
 
 # Configuration stuff
 if args.port is None:
-    port = 9002
+    port = 9003
 else:
     port = args.port
 
@@ -72,8 +72,8 @@ agn = Namespace("http://www.agentes.org#")
 mss_cnt = 0
 
 # Datos del Agente
-AgentClient = Agent('AgentClient',
-                       agn.AgentClient,
+AgentCentroLogistico = Agent('AgentCentroLogistico',
+                       agn.AgentCentroLogistico,
                        'http://%s:%d/comm' % (hostname, port),
                        'http://%s:%d/Stop' % (hostname, port))
 
@@ -109,12 +109,12 @@ def directory_search_message(type):
 
     gmess.bind('foaf', FOAF)
     gmess.bind('dso', DSO)
-    reg_obj = agn[AgentClient.name + '-search']
+    reg_obj = agn[AgentCentroLogistico.name + '-search']
     gmess.add((reg_obj, RDF.type, DSO.Search))
     gmess.add((reg_obj, DSO.AgentType, type))
 
     msg = build_message(gmess, perf=ACL.request,
-                        sender=AgentClient.uri,
+                        sender=AgentCentroLogistico.uri,
                         receiver=DirectoryAgent.uri,
                         content=reg_obj,
                         msgcnt=get_count())
@@ -130,7 +130,7 @@ def infoagent_search_message(addr, ragn_uri, gmess, msgResult):
     logger.info('Hacemos una peticion al servicio de informacion')
 
     msg = build_message(gmess, perf=ACL.request,
-                        sender=AgentClient.uri,
+                        sender=AgentCentroLogistico.uri,
                         receiver=ragn_uri,
                         msgcnt=get_count(),
                         content=msgResult)
@@ -143,89 +143,8 @@ def infoagent_search_message(addr, ragn_uri, gmess, msgResult):
 @app.route("/", methods=['GET', 'POST'])
 def pagina_princiapl():
     if request.method == 'GET':
-        return render_template('user_principal.html')
-    else:
-        return redirect(url_for('buscar'))
+        return render_template('centro_logistico_principal.html')
 
-@app.route('/buscar', methods=['GET', 'POST'])
-def buscar():
-    if request.method == 'GET':
-        return render_template('buscar.html')
-    else:
-        logger.info(request.form['submit'])
-        if request.form['submit'] == 'Buscar':
-            logger.info("Petición de búsqueda enviada")
-
-            msgResult = ONT['Busqueda' + str(get_count())]
-
-            gr = Graph()
-            gr.add((msgResult, RDF.type, ONT.Busqueda))
-
-            nombre = request.form['nombre']
-            marca = request.form['marca']
-            precio_max = request.form['precio_max']
-
-
-            if nombre:
-                body_nombre = ONT['restriccion_de_nombre' + str(get_count())]
-                gr.add((body_nombre, RDF.type, ONT.restriccion_de_nombre))
-                gr.add((body_nombre, ONT.nombre, Literal(nombre, datatype=XSD.string)))
-                gr.add((msgResult, ONT.Restringe, URIRef(body_nombre)))
-
-            if marca:
-                body_marca = ONT['restriccion_de_marca' + str(get_count())]
-                gr.add((body_marca, RDF.type, ONT.restriccion_de_marca))
-                gr.add((body_marca, ONT.marca, Literal(marca, datatype=XSD.string)))
-                gr.add((msgResult, ONT.Restringe, URIRef(body_marca)))
-
-
-
-            if precio_max:
-                body_precio = ONT['restriccion_de_precio' + str(get_count())]
-                gr.add((body_precio, RDF.type, ONT.restriccion_de_precio))
-                gr.add((body_precio, ONT.precio_max, Literal(precio_max, datatype=XSD.float)))
-                gr.add((msgResult, ONT.Restringe, URIRef(body_precio)))
-
-            grAgentBuscador = get_agent_info(agn.AgentBuscador, DirectoryAgent, AgentClient, get_count())
-
-            gr2 = infoagent_search_message(grAgentBuscador.address, grAgentBuscador.uri, gr, msgResult)
-
-            index = 0
-            subject_pos = {}
-            lista = []
-            for s, p, o in gr2:
-                if s not in subject_pos:
-                    subject_pos[s] = index
-                    lista.append({})
-                    index += 1
-                if s in subject_pos:
-                    subject_dict = lista[subject_pos[s]]
-                    if p == RDF.type:
-                        subject_dict['url'] = s
-                    elif p == ONT.marca:
-                        subject_dict['marca'] = o
-                    elif p == ONT.precio:
-                        subject_dict['precio'] = o
-                    elif p == ONT.nombre:
-                        subject_dict['nombre'] = o
-                    elif p == ONT.peso:
-                        subject_dict['peso'] = o
-                        lista[subject_pos[s]] = subject_dict
-
-            return render_template('buscar.html', productos=lista)
-
-@app.route("/iface", methods=['GET', 'POST'])
-def browser_iface():
-    """
-    Permite la comunicacion con el agente via un navegador
-    via un formulario
-    """
-    if request.method == 'GET':
-        return render_template('user_principal.html')
-    else:
-        user = request.form['username']
-        mess = request.form['message']
-        return render_template('user_principal.html', user=user, mess=mess)
 
 
 @app.route("/Stop")
