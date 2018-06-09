@@ -144,30 +144,53 @@ def comunicacion():
     # Comprobamos que sea un mensaje FIPA ACL
     if msgdic is None:
         # Si no es, respondemos que no hemos entendido el mensaje
+        logger.info('none')
         gr = build_message(Graph(), ACL['not-understood'], sender=AgentBuscador.uri, msgcnt=mss_cnt)
     else:
+        logger.info('else')
         # Obtenemos la performativa
         perf = msgdic['performative']
 
         if perf != ACL.request:
+            logger.info('perf != acl.request')
             # Si no es un request, respondemos que no hemos entendido el mensaje
             gr = build_message(Graph(), ACL['not-understood'], sender=AgentBuscador.uri, msgcnt=mss_cnt)
         else:
+            logger.info('guai')
             # Extraemos el objeto del contenido que ha de ser una accion de la ontologia de acciones del agente
             # de registro
 
             # Averiguamos el tipo de la accion
-            if 'content' in msgdic:
-                content = msgdic['content']
-                accion = gm.value(subject=content, predicate=RDF.type)
 
+            content = msgdic['content']
+            accion = gm.value(subject=content, predicate=RDF.type)
             # Aqui realizariamos lo que pide la accion
             # Por ahora simplemente retornamos un Inform-done
-            gr = build_message(Graph(),
-                ACL['inform-done'],
-                sender=AgentBuscador.uri,
-                msgcnt=mss_cnt,
-                receiver=msgdic['sender'], )
+            if accion == ONT.Busqueda:
+                restricciones = gm.objects(content, ONT.Restringe)
+                restricciones_busqueda = {}
+                for restriccion in restricciones:
+                    if gm.value(subject=restriccion, predicate=RDF.type) == ONT.restriccion_de_nombre:
+                        nombre = gm.value(subject=restriccion, predicate=ONT.nombre)
+                        logger.info('nombre: '+ nombre)
+                        restricciones_busqueda['nombre'] = nombre
+                    elif gm.value(subject=restriccion, predicate=RDF.type) == ONT.restriccion_de_marca:
+                        marca = gm.value(subject=restriccion, predicate=ONT.marca)
+                        logger.info('marca: '+ marca)
+                        restricciones_busqueda['marca'] = marca
+                    elif gm.value(subject=restriccion, predicate=RDF.type) == ONT.restriccion_de_peso:
+                        peso = gm.value(subject=restriccion, predicate=ONT.peso)
+                        logger.info('peso: '+ peso)
+                        restricciones_busqueda['marca'] = peso
+                    elif gm.value(subject=restriccion, predicate=RDF.type) == ONT.restriccion_de_precio:
+                        precio_max = gm.value(subject=restriccion, predicate=ONT.precio_max)
+                        logger.info('precio_max: '+ precio_max)
+                        restricciones_busqueda['precio_max'] = precio_max
+                    gr = build_message(Graph(),
+                                       ACL['inform-done'],
+                                       sender=AgentBuscador.uri,
+                                       msgcnt=mss_cnt,
+                                       receiver=msgdic['sender'], )
     mss_cnt += 1
 
     logger.info('Respondemos a la peticion')

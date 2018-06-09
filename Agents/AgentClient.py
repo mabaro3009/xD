@@ -162,31 +162,31 @@ def buscar():
         nombre = request.form['nombre']
         marca = request.form['marca']
         precio_max = request.form['precio_max']
-        tipo_de_producto = request.form['tipo_de_producto']
+        peso = request.form['peso']
 
         if nombre:
             body_nombre = ONT['restriccion_de_nombre' + str(get_count())]
             gr.add((body_nombre, RDF.type, ONT.restriccion_de_nombre))
             gr.add((body_nombre, ONT.nombre, Literal(nombre, datatype=XSD.string)))
-            gr.add((body_nombre, ONT.Restringe, URIRef(body_nombre)))
+            gr.add((msgResult, ONT.Restringe, URIRef(body_nombre)))
 
         if marca:
             body_marca = ONT['restriccion_de_marca' + str(get_count())]
             gr.add((body_marca, RDF.type, ONT.restriccion_de_marca))
-            gr.add((body_marca, ONT.nombre, Literal(nombre, datatype=XSD.string)))
-            gr.add((body_marca, ONT.Restringe, URIRef(body_marca)))
+            gr.add((body_marca, ONT.marca, Literal(marca, datatype=XSD.string)))
+            gr.add((msgResult, ONT.Restringe, URIRef(body_marca)))
 
-        if tipo_de_producto:
-            body_tipo_de_producto = ONT['restriccion_de_tipo_de_producto' + str(get_count())]
-            gr.add((body_tipo_de_producto, RDF.type, ONT.restriccion_de_marca))
-            gr.add((body_tipo_de_producto, ONT.nombre, Literal(nombre, datatype=XSD.string)))
-            gr.add((body_tipo_de_producto, ONT.Restringe, URIRef(body_tipo_de_producto)))
+        if peso:
+            body_peso = ONT['restriccion_de_peso' + str(get_count())]
+            gr.add((body_peso, RDF.type, ONT.restriccion_de_peso))
+            gr.add((body_peso, ONT.peso, Literal(peso, datatype=XSD.float)))
+            gr.add((msgResult, ONT.Restringe, URIRef(body_peso)))
 
         if precio_max:
             body_precio = ONT['restriccion_de_precio' + str(get_count())]
-            gr.add((body_precio, RDF.type, ONT.restriccion_de_nombre))
-            gr.add((body_precio, ONT.precio, Literal(nombre, datatype=XSD.integer)))
-            gr.add((body_precio, ONT.Restringe, URIRef(body_precio)))
+            gr.add((body_precio, RDF.type, ONT.restriccion_de_precio))
+            gr.add((body_precio, ONT.precio_max, Literal(precio_max, datatype=XSD.integer)))
+            gr.add((msgResult, ONT.Restringe, URIRef(body_precio)))
 
         grAgentBuscador = get_agent_info(agn.AgentBuscador, DirectoryAgent, AgentClient, get_count())
 

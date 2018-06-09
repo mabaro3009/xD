@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:pontp="http://www.products.org/ontology/property/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Computer_MG4WD8">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Computer"/>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Computer_REA09Z"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1520</pontp:precio>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1216.82557167</pontp:peso>
+    <pontp:nombre>nombre_GG368S</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Phone_02EPFU">
+    <pontp:nombre>Marca_Phone_02EPFU</pontp:nombre>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Phone_D2KJM5">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Phone"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">314</pontp:precio>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">234.155526855</pontp:peso>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Phone_1YHDBX"/>
+    <pontp:nombre>nombre_ZLR1FC</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Blender_BSUK56">
+    <pontp:nombre>nombre_SL4GNZ</pontp:nombre>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Blender_3M6MKS"/>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Blender"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">56</pontp:precio>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">598.891845885</pontp:peso>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Blender_MC1715">
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">893.228733888</pontp:peso>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Blender"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">35</pontp:precio>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Blender_X95J68"/>
+    <pontp:nombre>nombre_EB2ZYB</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Computer_6J57XG">
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1376.91633711</pontp:peso>
+    <pontp:nombre>nombre_M6QDDL</pontp:nombre>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Computer_NYI697"/>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Computer"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">601</pontp:precio>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Computer_3F8FQ5">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Computer"/>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Computer_KSOF4K"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">626</pontp:precio>
+    <pontp:nombre>nombre_CSSLVQ</pontp:nombre>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1222.64680554</pontp:peso>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Phone_1YHDBX">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+    <pontp:nombre>Marca_Phone_1YHDBX</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Computer_D0YD7S">
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Computer_GDCFEG"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1428</pontp:precio>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Computer"/>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1392.37583139</pontp:peso>
+    <pontp:nombre>nombre_AW1SWS</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Blender_A5VFWV">
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">26</pontp:precio>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Blender"/>
+    <pontp:nombre>nombre_95W4TW</pontp:nombre>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Blender_X95J68"/>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">600.756527784</pontp:peso>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Computer_D1NDK8">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+    <pontp:nombre>Marca_Computer_D1NDK8</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Blender_RFS3P8">
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">862.042238971</pontp:peso>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">57</pontp:precio>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Blender_PE40T2"/>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Blender"/>
+    <pontp:nombre>nombre_T0FWJ1</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Blender_6PVVIR">
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">48</pontp:precio>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Blender_9OXDC9"/>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Blender"/>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">738.377977246</pontp:peso>
+    <pontp:nombre>nombre_N3E431</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Phone_QTLARE">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+    <pontp:nombre>Marca_Phone_QTLARE</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Phone_W928AK">
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">380.962474065</pontp:peso>
+    <pontp:nombre>nombre_5SDIRE</pontp:nombre>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Phone"/>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Phone_02EPFU"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">311</pontp:precio>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Blender_O8IDM8">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Blender"/>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Blender_6X4QHU"/>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">999.672351112</pontp:peso>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">25</pontp:precio>
+    <pontp:nombre>nombre_U994JN</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Computer_ZBHZ7U">
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Computer_C0U7LA"/>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1336.34802422</pontp:peso>
+    <pontp:nombre>nombre_C3M2RD</pontp:nombre>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Computer"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2285</pontp:precio>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Computer_THE5EA">
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1318.85274442</pontp:peso>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Computer"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2697</pontp:precio>
+    <pontp:nombre>nombre_IZ36ED</pontp:nombre>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Computer_N9JAMV"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Phone_T1PL31">
+    <pontp:nombre>nombre_J34NDE</pontp:nombre>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Phone"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">51</pontp:precio>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">393.950218804</pontp:peso>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Phone_YEFRMD"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Phone_43C1FR">
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">87</pontp:precio>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Phone_QTLARE"/>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Phone"/>
+    <pontp:nombre>nombre_WBKWNS</pontp:nombre>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">258.106386485</pontp:peso>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Phone_DND01V">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Phone"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">415</pontp:precio>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">351.109042613</pontp:peso>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Phone_K9PM9U"/>
+    <pontp:nombre>nombre_EXFN6L</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Blender_RKQG31">
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">549.074897262</pontp:peso>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Blender"/>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Blender_4U67ZG"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">94</pontp:precio>
+    <pontp:nombre>nombre_IW2BFA</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Computer_C0U7LA">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+    <pontp:nombre>Marca_Computer_C0U7LA</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Phone_82I1JF">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Phone"/>
+    <pontp:nombre>nombre_NV7MES</pontp:nombre>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">211.158364661</pontp:peso>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">379</pontp:precio>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Phone_YEFRMD"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Blender_E0A67Z">
+    <pontp:nombre>nombre_EPNUC5</pontp:nombre>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">64</pontp:precio>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">933.59006261</pontp:peso>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Blender"/>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Blender_VYG4OI"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Phone_C96IEN">
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">257</pontp:precio>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Phone_WKAT9F"/>
+    <pontp:nombre>nombre_3WKJAO</pontp:nombre>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">258.740750038</pontp:peso>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Phone"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Phone_HA8QXG">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Phone"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">309</pontp:precio>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Phone_WKAT9F"/>
+    <pontp:nombre>nombre_IBZ4DY</pontp:nombre>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">247.757263199</pontp:peso>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Blender_I8AEJD">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Blender"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">95</pontp:precio>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Blender_X95J68"/>
+    <pontp:nombre>nombre_CAF3WP</pontp:nombre>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">741.359897435</pontp:peso>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Blender_4U67ZG">
+    <pontp:nombre>Marca_Blender_4U67ZG</pontp:nombre>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Computer_AQZCU6">
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Computer_N9JAMV"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2782</pontp:precio>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1412.36107703</pontp:peso>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Computer"/>
+    <pontp:nombre>nombre_DGGS86</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Phone_NFLSPZ">
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">458</pontp:precio>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Phone_1YHDBX"/>
+    <pontp:nombre>nombre_6LYOFU</pontp:nombre>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Phone"/>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">253.332860342</pontp:peso>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/Phone">
+    <rdfs:subClassOf rdf:resource="http://www.products.org/ontology/ElectronicDevice"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Computer_Y8BOYC">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Computer"/>
+    <pontp:nombre>nombre_IVNSON</pontp:nombre>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2191</pontp:precio>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Computer_C0U7LA"/>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1729.68876854</pontp:peso>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Computer_54587G">
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">468</pontp:precio>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Computer_P4G7GX"/>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1157.2363947</pontp:peso>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Computer"/>
+    <pontp:nombre>nombre_ZWMPB2</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/property/nombre">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="http://www.products.org/ontology/Phone"/>
+    <rdfs:domain rdf:resource="http://www.products.org/ontology/Computer"/>
+    <rdfs:domain rdf:resource="http://www.products.org/ontology/Blender"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Computer_GDCFEG">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+    <pontp:nombre>Marca_Computer_GDCFEG</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Phone_P6DT0Q">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Phone"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">414</pontp:precio>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">341.321882982</pontp:peso>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Phone_PV4IJG"/>
+    <pontp:nombre>nombre_FAEB7D</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Phone_3IJRNQ">
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Phone_K9PM9U"/>
+    <pontp:nombre>nombre_VFBU9F</pontp:nombre>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">446</pontp:precio>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Phone"/>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">258.200477015</pontp:peso>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Phone_YEFRMD">
+    <pontp:nombre>Marca_Phone_YEFRMD</pontp:nombre>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Computer_NPPEH2">
+    <pontp:nombre>nombre_C2H5L5</pontp:nombre>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Computer_N9JAMV"/>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Computer"/>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2303.30465638</pontp:peso>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">776</pontp:precio>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Phone_BZ38ND">
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">260.170508068</pontp:peso>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">311</pontp:precio>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Phone"/>
+    <pontp:nombre>nombre_8PM9U6</pontp:nombre>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Phone_PV4IJG"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Computer_LH9KF2">
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Computer_NYI697"/>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Computer"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1773</pontp:precio>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1830.17680989</pontp:peso>
+    <pontp:nombre>nombre_1VB45Y</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Computer_REA09Z">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+    <pontp:nombre>Marca_Computer_REA09Z</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Phone_A5BWSA">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Phone"/>
+    <pontp:nombre>nombre_2WDKJA</pontp:nombre>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">527</pontp:precio>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">333.560293304</pontp:peso>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Phone_PV4IJG"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/Marca">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/property/precio">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.products.org/ontology/Blender"/>
+    <rdfs:domain rdf:resource="http://www.products.org/ontology/Computer"/>
+    <rdfs:domain rdf:resource="http://www.products.org/ontology/Phone"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Computer_6KLA6K">
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1573.16889201</pontp:peso>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Computer_NYI697"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1266</pontp:precio>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Computer"/>
+    <pontp:nombre>nombre_U7P0JU</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Blender_XW5ZDN">
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">65</pontp:precio>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Blender_VYG4OI"/>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Blender"/>
+    <pontp:nombre>nombre_Q4DHAS</pontp:nombre>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">524.647905792</pontp:peso>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Blender_N6B44E">
+    <pontp:nombre>nombre_9PEQYM</pontp:nombre>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">35</pontp:precio>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Blender_4U67ZG"/>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">536.822796293</pontp:peso>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Blender"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Blender_SKOUCG">
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">87</pontp:precio>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">558.266028692</pontp:peso>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Blender"/>
+    <pontp:nombre>nombre_ZCVGPX</pontp:nombre>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Blender_PE40T2"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/Blender">
+    <rdfs:subClassOf rdf:resource="http://www.products.org/ontology/ElectronicDevice"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Computer_77IR5C">
+    <pontp:nombre>nombre_ZHD2TJ</pontp:nombre>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1263</pontp:precio>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Computer"/>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Computer_REA09Z"/>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1061.35172468</pontp:peso>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/property/tieneMarca">
+    <rdfs:domain rdf:resource="http://www.products.org/ontology/Phone"/>
+    <rdfs:domain rdf:resource="http://www.products.org/ontology/Blender"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://www.products.org/ontology/Computer"/>
+    <rdfs:range rdf:resource="http://www.products.org/ontology/Marca"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Computer_JMP833">
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">954</pontp:precio>
+    <pontp:nombre>nombre_JGBQXM</pontp:nombre>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Computer_KSOF4K"/>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Computer"/>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2477.25772649</pontp:peso>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Blender_YOSFMF">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+    <pontp:nombre>Marca_Blender_YOSFMF</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Computer_NYI697">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+    <pontp:nombre>Marca_Computer_NYI697</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Phone_5T3M6O">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Phone"/>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Phone_GLY5EG"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">590</pontp:precio>
+    <pontp:nombre>nombre_E4ZB1W</pontp:nombre>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">223.46313928</pontp:peso>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Phone_XX333L">
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">95</pontp:precio>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Phone_K9PM9U"/>
+    <pontp:nombre>nombre_LOMN4R</pontp:nombre>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Phone"/>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">269.691946552</pontp:peso>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Blender_X95J68">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+    <pontp:nombre>Marca_Blender_X95J68</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Computer_RAAI9W">
+    <pontp:nombre>nombre_IMXSP5</pontp:nombre>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Computer"/>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1887.18170189</pontp:peso>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1843</pontp:precio>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Computer_NYI697"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Computer_HV29SZ">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+    <pontp:nombre>Marca_Computer_HV29SZ</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/Computer">
+    <rdfs:subClassOf rdf:resource="http://www.products.org/ontology/ElectronicDevice"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Blender_AIVCT4">
+    <pontp:nombre>nombre_Z5879I</pontp:nombre>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Blender"/>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Blender_VYG4OI"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">70</pontp:precio>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">814.394288583</pontp:peso>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Blender_AAMXH0">
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">897.398152871</pontp:peso>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Blender_X95J68"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">94</pontp:precio>
+    <pontp:nombre>nombre_R4J4CX</pontp:nombre>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Blender"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Blender_O4JI4A">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+    <pontp:nombre>Marca_Blender_O4JI4A</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Blender_1HSQGN">
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">48</pontp:precio>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Blender"/>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Blender_VYG4OI"/>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">720.826702384</pontp:peso>
+    <pontp:nombre>nombre_5VQRGY</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Computer_37U9N3">
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2712</pontp:precio>
+    <pontp:nombre>nombre_6NOC17</pontp:nombre>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Computer"/>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Computer_NYI697"/>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1874.91311673</pontp:peso>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Phone_3B3NJJ">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Phone"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">296</pontp:precio>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">268.028614109</pontp:peso>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Phone_YEFRMD"/>
+    <pontp:nombre>nombre_UU4LK5</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Phone_VHLOIV">
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Phone_1YHDBX"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">159</pontp:precio>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">275.607229475</pontp:peso>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Phone"/>
+    <pontp:nombre>nombre_ZC27CT</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Phone_GLY5EG">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+    <pontp:nombre>Marca_Phone_GLY5EG</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Computer_4FUIJ0">
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2364</pontp:precio>
+    <pontp:nombre>nombre_L2B4WQ</pontp:nombre>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Computer_D1NDK8"/>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Computer"/>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2243.57225481</pontp:peso>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Blender_V7ABTR">
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Blender_VYG4OI"/>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">656.199211273</pontp:peso>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Blender"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">47</pontp:precio>
+    <pontp:nombre>nombre_421Z4Q</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Blender_QEQSD5">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Blender"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">51</pontp:precio>
+    <pontp:nombre>nombre_UBQK9G</pontp:nombre>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">547.61292499</pontp:peso>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Blender_4U67ZG"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Phone_NL24QN">
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">205.406517329</pontp:peso>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Phone_WKAT9F"/>
+    <pontp:nombre>nombre_SFPTKB</pontp:nombre>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">203</pontp:precio>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Phone"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Computer_P4G7GX">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+    <pontp:nombre>Marca_Computer_P4G7GX</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Computer_6V5GTZ">
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Computer_KSOF4K"/>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Computer"/>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1375.79978892</pontp:peso>
+    <pontp:nombre>nombre_G52WRG</pontp:nombre>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2591</pontp:precio>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Blender_VYG4OI">
+    <pontp:nombre>Marca_Blender_VYG4OI</pontp:nombre>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Computer_N9JAMV">
+    <pontp:nombre>Marca_Computer_N9JAMV</pontp:nombre>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Computer_5S3MXM">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+    <pontp:nombre>Marca_Computer_5S3MXM</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Blender_SBFI8S">
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Blender_NMZHJU"/>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Blender"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">50</pontp:precio>
+    <pontp:nombre>nombre_UNYGRM</pontp:nombre>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">587.236748348</pontp:peso>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Computer_V4XCUD">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Computer"/>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1373.75387489</pontp:peso>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Computer_C0U7LA"/>
+    <pontp:nombre>nombre_Q6HVNC</pontp:nombre>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2286</pontp:precio>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Phone_MFORRU">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Phone"/>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">137</pontp:precio>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Phone_QTLARE"/>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">248.903841515</pontp:peso>
+    <pontp:nombre>nombre_JOOIUJ</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/property/peso">
+    <rdfs:domain rdf:resource="http://www.products.org/ontology/Computer"/>
+    <rdfs:domain rdf:resource="http://www.products.org/ontology/Phone"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.products.org/ontology/Blender"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Computer_ZD95SA">
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Computer_C0U7LA"/>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2086.42181213</pontp:peso>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2909</pontp:precio>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Computer"/>
+    <pontp:nombre>nombre_6E7KEY</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Blender_6X4QHU">
+    <pontp:nombre>Marca_Blender_6X4QHU</pontp:nombre>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Phone_UF2BD0">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Phone"/>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">272.990838314</pontp:peso>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Phone_YEFRMD"/>
+    <pontp:nombre>nombre_WFN6OZ</pontp:nombre>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">265</pontp:precio>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/ElectronicDevice">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Phone_IW97OI">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+    <pontp:nombre>Marca_Phone_IW97OI</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Computer_KSOF4K">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+    <pontp:nombre>Marca_Computer_KSOF4K</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Blender_7QYQQ3">
+    <pontp:nombre>nombre_81R0XY</pontp:nombre>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Blender_YOSFMF"/>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">698.656123455</pontp:peso>
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">93</pontp:precio>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Blender"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Blender_NMZHJU">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+    <pontp:nombre>Marca_Blender_NMZHJU</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Blender_PE40T2">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+    <pontp:nombre>Marca_Blender_PE40T2</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Phone_K9PM9U">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+    <pontp:nombre>Marca_Phone_K9PM9U</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Phone_PV4IJG">
+    <pontp:nombre>Marca_Phone_PV4IJG</pontp:nombre>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Blender_73LE4B">
+    <pontp:precio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">53</pontp:precio>
+    <pontp:tieneMarca rdf:resource="http://www.products.org/ontology/resource/Marca_Blender_NMZHJU"/>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Blender"/>
+    <pontp:peso rdf:datatype="http://www.w3.org/2001/XMLSchema#double">627.836899439</pontp:peso>
+    <pontp:nombre>nombre_RANXAU</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Blender_3M6MKS">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+    <pontp:nombre>Marca_Blender_3M6MKS</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Blender_9OXDC9">
+    <pontp:nombre>Marca_Blender_9OXDC9</pontp:nombre>
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Phone_OLIV3Y">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+    <pontp:nombre>Marca_Phone_OLIV3Y</pontp:nombre>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.products.org/ontology/resource/Marca_Phone_WKAT9F">
+    <rdf:type rdf:resource="http://www.products.org/ontology/Marca"/>
+    <pontp:nombre>Marca_Phone_WKAT9F</pontp:nombre>
+  </rdf:Description>
+</rdf:RDF>
