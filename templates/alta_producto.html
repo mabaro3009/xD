@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Busqueda</title>
+
+</head>
+<body>
+
+    <form method="post" action="">
+        <p><label>Nombre:</label> <input type="text" name="nombre"></p>
+        <p><label>Marca:</label> <input type="text" name="marca"></p>
+        <p><label>Precio:</label> <input type="text" name="precio"></p>
+        <p><label>Peso:</label> <input type="text" name="peso"></p>
+        <input type="submit" name="submit" value ="Dar de alta">
+    </form>
+
+    {% if producto %}
+            <table cellpadding="5px">
+                <tr>
+                    <th><b>Nombre</b></th>
+                    <th><b>Marca</b></th>
+                    <th><b>Precio</b></th>
+                    <th><b>Peso</b></th>
+                </tr>
+                <tr>
+                        <td>{{ producto.pnombre }}</td>
+                        <td>{{ producto.pmarca }}</td>
+                        <td>{{ producto.pprecio }}</td>
+                        <td>{{ producto.ppeso }}</td>
+                </tr>
+            </table>
+    {% endif %}
+
+</body>
+</html>

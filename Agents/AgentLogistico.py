@@ -41,7 +41,7 @@ args = parser.parse_args()
 
 # Configuration stuff
 if args.port is None:
-    port = 9001
+    port = 9005
 else:
     port = args.port
 
@@ -70,8 +70,8 @@ agn = Namespace("http://www.agentes.org#")
 mss_cnt = 0
 
 # Datos del Agente
-AgentBuscador = Agent('AgentBuscador',
-                  agn.AgentBuscador,
+AgentLogistico = Agent('AgentLogistico',
+                  agn.AgentLogistico,
                   'http://%s:%d/comm' % (hostname, port),
                   'http://%s:%d/Stop' % (hostname, port))
 
@@ -106,7 +106,7 @@ def register_message():
 
     logger.info('Nos registramos')
 
-    gr = register_agent(AgentBuscador, DirectoryAgent, AgentBuscador.uri, get_count())
+    gr = register_agent(AgentLogistico, DirectoryAgent, AgentLogistico.uri, get_count())
     return gr
 
 @app.route("/Stop")
@@ -146,14 +146,14 @@ def comunicacion():
     # Comprobamos que sea un mensaje FIPA ACL
     if msgdic is None:
         # Si no es, respondemos que no hemos entendido el mensaje
-        gr = build_message(Graph(), ACL['not-understood'], sender=AgentBuscador.uri, msgcnt=mss_cnt)
+        gr = build_message(Graph(), ACL['not-understood'], sender=AgentLogistico.uri, msgcnt=mss_cnt)
     else:
         # Obtenemos la performativa
         perf = msgdic['performative']
 
         if perf != ACL.request:
             # Si no es un request, respondemos que no hemos entendido el mensaje
-            gr = build_message(Graph(), ACL['not-understood'], sender=AgentBuscador.uri, msgcnt=mss_cnt)
+            gr = build_message(Graph(), ACL['not-understood'], sender=AgentLogistico.uri, msgcnt=mss_cnt)
         else:
             # Extraemos el objeto del contenido que ha de ser una accion de la ontologia de acciones del agente
             # de registro
@@ -164,24 +164,10 @@ def comunicacion():
             accion = gm.value(subject=content, predicate=RDF.type)
             # Aqui realizariamos lo que pide la accion
             # Por ahora simplemente retornamos un Inform-done
-            if accion == ONT.Busqueda:
-                restricciones = gm.objects(content, ONT.Restringe)
-                restricciones_busqueda = {}
-                for restriccion in restricciones:
-                    if gm.value(subject=restriccion, predicate=RDF.type) == ONT.restriccion_de_nombre:
-                        nombre = gm.value(subject=restriccion, predicate=ONT.nombre)
-                        logger.info('nombre: '+ nombre)
-                        restricciones_busqueda['nombre'] = nombre
-                    elif gm.value(subject=restriccion, predicate=RDF.type) == ONT.restriccion_de_marca:
-                        marca = gm.value(subject=restriccion, predicate=ONT.marca)
-                        logger.info('marca: '+ marca)
-                        restricciones_busqueda['marca'] = marca
-                    elif gm.value(subject=restriccion, predicate=RDF.type) == ONT.restriccion_de_precio:
-                        precio_max = gm.value(subject=restriccion, predicate=ONT.precio_max)
-                        logger.info('precio_max: '+ precio_max)
-                        restricciones_busqueda['precio_max'] = precio_max
-
-                    gr = search(**restricciones_busqueda)
+            if accion == ONT.Registrar:
+                gr = registrarProducto(gm)
+            elif accion == ONT.Registrar_centro:
+                gr = registrarProductoCentro(gm)
 
     mss_cnt += 1
 
@@ -189,64 +175,34 @@ def comunicacion():
 
     return gr.serialize(format='xml')
 
-def search(nombre=None, marca=None, precio_max=sys.float_info.max):
-    graph = Graph()
-    ontologyFile = open('../Data/product.rdf')
-    graph.parse(ontologyFile, format='turtle')
-    first = second = 0
-    query = """
-        prefix rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        prefix xsd:<http://www.w3.org/2001/XMLSchema#>
-        prefix default:<http://www.ontologia.com/ECSDI-ontologia.owl#>
-        prefix owl:<http://www.w3.org/2002/07/owl#>
-        SELECT DISTINCT ?producto ?nombre ?marca ?precio ?peso
-        where {
-            { ?producto rdf:type default:Producto } UNION { ?producto rdf:type default:Producto_externo } .
-            ?producto default:nombre ?nombre .
-            ?producto default:marca ?marca .
-            ?producto default:precio ?precio .
-            ?producto default:peso ?peso .
-            FILTER("""
 
-    if nombre is not None:
-        query += """str(?nombre) = '""" + nombre + """'"""
-        first = 1
+def registrarProducto(gm):
+    ontologia = open('../Data/product.rdf')
+    gr = Graph()
+    gr.parse(ontologia, format="turtle")
+    producto = gm.subjects(RDF.type, ONT.Producto_externo)
+    producto = producto.next()
 
-    if marca is not None:
-        if first == 1:
-            query += """ && """
-        query += """str(?marca) = '""" + marca + """'"""
-        second = 1
+    for s, p, o in gm:
+        if s == producto:
+            gr.add((s, p, o))
 
-    if first == 1 or second == 1 or precio_max != sys.float_info.max:
-        if first == 1 or second == 1:
-            query += """ && """
-        query += """
-                ?precio <= """ + str(precio_max) + """  )}
-                order by desc(UCASE(str(?precio)))"""
+    gr.serialize(destination='../Data/product.rdf', format='turtle')
+    return gm
 
+def registrarProductoCentro(gm):
+    ontologia = open('../Data/product.rdf')
+    gr = Graph()
+    gr.parse(ontologia, format="turtle")
+    producto = gm.subjects(RDF.type, ONT.Producto)
+    producto = producto.next()
 
-    graph_query = graph.query(query)
-    result = Graph()
-    result.bind('ONT', ONT)
-    product_count = 0
-    for row in graph_query:
-        nombre = row.nombre
-        marca = row.marca
-        precio = row.precio
-        logger.info(nombre)
-        logger.info(marca)
-        logger.info(precio)
-        peso = row.peso
-        subject = row.producto
-        product_count += 1
-        result.add((subject, RDF.type, ONT.Producto))
-        result.add((subject, ONT.marca, Literal(marca, datatype=XSD.string)))
-        result.add((subject, ONT.precio, Literal(precio, datatype=XSD.float)))
-        result.add((subject, ONT.peso, Literal(peso, datatype=XSD.float)))
-        result.add((subject, ONT.nombre, Literal(nombre, datatype=XSD.string)))
-    return result
+    for s, p, o in gm:
+        if s == producto:
+            gr.add((s, p, o))
 
+    gr.serialize(destination='../Data/product.rdf', format='turtle')
+    return gm
 
 def tidyup():
     """

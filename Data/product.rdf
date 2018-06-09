@@ -1,4 +1,4 @@
-@prefix ONT: <http://www.owl-ontologies.com/ECSDI-ontologia.owl#> .
+@prefix ONT: <http://www.ontologia.com/ECSDI-ontologia.owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
@@ -10,11 +10,25 @@ ONT:Producto_1 a ONT:Producto ;
     ONT:peso "6.0"^^xsd:float ;
     ONT:precio "1200.0"^^xsd:float .
 
+ONT:Producto_158748941 a ONT:Producto ;
+    ONT:id 158748941 ;
+    ONT:marca "Apple"^^xsd:string ;
+    ONT:nombre "TV"^^xsd:string ;
+    ONT:peso "22.0"^^xsd:float ;
+    ONT:precio "500.0"^^xsd:float .
+
 ONT:Producto_2 a ONT:Producto ;
     ONT:marca "Apple"^^xsd:string ;
     ONT:nombre "iPhone"^^xsd:string ;
     ONT:peso "2.0"^^xsd:float ;
     ONT:precio "1000.0"^^xsd:float .
+
+ONT:Producto_247549838 a ONT:Producto ;
+    ONT:id 247549838 ;
+    ONT:marca "Apple"^^xsd:string ;
+    ONT:nombre "iPhone 2"^^xsd:string ;
+    ONT:peso "1.0"^^xsd:float ;
+    ONT:precio "200.0"^^xsd:float .
 
 ONT:Producto_3 a ONT:Producto ;
     ONT:marca "Samsung"^^xsd:string ;
@@ -40,4 +54,38 @@ ONT:Producto_6 a ONT:Producto ;
     ONT:peso "10.0"^^xsd:float ;
     ONT:precio "1200.0"^^xsd:float .
 
+ONT:Producto_723108807 a ONT:Producto ;
+    ONT:id 723108807 ;
+    ONT:marca "Panasonic"^^xsd:string ;
+    ONT:nombre "TV"^^xsd:string ;
+    ONT:peso "30.0"^^xsd:float ;
+    ONT:precio "500.0"^^xsd:float .
+
+ONT:Producto_externo_236196053 a ONT:Producto_externo ;
+    ONT:id 236196053 ;
+    ONT:marca "Casio"^^xsd:string ;
+    ONT:nombre "Calculadora"^^xsd:string ;
+    ONT:peso "1.0"^^xsd:float ;
+    ONT:precio "20.0"^^xsd:float .
+
+ONT:Producto_externo_38661361 a ONT:Producto_externo ;
+    ONT:id 38661361 ;
+    ONT:marca "Corsair"^^xsd:string ;
+    ONT:nombre "Raton"^^xsd:string ;
+    ONT:peso "2.0"^^xsd:float ;
+    ONT:precio "200.0"^^xsd:float .
+
+ONT:Producto_externo_839768019 a ONT:Producto_externo ;
+    ONT:id 839768019 ;
+    ONT:marca "Corsair"^^xsd:string ;
+    ONT:nombre "Teclado"^^xsd:string ;
+    ONT:peso "3.0"^^xsd:float ;
+    ONT:precio "400.0"^^xsd:float .
+
+ONT:Producto_externo_93224245 a ONT:Producto_externo ;
+    ONT:id 93224245 ;
+    ONT:marca "Samsung"^^xsd:string ;
+    ONT:nombre "Galaxy S9+"^^xsd:string ;
+    ONT:peso "1.0"^^xsd:float ;
+    ONT:precio "900.0"^^xsd:float .
 
