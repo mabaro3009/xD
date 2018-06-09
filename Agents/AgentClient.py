@@ -86,6 +86,9 @@ DirectoryAgent = Agent('DirectoryAgent',
 # Global dsgraph triplestore
 dsgraph = Graph()
 
+#Carrito de la compra
+carrito_compra = []
+
 
 def get_count():
     global mss_cnt
@@ -208,11 +211,35 @@ def buscar():
                         subject_dict['precio'] = o
                     elif p == ONT.nombre:
                         subject_dict['nombre'] = o
+                    elif p == ONT.id:
+                        subject_dict['id'] = o
                     elif p == ONT.peso:
                         subject_dict['peso'] = o
                         lista[subject_pos[s]] = subject_dict
 
+
             return render_template('buscar.html', productos=lista)
+
+        elif request.form['submit'] == 'Al carrito!':
+            item = {}
+            item["id"] = request.form["id"]
+            item["marca"] = request.form["marca"]
+            item["precio"] = request.form["precio"]
+            item["nombre"] = request.form["nombre"]
+            logger.info(item["id"])
+            carrito_compra.append(item)
+
+            return render_template('buscar.html', productos_carrito = carrito_compra)
+        elif request.form['submit'] == 'Eliminar':
+            logger.info("ELIMINA    ")
+            item = {}
+            idd = request.form["id"]
+            ii = -1
+            for i in range(0, len(carrito_compra)):
+                if carrito_compra[i]["id"] == idd:
+                    ii = i
+            del carrito_compra[ii]
+            return render_template('buscar.html', productos_carrito = carrito_compra)
 
 @app.route("/iface", methods=['GET', 'POST'])
 def browser_iface():

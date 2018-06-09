@@ -8,7 +8,8 @@ ONT:Producto_1 a ONT:Producto ;
     ONT:marca "Apple"^^xsd:string ;
     ONT:nombre "iMac"^^xsd:string ;
     ONT:peso "6.0"^^xsd:float ;
-    ONT:precio "1200.0"^^xsd:float .
+    ONT:precio "1200.0"^^xsd:float ;
+    ONT:id "1"^^xsd:integer .
 
 ONT:Producto_158748941 a ONT:Producto ;
     ONT:id 158748941 ;
@@ -21,7 +22,8 @@ ONT:Producto_2 a ONT:Producto ;
     ONT:marca "Apple"^^xsd:string ;
     ONT:nombre "iPhone"^^xsd:string ;
     ONT:peso "2.0"^^xsd:float ;
-    ONT:precio "1000.0"^^xsd:float .
+    ONT:precio "1000.0"^^xsd:float ;
+    ONT:id "2"^^xsd:integer .
 
 ONT:Producto_247549838 a ONT:Producto ;
     ONT:id 247549838 ;
@@ -34,25 +36,29 @@ ONT:Producto_3 a ONT:Producto ;
     ONT:marca "Samsung"^^xsd:string ;
     ONT:nombre "Galaxy S9"^^xsd:string ;
     ONT:peso "2.5"^^xsd:float ;
-    ONT:precio "900.0"^^xsd:float .
+    ONT:precio "900.0"^^xsd:float ;
+    ONT:id "3"^^xsd:integer .
 
 ONT:Producto_4 a ONT:Producto ;
     ONT:marca "Samsung"^^xsd:string ;
     ONT:nombre "TV"^^xsd:string ;
     ONT:peso "20.0"^^xsd:float ;
-    ONT:precio "4200.0"^^xsd:float .
+    ONT:precio "4200.0"^^xsd:float ;
+    ONT:id "4"^^xsd:integer .
 
 ONT:Producto_5 a ONT:Producto ;
     ONT:marca "Sony"^^xsd:string ;
     ONT:nombre "PS4"^^xsd:string ;
     ONT:peso "6.0"^^xsd:float ;
-    ONT:precio "1000.0"^^xsd:float .
+    ONT:precio "1000.0"^^xsd:float ;
+    ONT:id "5"^^xsd:integer .
 
 ONT:Producto_6 a ONT:Producto ;
     ONT:marca "BenQ"^^xsd:string ;
     ONT:nombre "TV"^^xsd:string ;
     ONT:peso "10.0"^^xsd:float ;
-    ONT:precio "1200.0"^^xsd:float .
+    ONT:precio "1200.0"^^xsd:float ;
+    ONT:id "6"^^xsd:integer .
 
 ONT:Producto_723108807 a ONT:Producto ;
     ONT:id 723108807 ;

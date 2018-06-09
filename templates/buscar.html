@@ -8,13 +8,13 @@
 <body>
 
     <form method="post" action="">
-        <p><label>Nombre::</label> <input type="text" name="nombre"></p>
+        <p><label>Nombre:</label> <input type="text" name="nombre"></p>
         <p><label>Marca:</label> <input type="text" name="marca"></p>
         <p><label>Precio Max:</label> <input type="text" name="precio_max"></p>
         <input type="submit" name="submit" value ="Buscar">
     </form>
     {% if productos %}
-        <form method="post">
+
             <table cellpadding="5px">
                 <tr>
                     <th><b>Nombre</b></th>
@@ -22,14 +22,45 @@
                     <th><b>Precio</b></th>
                 </tr>
                 {% for item in productos %}
-                    <tr>
-                        <td>{{ item.nombre }}</td>
-                        <td>{{ item.marca }}</td>
-                        <td>{{ item.precio }}</td>
-                    </tr>
+                    <form method="post" action="">
+                        <tr>
+                            <td>{{ item.nombre }}</td>
+                            <td>{{ item.marca }}</td>
+                            <td>{{ item.precio }}</td>
+                            <td> <input type="hidden" name="id" value={{ item.id }}></td>
+                            <td> <input type="hidden" name="precio" value={{ item.precio }}></td>
+                            <td> <input type="hidden" name="nombre" value={{ item.nombre }}></td>
+                            <td> <input type="hidden" name="marca" value={{ item.marca }}></td>
+                            <td><input type="submit" name="submit" value="Al carrito!"></td>
+                        </tr>
+                    </form>
                 {% endfor %}
             </table>
-        </form>
+
     {% endif %}
+
+    {% if productos_carrito %}
+            <p><label>Carrito de la compra:</label></p>
+            <table cellpadding="5px">
+                <tr>
+                    <th><b>Nombre</b></th>
+                    <th><b>Marca</b></th>
+                    <th><b>Precio</b></th>
+                </tr>
+                {% for item in productos_carrito %}
+                    <form method="post" action="">
+                        <tr>
+                            <td>{{ item.nombre }}</td>
+                            <td>{{ item.marca }}</td>
+                            <td>{{ item.precio }}</td>
+                            <td> <input type="hidden" name="id" value={{ item.id }}></td>
+                            <td><input type="submit" name="submit" value="Eliminar"></td>
+                        </tr>
+                    </form>
+                {% endfor %}
+            </table>
+
+    {% endif %}
+
 </body>
 </html>
