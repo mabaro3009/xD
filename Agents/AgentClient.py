@@ -181,7 +181,7 @@ def buscar():
         if precio_max:
             body_precio = ONT['restriccion_de_precio' + str(get_count())]
             gr.add((body_precio, RDF.type, ONT.restriccion_de_precio))
-            gr.add((body_precio, ONT.precio_max, Literal(precio_max, datatype=XSD.integer)))
+            gr.add((body_precio, ONT.precio_max, Literal(precio_max, datatype=XSD.float)))
             gr.add((msgResult, ONT.Restringe, URIRef(body_precio)))
 
         grAgentBuscador = get_agent_info(agn.AgentBuscador, DirectoryAgent, AgentClient, get_count())

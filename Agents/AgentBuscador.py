@@ -146,19 +146,15 @@ def comunicacion():
     # Comprobamos que sea un mensaje FIPA ACL
     if msgdic is None:
         # Si no es, respondemos que no hemos entendido el mensaje
-        logger.info('none')
         gr = build_message(Graph(), ACL['not-understood'], sender=AgentBuscador.uri, msgcnt=mss_cnt)
     else:
-        logger.info('else')
         # Obtenemos la performativa
         perf = msgdic['performative']
 
         if perf != ACL.request:
-            logger.info('perf != acl.request')
             # Si no es un request, respondemos que no hemos entendido el mensaje
             gr = build_message(Graph(), ACL['not-understood'], sender=AgentBuscador.uri, msgcnt=mss_cnt)
         else:
-            logger.info('guai')
             # Extraemos el objeto del contenido que ha de ser una accion de la ontologia de acciones del agente
             # de registro
 
@@ -193,11 +189,10 @@ def comunicacion():
 
     return gr.serialize(format='xml')
 
-def search(nombre=None, marca=None, max_price=sys.float_info.max):
+def search(nombre=None, marca=None, precio_max=sys.float_info.max):
     graph = Graph()
     ontologyFile = open('../Data/product.rdf')
     graph.parse(ontologyFile, format='turtle')
-
     first = second = 0
     query = """
         prefix rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -223,20 +218,19 @@ def search(nombre=None, marca=None, max_price=sys.float_info.max):
         query += """str(?marca) = '""" + marca + """'"""
         second = 1
 
-    if first == 1 or second == 1:
-        query += """ && """
-    query += """
-                ?precio <= """ + str(max_price) + """  )}
-                order by asc(UCASE(str(?nombre)))"""
+    if first == 1 or second == 1 or precio_max != sys.float_info.max:
+        if first == 1 or second == 1:
+            query += """ && """
+        query += """
+                ?precio <= """ + str(precio_max) + """  )}
+                order by desc(UCASE(str(?precio)))"""
 
 
-    logger.info(query)
     graph_query = graph.query(query)
     result = Graph()
     result.bind('ONT', ONT)
     product_count = 0
     for row in graph_query:
-        logger.info('entro')
         nombre = row.nombre
         marca = row.marca
         precio = row.precio
