@@ -195,7 +195,29 @@ def buscar():
                           msgcnt=get_count(),
                           content=msgResult), grAgentBuscador.address)
         logger.info('funciona :D')
-        return render_template('buscar.html', name='OKKKKKK')
+        index = 0
+        subject_pos = {}
+        lista = []
+        for s, p, o in gr2:
+            if s not in subject_pos:
+                subject_pos[s] = index
+                lista.append({})
+                index += 1
+            if s in subject_pos:
+                subject_dict = lista[subject_pos[s]]
+                if p == RDF.type:
+                    subject_dict['url'] = s
+                elif p == ONT.marca:
+                    subject_dict['marca'] = o
+                elif p == ONT.precio:
+                    subject_dict['precio'] = o
+                elif p == ONT.nombre:
+                    subject_dict['nombre'] = o
+                elif p == ONT.peso:
+                    subject_dict['peso'] = o
+                    lista[subject_pos[s]] = subject_dict
+
+        return render_template('buscar.html', productos=lista)
 
 @app.route("/iface", methods=['GET', 'POST'])
 def browser_iface():

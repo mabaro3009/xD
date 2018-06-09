@@ -6,13 +6,15 @@ Agente que se registra como agente de hoteles y espera peticiones
 @author: javier
 """
 from __future__ import print_function
+
+import sys
 from multiprocessing import Process, Queue
 import socket
 import argparse
 
 from flask import Flask, request
 from rdflib import Graph, Namespace, Literal
-from rdflib.namespace import FOAF, RDF
+from rdflib.namespace import FOAF, RDF, XSD
 
 from AgentUtil.OntoNamespaces import ACL, DSO
 from AgentUtil.FlaskServer import shutdown_server
@@ -181,21 +183,77 @@ def comunicacion():
                     elif gm.value(subject=restriccion, predicate=RDF.type) == ONT.restriccion_de_peso:
                         peso = gm.value(subject=restriccion, predicate=ONT.peso)
                         logger.info('peso: '+ peso)
-                        restricciones_busqueda['marca'] = peso
+                        restricciones_busqueda['peso'] = peso
                     elif gm.value(subject=restriccion, predicate=RDF.type) == ONT.restriccion_de_precio:
                         precio_max = gm.value(subject=restriccion, predicate=ONT.precio_max)
                         logger.info('precio_max: '+ precio_max)
                         restricciones_busqueda['precio_max'] = precio_max
-                    gr = build_message(Graph(),
-                                       ACL['inform-done'],
-                                       sender=AgentBuscador.uri,
-                                       msgcnt=mss_cnt,
-                                       receiver=msgdic['sender'], )
+
+                    gr = findProducts(**restricciones_busqueda)
+
     mss_cnt += 1
 
     logger.info('Respondemos a la peticion')
 
     return gr.serialize(format='xml')
+
+def findProducts(nombre=None, marca=None, max_price=sys.float_info.max):
+    graph = Graph()
+    ontologyFile = open('../Data/product.rdf')
+    graph.parse(ontologyFile, format='turtle')
+
+    first = second = 0
+    query = """
+        prefix rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        prefix xsd:<http://www.w3.org/2001/XMLSchema#>
+        prefix default:<http://www.owl-ontologies.com/ECSDI-ontologia.owl#>
+        prefix owl:<http://www.w3.org/2002/07/owl#>
+        SELECT DISTINCT ?producto ?nombre ?marca ?precio ?peso
+        where {
+            { ?producto rdf:type default:Producto } UNION { ?producto rdf:type default:Producto_externo } .
+            ?producto default:nombre ?nombre .
+            ?producto default:marca ?marca .
+            ?producto default:precio ?precio .
+            ?producto default:peso ?peso .
+            FILTER("""
+
+    if nombre is not None:
+        query += """str(?nombre) = '""" + nombre + """'"""
+        first = 1
+
+    if marca is not None:
+        if first == 1:
+            query += """ && """
+        query += """str(?marca) = '""" + marca + """'"""
+        second = 1
+
+    if first == 1 or second == 1:
+        query += """ && """
+    query += """
+                ?precio <= """ + str(max_price) + """  )}
+                order by asc(UCASE(str(?nombre)))"""
+
+
+    logger.info(query)
+    graph_query = graph.query(query)
+    result = Graph()
+    result.bind('ONT', ONT)
+    product_count = 0
+    for row in graph_query:
+        logger.info('entro')
+        nombre = row.nombre
+        marca = row.marca
+        precio = row.precio
+        logger.info(nombre, marca, precio)
+        peso = row.peso
+        subject = row.producto
+        product_count += 1
+        result.add((subject, RDF.type, ONT.Producto))
+        result.add((subject, ONT.marca, Literal(marca, datatype=XSD.string)))
+        result.add((subject, ONT.precio, Literal(precio, datatype=XSD.float)))
+        result.add((subject, ONT.peso, Literal(peso, datatype=XSD.float)))
+        result.add((subject, ONT.nombre, Literal(nombre, datatype=XSD.string)))
+    return result
 
 
 def tidyup():

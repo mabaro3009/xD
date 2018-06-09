@@ -14,6 +14,23 @@
         <p><label>Peso:</label> <input type="text" name="peso"></p>
         <button type="submit">Buscar</button>
     </form>
-
+    {% if productos %}
+        <form method="post">
+            <table cellpadding="5px">
+                <tr>
+                    <th><b>Nombre</b></th>
+                    <th><b>Marca</b></th>
+                    <th><b>Precio</b></th>
+                </tr>
+                {% for item in productos %}
+                    <tr>
+                        <td>{{ item.nombre }}</td>
+                        <td>{{ item.marca }}</td>
+                        <td>{{ item.precio }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </form>
+    {% endif %}
 </body>
 </html>
