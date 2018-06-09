@@ -36,7 +36,6 @@
                     </form>
                 {% endfor %}
             </table>
-
     {% endif %}
 
     {% if productos_carrito %}
@@ -60,7 +59,18 @@
                 {% endfor %}
             </table>
 
+            ----------------------------
+            <br>
+            <label>Total: {{ total }} </label>
+            <br>
+            ----------------------------
+            <br>
+
+            <form method="post" action="">
+                <input type="submit" name="submit" value ="Comprar">
+            </form>
     {% endif %}
+
 
 </body>
 </html>

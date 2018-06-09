@@ -217,8 +217,8 @@ def buscar():
                         subject_dict['peso'] = o
                         lista[subject_pos[s]] = subject_dict
 
-
-            return render_template('buscar.html', productos=lista)
+            total = calcula_precio_carrito()
+            return render_template('buscar.html', productos=lista, productos_carrito = carrito_compra, total = total)
 
         elif request.form['submit'] == 'Al carrito!':
             item = {}
@@ -228,18 +228,44 @@ def buscar():
             item["nombre"] = request.form["nombre"]
             logger.info(item["id"])
             carrito_compra.append(item)
+            total = calcula_precio_carrito()
+            return render_template('buscar.html', productos_carrito = carrito_compra, total = total)
 
-            return render_template('buscar.html', productos_carrito = carrito_compra)
         elif request.form['submit'] == 'Eliminar':
-            logger.info("ELIMINA    ")
-            item = {}
             idd = request.form["id"]
             ii = -1
             for i in range(0, len(carrito_compra)):
                 if carrito_compra[i]["id"] == idd:
                     ii = i
             del carrito_compra[ii]
-            return render_template('buscar.html', productos_carrito = carrito_compra)
+            total = calcula_precio_carrito()
+            return render_template('buscar.html', productos_carrito = carrito_compra, total = total)
+
+        elif request.form['submit'] == 'Comprar':
+            print("comprar")
+            total = calcula_precio_carrito()
+            return render_template('datos_cliente.html', productos_carrito = carrito_compra, total = total)
+
+        elif request.form['submit'] == 'Confirmar compra':
+            print("compra comprada xd")
+            prioridad = request.form["prioridad"]
+            nombre = str(request.form["nombre"])
+            targeta = str(request.form["targeta"])
+            direccion = str(request.form["direccion"])
+
+            if (nombre=="" or targeta=="" or direccion==""):
+                print("errrrrrror")
+                total = calcula_precio_carrito()
+                error = "Faltan campos por llenar. Por favor, no dejes ningun campo en blanco"
+                return render_template('datos_cliente.html', productos_carrito = carrito_compra, total = total, error = error)
+            return
+
+def calcula_precio_carrito():
+    total = 0
+    for i in range(0, len(carrito_compra)):
+        total += float(carrito_compra[i]["precio"])
+    return total
+
 
 @app.route("/iface", methods=['GET', 'POST'])
 def browser_iface():

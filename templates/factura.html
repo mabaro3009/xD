@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Factura</title>
+
+</head>
+<body>
+
+    <form method="post" action="">
+        <p><label>Nombre: {{ datos.nombre }}</label>
+        <p><label>Dirección: {{ datos.direccion }}</label>
+        <p><label> La fecha aproximada de llegada será entre {{ datos.llegada }}</label>
+
+        {% if productos_carrito %}
+            <p><label>Artículos comprados:</label></p>
+            <table cellpadding="5px">
+                <tr>
+                    <th><b>Nombre</b></th>
+                    <th><b>Marca</b></th>
+                    <th><b>Precio</b></th>
+                </tr>
+                {% for item in productos_carrito %}
+                    <form method="post" action="">
+                        <tr>
+                            <td>{{ item.nombre }}</td>
+                            <td>{{ item.marca }}</td>
+                            <td>{{ item.precio }}</td>
+                        </tr>
+                    </form>
+                {% endfor %}
+
+
+            </table>
+
+            ----------------------------
+            <br>
+            <label>Total: {{ total }}</label>
+            <br>
+
+        {% endif %}
+
+        <br>
+
+
+        <input type="submit" name="submit" value ="Realizar otra compra">
+    </form>
+
+</body>
+</html>

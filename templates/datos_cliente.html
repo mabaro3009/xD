@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmación compra</title>
+
+</head>
+<body>
+    {% if error %}
+        {{  error  }}
+    {% endif %}
+    <form method="post" action="">
+        <p><label>Nombre:</label> <input type="text" name="nombre"></p>
+        <p><label>Dirección:</label> <input type="text" name="direccion"></p>
+        <p><label>Targeta:</label> <input type="text" name="targeta"></p>
+        <p><label>Prioridad:</label>
+
+        <select name="prioridad">
+           <option value="1">Baja (de 7 a 10 días): Gratis</option>
+           <option value="2">Media (de 3 a 7 días): 4.95€</option>
+           <option value="3">Alta (1-2 días): 15€</option>
+        </select></p>
+
+        <br>
+
+        {% if productos_carrito %}
+            <p><label>Carrito de la compra:</label></p>
+            <table cellpadding="5px">
+                <tr>
+                    <th><b>Nombre</b></th>
+                    <th><b>Marca</b></th>
+                    <th><b>Precio</b></th>
+                </tr>
+                {% for item in productos_carrito %}
+                    <form method="post" action="">
+                        <tr>
+                            <td>{{ item.nombre }}</td>
+                            <td>{{ item.marca }}</td>
+                            <td>{{ item.precio }}</td>
+                        </tr>
+                    </form>
+                {% endfor %}
+
+
+            </table>
+
+            ----------------------------
+            <br>
+            <label>Total: {{ total }} + gastos de envío </label>
+            <br>
+
+        {% endif %}
+
+        <br>
+
+
+        <input type="submit" name="submit" value ="Confirmar compra">
+    </form>
+
+</body>
+</html>
