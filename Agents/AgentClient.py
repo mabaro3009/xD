@@ -247,18 +247,41 @@ def buscar():
             return render_template('datos_cliente.html', productos_carrito = carrito_compra, total = total)
 
         elif request.form['submit'] == 'Confirmar compra':
-            print("compra comprada xd")
-            prioridad = request.form["prioridad"]
+
+            direccion = str(request.form["direccion"])
             nombre = str(request.form["nombre"])
             targeta = str(request.form["targeta"])
-            direccion = str(request.form["direccion"])
 
-            if (nombre=="" or targeta=="" or direccion==""):
-                print("errrrrrror")
+            if nombre == "" or targeta == "" or direccion == "":
                 total = calcula_precio_carrito()
                 error = "Faltan campos por llenar. Por favor, no dejes ningun campo en blanco"
-                return render_template('datos_cliente.html', productos_carrito = carrito_compra, total = total, error = error)
-            return
+                return render_template('datos_cliente.html', productos_carrito=carrito_compra, total=total, error=error)
+
+            datos = {}
+
+            prioridad = int(request.form["prioridad"])
+            if prioridad == 1:
+                datos["envio"] = 0
+                datos["llegada"] = "7 y 10 dias laborables"
+            elif prioridad == 2:
+                datos["envio"] = 4.95
+                datos["llegada"] = "3 y 6 dias laborables"
+            elif prioridad == 3:
+                datos["envio"] = 15
+                datos["llegada"] = "1 y 2 dias laborables"
+            total = calcula_precio_carrito()
+            datos["precio"] = round(total/1.21, 2)
+            datos["iva"] = round(total - total / 1.21, 2)
+            datos["total"] = total + datos["envio"]
+            datos["nombre"] = nombre
+            datos["targeta"] = targeta
+            datos["direccion"] = direccion
+
+            return render_template('factura.html', productos_carrito=carrito_compra, datos=datos)
+
+        elif request.form['submit'] == 'Realizar otra compra':
+            return render_template('buscar.html')
+
 
 def calcula_precio_carrito():
     total = 0
