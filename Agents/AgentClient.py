@@ -8,6 +8,8 @@ Created on 09/02/2014
 """
 
 from __future__ import print_function
+
+import random
 from multiprocessing import Process
 import socket
 import argparse
@@ -213,6 +215,8 @@ def buscar():
                         subject_dict['nombre'] = o
                     elif p == ONT.id:
                         subject_dict['id'] = o
+                    elif p == ONT.proc:
+                        subject_dict['proc'] = o
                     elif p == ONT.peso:
                         subject_dict['peso'] = o
                         lista[subject_pos[s]] = subject_dict
@@ -247,23 +251,6 @@ def buscar():
             return render_template('datos_cliente.html', productos_carrito = carrito_compra, total = total)
 
         elif request.form['submit'] == 'Confirmar compra':
-
-
-            #TODO: aixo no es fa aixi pero va aqui, se li passen al vendedor els productes. Ara passa una merda de peticio que no fot res
-            msgResult = ONT['Busqueda' + str(get_count())] #no ha de ser busqueda
-            gr = Graph()
-            gr.add((msgResult, RDF.type, ONT.Busqueda))
-            body_nombre = ONT['restriccion_de_nombre' + str(get_count())]
-            gr.add((body_nombre, RDF.type, ONT.restriccion_de_nombre))
-            gr.add((body_nombre, ONT.nombre, Literal("salu2", datatype=XSD.string)))
-            gr.add((msgResult, ONT.Restringe, URIRef(body_nombre)))
-            grAgentVendedor = get_agent_info(agn.AgentVendedor, DirectoryAgent, AgentClient, get_count())
-
-            gr2 = infoagent_search_message(grAgentVendedor.address, grAgentVendedor.uri, gr, msgResult)
-
-
-
-
             direccion = str(request.form["direccion"])
             nombre = str(request.form["nombre"])
             targeta = str(request.form["targeta"])
@@ -292,6 +279,26 @@ def buscar():
             datos["nombre"] = nombre
             datos["targeta"] = targeta
             datos["direccion"] = direccion
+
+
+            for producto in carrito_compra:
+                gr = Graph()
+                id_compra = str(random.randint(1, 1000000000))
+                compra = ONT['Compra_' + id_compra]
+
+                msgResult = ONT['Comprar_' + str(get_count())]
+                gr.add((msgResult, RDF.type, ONT.Comprar))
+                gr.add((compra, RDF.type, ONT.Compra))
+                gr.add((compra, ONT.nombre, Literal(producto['nombre'], datatype=XSD.string)))
+                gr.add((compra, ONT.marca, Literal(producto['marca'], datatype=XSD.string)))
+                gr.add((compra, ONT.precio, Literal(producto['precio'], datatype=XSD.float)))
+                gr.add((compra, ONT.id, Literal(producto['id'], datatype=XSD.integer)))
+                gr.add((compra, ONT.id_compra, Literal(id_compra, datatype=XSD.integer)))
+                gr.add((msgResult, ONT.Compra, compra))
+
+                AgentVen = get_agent_info(agn.AgentVendedor, DirectoryAgent, AgentClient, get_count())
+
+                infoagent_search_message(AgentVen.address, AgentVen.uri, gr, msgResult)
 
             return render_template('factura.html', productos_carrito=carrito_compra, datos=datos)
 

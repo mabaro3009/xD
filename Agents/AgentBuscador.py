@@ -199,13 +199,14 @@ def search(nombre=None, marca=None, precio_max=sys.float_info.max):
         prefix xsd:<http://www.w3.org/2001/XMLSchema#>
         prefix default:<http://www.ontologia.com/ECSDI-ontologia.owl#>
         prefix owl:<http://www.w3.org/2002/07/owl#>
-        SELECT DISTINCT ?producto ?nombre ?marca ?precio ?peso ?id
+        SELECT DISTINCT ?producto ?nombre ?marca ?precio ?peso ?id ?proc
         where {
             { ?producto rdf:type default:Producto } UNION { ?producto rdf:type default:Producto_externo } .
             ?producto default:nombre ?nombre .
             ?producto default:marca ?marca .
             ?producto default:precio ?precio .
             ?producto default:peso ?peso .
+            ?producto default:proc ?proc .
             ?producto default:id ?id .
             FILTER("""
 
@@ -240,6 +241,8 @@ def search(nombre=None, marca=None, precio_max=sys.float_info.max):
         logger.info(marca)
         logger.info(precio)
         peso = row.peso
+        proc = row.proc
+        logger.info(proc)
         subject = row.producto
         product_count += 1
         result.add((subject, RDF.type, ONT.Producto))
@@ -248,6 +251,7 @@ def search(nombre=None, marca=None, precio_max=sys.float_info.max):
         result.add((subject, ONT.peso, Literal(peso, datatype=XSD.float)))
         result.add((subject, ONT.nombre, Literal(nombre, datatype=XSD.string)))
         result.add((subject, ONT.id, Literal(id, datatype=XSD.integer)))
+        result.add((subject, ONT.proc, Literal(proc, datatype=XSD.string)))
     return result
 
 

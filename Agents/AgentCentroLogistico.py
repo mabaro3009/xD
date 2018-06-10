@@ -161,6 +161,7 @@ def alta():
             marca = request.form['marca']
             precio = request.form['precio']
             peso = request.form['peso']
+            proc = 'centro'
 
             producto = ONT['Producto_' + id]
 
@@ -175,6 +176,7 @@ def alta():
             gr.add((producto, ONT.precio, Literal(precio, datatype=XSD.float)))
             gr.add((producto, ONT.peso, Literal(peso, datatype=XSD.float)))
             gr.add((producto, ONT.id, Literal(id, datatype=XSD.integer)))
+            gr.add((producto, ONT.proc, Literal(proc, datatype=XSD.string)))
             gr.add((msgResult, ONT.Producto, producto))
             AgentLog = get_agent_info(agn.AgentLogistico, DirectoryAgent, AgentCentroLogistico, get_count())
 

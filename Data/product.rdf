@@ -9,96 +9,118 @@ ONT:Producto_1 a ONT:Producto ;
     ONT:marca "Apple"^^xsd:string ;
     ONT:nombre "iMac"^^xsd:string ;
     ONT:peso "6.0"^^xsd:float ;
-    ONT:precio "1200.0"^^xsd:float .
+    ONT:precio "1200.0"^^xsd:float ;
+    ONT:proc "centro"^^xsd:string .
 
 ONT:Producto_158748941 a ONT:Producto ;
     ONT:id 158748941 ;
     ONT:marca "Apple"^^xsd:string ;
     ONT:nombre "TV"^^xsd:string ;
     ONT:peso "22.0"^^xsd:float ;
-    ONT:precio "500.0"^^xsd:float .
+    ONT:precio "500.0"^^xsd:float ;
+    ONT:proc "centro"^^xsd:string .
 
 ONT:Producto_2 a ONT:Producto ;
     ONT:id 2 ;
     ONT:marca "Apple"^^xsd:string ;
     ONT:nombre "iPhone"^^xsd:string ;
     ONT:peso "2.0"^^xsd:float ;
-    ONT:precio "1000.0"^^xsd:float .
+    ONT:precio "1000.0"^^xsd:float ;
+    ONT:proc "centro"^^xsd:string .
 
 ONT:Producto_247549838 a ONT:Producto ;
     ONT:id 247549838 ;
     ONT:marca "Apple"^^xsd:string ;
     ONT:nombre "iPhone 2"^^xsd:string ;
     ONT:peso "1.0"^^xsd:float ;
-    ONT:precio "200.0"^^xsd:float .
+    ONT:precio "200.0"^^xsd:float ;
+    ONT:proc "centro"^^xsd:string .
 
 ONT:Producto_3 a ONT:Producto ;
     ONT:id 3 ;
     ONT:marca "Samsung"^^xsd:string ;
     ONT:nombre "Galaxy S9"^^xsd:string ;
     ONT:peso "2.5"^^xsd:float ;
-    ONT:precio "900.0"^^xsd:float .
+    ONT:precio "900.0"^^xsd:float ;
+    ONT:proc "centro"^^xsd:string .
 
 ONT:Producto_4 a ONT:Producto ;
     ONT:id 4 ;
     ONT:marca "Samsung"^^xsd:string ;
     ONT:nombre "TV"^^xsd:string ;
     ONT:peso "20.0"^^xsd:float ;
-    ONT:precio "4200.0"^^xsd:float .
+    ONT:precio "4200.0"^^xsd:float ;
+    ONT:proc "centro"^^xsd:string .
 
 ONT:Producto_454986876 a ONT:Producto ;
     ONT:id 454986876 ;
     ONT:marca "Xino"^^xsd:string ;
     ONT:nombre "Celo"^^xsd:string ;
     ONT:peso "0.2"^^xsd:float ;
-    ONT:precio "500.0"^^xsd:float .
+    ONT:precio "500.0"^^xsd:float ;
+    ONT:proc "centro"^^xsd:string .
 
 ONT:Producto_5 a ONT:Producto ;
     ONT:id 5 ;
     ONT:marca "Sony"^^xsd:string ;
     ONT:nombre "PS4"^^xsd:string ;
     ONT:peso "6.0"^^xsd:float ;
-    ONT:precio "1000.0"^^xsd:float .
+    ONT:precio "1000.0"^^xsd:float ;
+    ONT:proc "centro"^^xsd:string .
 
 ONT:Producto_6 a ONT:Producto ;
     ONT:id 6 ;
     ONT:marca "BenQ"^^xsd:string ;
     ONT:nombre "TV"^^xsd:string ;
     ONT:peso "10.0"^^xsd:float ;
-    ONT:precio "1200.0"^^xsd:float .
+    ONT:precio "1200.0"^^xsd:float ;
+    ONT:proc "centro"^^xsd:string .
 
 ONT:Producto_723108807 a ONT:Producto ;
     ONT:id 723108807 ;
     ONT:marca "Panasonic"^^xsd:string ;
     ONT:nombre "TV"^^xsd:string ;
     ONT:peso "30.0"^^xsd:float ;
-    ONT:precio "500.0"^^xsd:float .
+    ONT:precio "500.0"^^xsd:float ;
+    ONT:proc "centro"^^xsd:string .
 
 ONT:Producto_externo_236196053 a ONT:Producto_externo ;
     ONT:id 236196053 ;
     ONT:marca "Casio"^^xsd:string ;
     ONT:nombre "Calculadora"^^xsd:string ;
     ONT:peso "1.0"^^xsd:float ;
-    ONT:precio "20.0"^^xsd:float .
+    ONT:precio "20.0"^^xsd:float ;
+    ONT:proc "externo"^^xsd:string .
 
 ONT:Producto_externo_38661361 a ONT:Producto_externo ;
     ONT:id 38661361 ;
     ONT:marca "Corsair"^^xsd:string ;
     ONT:nombre "Raton"^^xsd:string ;
     ONT:peso "2.0"^^xsd:float ;
-    ONT:precio "200.0"^^xsd:float .
+    ONT:precio "200.0"^^xsd:float ;
+    ONT:proc "externo"^^xsd:string .
 
 ONT:Producto_externo_839768019 a ONT:Producto_externo ;
     ONT:id 839768019 ;
     ONT:marca "Corsair"^^xsd:string ;
     ONT:nombre "Teclado"^^xsd:string ;
     ONT:peso "3.0"^^xsd:float ;
-    ONT:precio "400.0"^^xsd:float .
+    ONT:precio "400.0"^^xsd:float ;
+    ONT:proc "externo"^^xsd:string .
+
+ONT:Producto_externo_90378155 a ONT:Producto_externo ;
+    ONT:id 90378155 ;
+    ONT:marca "xD"^^xsd:string ;
+    ONT:nombre "Batamanta"^^xsd:string ;
+    ONT:peso "2.0"^^xsd:float ;
+    ONT:precio "12.0"^^xsd:float ;
+    ONT:proc "externo"^^xsd:string .
 
 ONT:Producto_externo_93224245 a ONT:Producto_externo ;
     ONT:id 93224245 ;
     ONT:marca "Samsung"^^xsd:string ;
     ONT:nombre "Galaxy S9+"^^xsd:string ;
     ONT:peso "1.0"^^xsd:float ;
-    ONT:precio "900.0"^^xsd:float .
+    ONT:precio "900.0"^^xsd:float ;
+    ONT:proc "externo"^^xsd:string .
 

@@ -159,21 +159,15 @@ def comunicacion():
             # de registro
 
             # Averiguamos el tipo de la accion
-
             content = msgdic['content']
             accion = gm.value(subject=content, predicate=RDF.type)
+            logger.info(accion)
             # Aqui realizariamos lo que pide la accion
             # Por ahora simplemente retornamos un Inform-done
-
-            #TODO: aqui depen perque no ens registrarem ni buscarem, sino que farem el que toqui
-            #TODO: esta tot fet malament pero amb intencio, nomes per veure que la comunicacio funciona, que m'ha costat lo meu xd
-            if accion == ONT.Busqueda:
+            if accion == ONT.Comprar:
                 #gr = registrarProducto(gm)
-                restricciones = gm.objects(content, ONT.Restringe)
-                for restriccion in restricciones:
-                    if gm.value(subject=restriccion, predicate=RDF.type) == ONT.restriccion_de_nombre:
-                        logger.info("JA HI SOC LA COMUNICACIO SIDOSA FUNCIONA SOMEHOW")
-                        gr = build_message(Graph(), ACL['not-understood'], sender=AgentVendedor.uri, msgcnt=mss_cnt)
+                logger.info('arribo')
+                gr = build_message(Graph(), ACL['not-understood'], sender=AgentVendedor.uri, msgcnt=mss_cnt)
     mss_cnt += 1
 
     logger.info('Respondemos a la peticion')
