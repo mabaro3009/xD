@@ -227,10 +227,12 @@ def buscar():
         elif request.form['submit'] == 'Al carrito!':
             item = {}
             item["id"] = request.form["id"]
+            item["proc"] = request.form["proc"]
             item["marca"] = request.form["marca"]
             item["precio"] = request.form["precio"]
             item["nombre"] = request.form["nombre"]
             logger.info(item["id"])
+            logger.info(item["proc"])
             carrito_compra.append(item)
             total = calcula_precio_carrito()
             return render_template('buscar.html', productos_carrito = carrito_compra, total = total)
@@ -280,16 +282,19 @@ def buscar():
             datos["targeta"] = targeta
             datos["direccion"] = direccion
 
+            precio_externo = calcula_precio_externo()
+
+
             id_compra = str(random.randint(1, 1000000000))
             gr2 = Graph()
             compra = ONT['Compra_' + id_compra]
             msgResult2 = ONT['Comprar_' + str(get_count())]
 
-            logger.info(len(carrito_compra))
-
             gr2.add((msgResult2, RDF.type, ONT.Comprar))
+            gr2.add((compra, RDF.type, ONT.Compra))
             gr2.add((compra, ONT.id_compra, Literal(id_compra, datatype=XSD.integer)))
             gr2.add((compra, ONT.precio, Literal(datos["total"], datatype=XSD.float)))
+            gr2.add((compra, ONT.precio_externo, Literal(precio_externo, datatype=XSD.float)))
             gr2.add((compra, ONT.nombre, Literal(nombre, datatype=XSD.string)))
             gr2.add((compra, ONT.targeta, Literal(targeta, datatype=XSD.string)))
             gr2.add((compra, ONT.direccion, Literal(direccion, datatype=XSD.string)))
@@ -305,8 +310,8 @@ def buscar():
                 producto_a_comprar = ONT['Producto_' + producto['id']]
 
                 msgResult = ONT['Comprar_Producto_' + str(get_count())]
-                gr.add((msgResult, RDF.type, ONT.Producto_comprado))
-                gr.add((producto_a_comprar, RDF.type, ONT.Compra))
+                gr.add((msgResult, RDF.type, ONT.Comprar_producto))
+                gr.add((producto_a_comprar, RDF.type, ONT.Producto_comprado))
                 gr.add((producto_a_comprar, ONT.nombre, Literal(producto['nombre'], datatype=XSD.string)))
                 gr.add((producto_a_comprar, ONT.marca, Literal(producto['marca'], datatype=XSD.string)))
                 gr.add((producto_a_comprar, ONT.precio, Literal(producto['precio'], datatype=XSD.float)))
@@ -332,6 +337,13 @@ def calcula_precio_carrito():
     total = 0
     for i in range(0, len(carrito_compra)):
         total += float(carrito_compra[i]["precio"])
+    return total
+
+def calcula_precio_externo():
+    total = 0
+    for i in range(0, len(carrito_compra)):
+        if carrito_compra[i]["proc"] == "externo":
+            total += float(carrito_compra[i]["precio"])
     return total
 
 

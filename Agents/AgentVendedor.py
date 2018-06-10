@@ -164,11 +164,10 @@ def comunicacion():
             logger.info(accion)
 
             if accion == ONT.Comprar:
-                #gr = registrarProducto(gm)
                 logger.info('arribo')
-                gr = build_message(Graph(), ACL['inform-done'], sender=AgentVendedor.uri, msgcnt=mss_cnt)
+                gr = registrarCompra(gm)
 
-            elif accion == ONT.Producto_comprado:
+            elif accion == ONT.Comprar_producto:
                 logger.info('tambe arribo')
                 gr = build_message(Graph(), ACL['inform-done'], sender=AgentVendedor.uri, msgcnt=mss_cnt)
 
@@ -179,7 +178,19 @@ def comunicacion():
     return gr.serialize(format='xml')
 
 
+def registrarCompra(gm):
+    ontologia = open('../Data/compras.rdf')
+    gr = Graph()
+    gr.parse(ontologia, format="turtle")
+    compra = gm.subjects(RDF.type, ONT.Compra)
+    compra = compra.next()
 
+    for s, p, o in gm:
+        if s == compra:
+            gr.add((s, p, o))
+
+    gr.serialize(destination='../Data/compras.rdf', format='turtle')
+    return gm
 
 
 
