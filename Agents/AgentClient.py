@@ -248,6 +248,22 @@ def buscar():
 
         elif request.form['submit'] == 'Confirmar compra':
 
+
+            #TODO: aixo no es fa aixi pero va aqui, se li passen al vendedor els productes. Ara passa una merda de peticio que no fot res
+            msgResult = ONT['Busqueda' + str(get_count())] #no ha de ser busqueda
+            gr = Graph()
+            gr.add((msgResult, RDF.type, ONT.Busqueda))
+            body_nombre = ONT['restriccion_de_nombre' + str(get_count())]
+            gr.add((body_nombre, RDF.type, ONT.restriccion_de_nombre))
+            gr.add((body_nombre, ONT.nombre, Literal("salu2", datatype=XSD.string)))
+            gr.add((msgResult, ONT.Restringe, URIRef(body_nombre)))
+            grAgentVendedor = get_agent_info(agn.AgentVendedor, DirectoryAgent, AgentClient, get_count())
+
+            gr2 = infoagent_search_message(grAgentVendedor.address, grAgentVendedor.uri, gr, msgResult)
+
+
+
+
             direccion = str(request.form["direccion"])
             nombre = str(request.form["nombre"])
             targeta = str(request.form["targeta"])
@@ -283,11 +299,17 @@ def buscar():
             return render_template('buscar.html')
 
 
+        #TODO: aquí envia els productes comprats al agente vendedor perquè aquest faci el qu ahgi de fer. No va aqui obviament, despres dels returns
+
+
+
 def calcula_precio_carrito():
     total = 0
     for i in range(0, len(carrito_compra)):
         total += float(carrito_compra[i]["precio"])
     return total
+
+
 
 
 @app.route("/iface", methods=['GET', 'POST'])
