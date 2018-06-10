@@ -241,6 +241,7 @@ def getProductos(gm):
     product_count = 0
     for row in graph_query:
         id_compra = row.id_compra
+        id_lote = row.id_lote
         prioridad = row.prioridad
         direccion = row.direccion
         peso = row.peso
@@ -249,6 +250,7 @@ def getProductos(gm):
         product_count += 1
         result.add((subject, RDF.type, ONT.Compra))
         result.add((subject, ONT.id_compra, Literal(id_compra, datatype=XSD.integer)))
+        result.add((subject, ONT.id_lote, Literal(id_lote, datatype=XSD.integer)))
         result.add((subject, ONT.prioridad, Literal(prioridad, datatype=XSD.integer)))
         result.add((subject, ONT.direccion, Literal(direccion, datatype=XSD.string)))
         result.add((subject, ONT.peso, Literal(peso, datatype=XSD.float)))

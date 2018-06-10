@@ -89,6 +89,9 @@ DirectoryAgent = Agent('DirectoryAgent',
 dsgraph = Graph()
 
 lote = []
+compras_sin_asignar = []
+compras_asignadas = []
+
 
 def get_count():
     global mss_cnt
@@ -205,18 +208,19 @@ def crear_lote():
 
         index = 0
         subject_pos = {}
-        lista = []
         for s, p, o in gr2:
             if s not in subject_pos:
                 subject_pos[s] = index
-                lista.append({})
+                compras_sin_asignar.append({})
                 index += 1
             if s in subject_pos:
-                subject_dict = lista[subject_pos[s]]
+                subject_dict = compras_sin_asignar[subject_pos[s]]
                 if p == RDF.type:
                     subject_dict['url'] = s
                 elif p == ONT.direccion:
                     subject_dict['direccion'] = o
+                elif p == ONT.id_lote:
+                    subject_dict['id_lote'] = o
                 elif p == ONT.id_compra:
                     subject_dict['id_compra'] = o
                 elif p == ONT.peso:
@@ -225,19 +229,29 @@ def crear_lote():
                     subject_dict['total'] = o
                 elif p == ONT.prioridad:
                     subject_dict['prioridad'] = o
-                    lista[subject_pos[s]] = subject_dict
+                    compras_sin_asignar[subject_pos[s]] = subject_dict
+                    global id_lote
+                    id_lote = str(random.randint(1, 1000000000))
 
-        return render_template('crear_lote.html', productos=lista)
+        return render_template('crear_lote.html', productos=compras_sin_asignar)
+
     else:
         if request.form['submit'] == 'Al lote!':
-            item = {}
-            item["id_compra"] = request.form["id_compra"]
-            item["direccion"] = request.form["direccion"]
-            item["peso"] = request.form["peso"]
-            item["total"] = request.form["total"]
-            item["prioridad"] = request.form["prioridad"]
-            lote.append(item)
-            return render_template('crear_lote.html', productos_lote=lote)
+            idd = request.form["id_compra"]
+            ii = -1
+            for i in range(0, len(compras_sin_asignar)):
+                if compras_sin_asignar[i]["id_compra"] == idd:
+                    ii = i
+            compras_sin_asignar[ii]["id_lote"] = id_lote
+            compras_asignadas.append(compras_sin_asignar[ii])
+            del compras_sin_asignar[ii]
+            logger.info(compras_sin_asignar[0]["id_lote"])
+            logger.info(compras_asignadas[0]["id_lote"])
+            return render_template('crear_lote.html', productos=compras_sin_asignar, productos_lote=compras_asignadas)
+
+        if request.form['submit'] == 'Enviar Lote':
+            a = 1
+
 
 @app.route("/Stop")
 def stop():

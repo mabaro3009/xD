@@ -4,6 +4,18 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+ONT:Producto_Comprado133486953 a ONT:Producto_comprado ;
+    ONT:enviado false ;
+    ONT:id 236196053 ;
+    ONT:id_compra 253071924 ;
+    ONT:id_lote 0 ;
+    ONT:marca "Casio"^^xsd:string ;
+    ONT:nombre "Calculadora"^^xsd:string ;
+    ONT:peso "1.0"^^xsd:float ;
+    ONT:precio "20.0"^^xsd:float ;
+    ONT:prioridad 2 ;
+    ONT:proc "externo"^^xsd:string .
+
 ONT:Producto_Comprado30869312 a ONT:Producto_comprado ;
     ONT:enviado false ;
     ONT:id 839768019 ;
@@ -15,6 +27,30 @@ ONT:Producto_Comprado30869312 a ONT:Producto_comprado ;
     ONT:precio "400.0"^^xsd:float ;
     ONT:prioridad 1 ;
     ONT:proc "externo"^^xsd:string .
+
+ONT:Producto_Comprado384385196 a ONT:Producto_comprado ;
+    ONT:enviado false ;
+    ONT:id 1 ;
+    ONT:id_compra 253071924 ;
+    ONT:id_lote 0 ;
+    ONT:marca "Apple"^^xsd:string ;
+    ONT:nombre "iMac"^^xsd:string ;
+    ONT:peso "6.0"^^xsd:float ;
+    ONT:precio "1200.0"^^xsd:float ;
+    ONT:prioridad 2 ;
+    ONT:proc "centro"^^xsd:string .
+
+ONT:Producto_Comprado421674156 a ONT:Producto_comprado ;
+    ONT:enviado false ;
+    ONT:id 3 ;
+    ONT:id_compra 253071924 ;
+    ONT:id_lote 0 ;
+    ONT:marca "Samsung"^^xsd:string ;
+    ONT:nombre "Galaxy"^^xsd:string ;
+    ONT:peso "2.5"^^xsd:float ;
+    ONT:precio "900.0"^^xsd:float ;
+    ONT:prioridad 2 ;
+    ONT:proc "centro"^^xsd:string .
 
 ONT:Producto_Comprado460317732 a ONT:Producto_comprado ;
     ONT:enviado false ;
@@ -49,6 +85,18 @@ ONT:Producto_Comprado555235077 a ONT:Producto_comprado ;
     ONT:nombre "TV"^^xsd:string ;
     ONT:peso "22.0"^^xsd:float ;
     ONT:precio "500.0"^^xsd:float ;
+    ONT:prioridad 2 ;
+    ONT:proc "centro"^^xsd:string .
+
+ONT:Producto_Comprado877379323 a ONT:Producto_comprado ;
+    ONT:enviado false ;
+    ONT:id 5 ;
+    ONT:id_compra 253071924 ;
+    ONT:id_lote 0 ;
+    ONT:marca "Sony"^^xsd:string ;
+    ONT:nombre "PS4"^^xsd:string ;
+    ONT:peso "6.0"^^xsd:float ;
+    ONT:precio "1000.0"^^xsd:float ;
     ONT:prioridad 2 ;
     ONT:proc "centro"^^xsd:string .
 
