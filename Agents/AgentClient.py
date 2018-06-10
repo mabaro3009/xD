@@ -280,23 +280,41 @@ def buscar():
             datos["targeta"] = targeta
             datos["direccion"] = direccion
 
+            id_compra = str(random.randint(1, 1000000000))
+            gr2 = Graph()
+            compra = ONT['Compra_' + id_compra]
+            msgResult2 = ONT['Comprar_' + str(get_count())]
+
+            logger.info(len(carrito_compra))
+
+            gr2.add((msgResult2, RDF.type, ONT.Comprar))
+            gr2.add((compra, ONT.id_compra, Literal(id_compra, datatype=XSD.integer)))
+            gr2.add((compra, ONT.precio, Literal(datos["total"], datatype=XSD.float)))
+            gr2.add((compra, ONT.nombre, Literal(nombre, datatype=XSD.string)))
+            gr2.add((compra, ONT.targeta, Literal(targeta, datatype=XSD.string)))
+            gr2.add((compra, ONT.direccion, Literal(direccion, datatype=XSD.string)))
+            gr2.add((compra, ONT.prioridad, Literal(prioridad, datatype=XSD.integer)))
+            gr2.add((compra, ONT.total, Literal(len(carrito_compra), datatype=XSD.integer)))
+
+            AgentVen = get_agent_info(agn.AgentVendedor, DirectoryAgent, AgentClient, get_count())
+            infoagent_search_message(AgentVen.address, AgentVen.uri, gr2, msgResult2)
+
 
             for producto in carrito_compra:
                 gr = Graph()
-                id_compra = str(random.randint(1, 1000000000))
-                compra = ONT['Compra_' + id_compra]
+                producto_a_comprar = ONT['Producto_' + producto['id']]
 
-                msgResult = ONT['Comprar_' + str(get_count())]
-                gr.add((msgResult, RDF.type, ONT.Comprar))
-                gr.add((compra, RDF.type, ONT.Compra))
-                gr.add((compra, ONT.nombre, Literal(producto['nombre'], datatype=XSD.string)))
-                gr.add((compra, ONT.marca, Literal(producto['marca'], datatype=XSD.string)))
-                gr.add((compra, ONT.precio, Literal(producto['precio'], datatype=XSD.float)))
-                gr.add((compra, ONT.id, Literal(producto['id'], datatype=XSD.integer)))
-                gr.add((compra, ONT.id_compra, Literal(id_compra, datatype=XSD.integer)))
-                gr.add((msgResult, ONT.Compra, compra))
+                msgResult = ONT['Comprar_Producto_' + str(get_count())]
+                gr.add((msgResult, RDF.type, ONT.Producto_comprado))
+                gr.add((producto_a_comprar, RDF.type, ONT.Compra))
+                gr.add((producto_a_comprar, ONT.nombre, Literal(producto['nombre'], datatype=XSD.string)))
+                gr.add((producto_a_comprar, ONT.marca, Literal(producto['marca'], datatype=XSD.string)))
+                gr.add((producto_a_comprar, ONT.precio, Literal(producto['precio'], datatype=XSD.float)))
+                gr.add((producto_a_comprar, ONT.id, Literal(producto['id'], datatype=XSD.integer)))
+                gr.add((producto_a_comprar, ONT.id_compra, Literal(id_compra, datatype=XSD.integer)))
+                gr.add((msgResult, ONT.Compra, producto_a_comprar))
 
-                AgentVen = get_agent_info(agn.AgentVendedor, DirectoryAgent, AgentClient, get_count())
+
 
                 infoagent_search_message(AgentVen.address, AgentVen.uri, gr, msgResult)
 

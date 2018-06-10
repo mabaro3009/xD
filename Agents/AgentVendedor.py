@@ -162,12 +162,16 @@ def comunicacion():
             content = msgdic['content']
             accion = gm.value(subject=content, predicate=RDF.type)
             logger.info(accion)
-            # Aqui realizariamos lo que pide la accion
-            # Por ahora simplemente retornamos un Inform-done
+
             if accion == ONT.Comprar:
                 #gr = registrarProducto(gm)
                 logger.info('arribo')
-                gr = build_message(Graph(), ACL['not-understood'], sender=AgentVendedor.uri, msgcnt=mss_cnt)
+                gr = build_message(Graph(), ACL['inform-done'], sender=AgentVendedor.uri, msgcnt=mss_cnt)
+
+            elif accion == ONT.Producto_comprado:
+                logger.info('tambe arribo')
+                gr = build_message(Graph(), ACL['inform-done'], sender=AgentVendedor.uri, msgcnt=mss_cnt)
+
     mss_cnt += 1
 
     logger.info('Respondemos a la peticion')
