@@ -1,0 +1,24 @@
+@prefix ONT: <http://www.ontologia.com/ECSDI-ontologia.owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ONT:Producto_Comprado411922478 a ONT:Producto_comprado ;
+    ONT:enviado false ;
+    ONT:id 839768019 ;
+    ONT:id_compra 704387106 ;
+    ONT:marca "Corsair"^^xsd:string ;
+    ONT:nombre "Teclado"^^xsd:string ;
+    ONT:precio "400.0"^^xsd:float ;
+    ONT:proc "externo"^^xsd:string .
+
+ONT:Producto_Comprado630722553 a ONT:Producto_comprado ;
+    ONT:enviado false ;
+    ONT:id 158748941 ;
+    ONT:id_compra 704387106 ;
+    ONT:marca "Apple"^^xsd:string ;
+    ONT:nombre "TV"^^xsd:string ;
+    ONT:precio "500.0"^^xsd:float ;
+    ONT:proc "centro"^^xsd:string .
+

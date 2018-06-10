@@ -4,5 +4,13 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-
+ONT:Compra_704387106 a ONT:Compra ;
+    ONT:direccion "sadsadasdasd"^^xsd:string ;
+    ONT:id_compra 704387106 ;
+    ONT:nombre "waaaaa"^^xsd:string ;
+    ONT:precio "915.0"^^xsd:float ;
+    ONT:precio_externo "400.0"^^xsd:float ;
+    ONT:prioridad 3 ;
+    ONT:targeta "asdasd"^^xsd:string ;
+    ONT:total 2 .
 

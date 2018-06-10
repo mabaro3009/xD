@@ -307,16 +307,19 @@ def buscar():
 
             for producto in carrito_compra:
                 gr = Graph()
-                producto_a_comprar = ONT['Producto_' + producto['id']]
+                id_producto = str(random.randint(1, 1000000000))
+                producto_a_comprar = ONT['Producto_Comprado' + id_producto]
 
                 msgResult = ONT['Comprar_Producto_' + str(get_count())]
                 gr.add((msgResult, RDF.type, ONT.Comprar_producto))
                 gr.add((producto_a_comprar, RDF.type, ONT.Producto_comprado))
                 gr.add((producto_a_comprar, ONT.nombre, Literal(producto['nombre'], datatype=XSD.string)))
                 gr.add((producto_a_comprar, ONT.marca, Literal(producto['marca'], datatype=XSD.string)))
+                gr.add((producto_a_comprar, ONT.proc, Literal(producto['proc'], datatype=XSD.string)))
                 gr.add((producto_a_comprar, ONT.precio, Literal(producto['precio'], datatype=XSD.float)))
                 gr.add((producto_a_comprar, ONT.id, Literal(producto['id'], datatype=XSD.integer)))
                 gr.add((producto_a_comprar, ONT.id_compra, Literal(id_compra, datatype=XSD.integer)))
+                gr.add((producto_a_comprar, ONT.enviado, Literal("false", datatype=XSD.boolean)))
                 gr.add((msgResult, ONT.Compra, producto_a_comprar))
 
 
