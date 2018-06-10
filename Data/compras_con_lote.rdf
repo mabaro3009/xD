@@ -1,0 +1,32 @@
+@prefix ONT: <http://www.ontologia.com/ECSDI-ontologia.owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ONT:Compra_253071924 a ONT:Compra ;
+    ONT:direccion "casa meva"^^xsd:string ;
+    ONT:enviado false ;
+    ONT:id_compra 253071924 ;
+    ONT:id_lote 147020923 ;
+    ONT:nombre "Marc"^^xsd:string ;
+    ONT:peso "15.5"^^xsd:float ;
+    ONT:precio "3124.95"^^xsd:float ;
+    ONT:precio_externo "20.0"^^xsd:float ;
+    ONT:prioridad 2 ;
+    ONT:targeta "12312312312"^^xsd:string ;
+    ONT:total 4 .
+
+ONT:Compra_822026717 a ONT:Compra ;
+    ONT:direccion "adeuuu"^^xsd:string ;
+    ONT:enviado false ;
+    ONT:id_compra 822026717 ;
+    ONT:id_lote 147020923 ;
+    ONT:nombre "holaaaa"^^xsd:string ;
+    ONT:peso "4.0"^^xsd:float ;
+    ONT:precio "600.0"^^xsd:float ;
+    ONT:precio_externo "400.0"^^xsd:float ;
+    ONT:prioridad 1 ;
+    ONT:targeta "24598230"^^xsd:string ;
+    ONT:total 2 .
+

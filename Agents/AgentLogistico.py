@@ -170,6 +170,8 @@ def comunicacion():
                 gr = registrarProductoCentro(gm)
             elif accion == ONT.GetProductos:
                 gr = getProductos(gm)
+            elif accion == ONT.Asignar_compra:
+                gr = asignarCompra(gm)
 
     mss_cnt += 1
 
@@ -256,6 +258,108 @@ def getProductos(gm):
         result.add((subject, ONT.peso, Literal(peso, datatype=XSD.float)))
         result.add((subject, ONT.total, Literal(total, datatype=XSD.integer)))
     return result
+
+def asignarCompra(gm):
+    index = 0
+    subject_pos = {}
+    lista = []
+    id_lote = 0
+    id_compra = 0
+    for s, p, o in gm:
+        if s not in subject_pos:
+            subject_pos[s] = index
+            lista.append({})
+            index += 1
+        if s in subject_pos:
+            subject_dict = lista[subject_pos[s]]
+            if p == RDF.type:
+                subject_dict['url'] = s
+            elif p == ONT.id_lote:
+                subject_dict['id_lote'] = o
+                id_lote = subject_dict['id_lote']
+            elif p == ONT.id_compra:
+                subject_dict['id_compra'] = o
+                id_compra = subject_dict['id_compra']
+                lista[subject_pos[s]] = subject_dict
+
+    logger.info(id_lote)
+    logger.info(id_compra)
+    graph = query_compra(id_compra, id_lote)
+    return gm
+
+
+def query_compra(id_compra, id_lote):
+    graph = Graph()
+    ontologyFile = open('../Data/compras.rdf')
+    graph.parse(ontologyFile, format='turtle')
+    query = """
+                prefix rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+                prefix xsd:<http://www.w3.org/2001/XMLSchema#>
+                prefix default:<http://www.ontologia.com/ECSDI-ontologia.owl#>
+                prefix owl:<http://www.w3.org/2002/07/owl#>
+                SELECT DISTINCT ?compra ?direccion ?id_compra ?nombre ?peso ?precio ?precio_externo ?prioridad ?targeta ?total ?id_lote ?enviado
+                where {
+                    { ?compra rdf:type default:Compra }  .
+                    ?compra default:direccion ?direccion .
+                    ?compra default:id_compra ?id_compra .
+                    ?compra default:nombre ?nombre .
+                    ?compra default:peso ?peso .
+                    ?compra default:precio ?precio .
+                    ?compra default:precio_externo ?precio_externo .
+                    ?compra default:prioridad ?prioridad .
+                    ?compra default:targeta ?targeta .
+                    ?compra default:total ?total .
+                    ?compra default:id_lote ?id_lote .
+                    ?compra default:enviado ?enviado .
+                    FILTER("""
+
+    query += """str(?id_compra) = """"'" + str(id_compra) + "'"""" )}
+                    order by desc(UCASE(str(?precio)))"""
+    logger.info(query)
+    graph_query = graph.query(query)
+
+    result = Graph()
+    result.bind('ONT', ONT)
+    product_count = 0
+    for row in graph_query:
+        logger.info('entro')
+        id_compra = row.id_compra
+        prioridad = row.prioridad
+        direccion = row.direccion
+        nombre = row.nombre
+        peso = row.peso
+        precio = row.precio
+        precio_externo = row.precio_externo
+        targeta = row.targeta
+        total = row.total
+        enviado = row.enviado
+        subject = row.compra
+        product_count += 1
+        result.add((subject, RDF.type, ONT.Compra))
+        result.add((subject, ONT.id_compra, Literal(id_compra, datatype=XSD.integer)))
+        result.add((subject, ONT.id_lote, Literal(id_lote, datatype=XSD.integer)))
+        result.add((subject, ONT.prioridad, Literal(prioridad, datatype=XSD.integer)))
+        result.add((subject, ONT.direccion, Literal(direccion, datatype=XSD.string)))
+        result.add((subject, ONT.peso, Literal(peso, datatype=XSD.float)))
+        result.add((subject, ONT.total, Literal(total, datatype=XSD.integer)))
+        result.add((subject, ONT.nombre, Literal(nombre, datatype=XSD.string)))
+        result.add((subject, ONT.precio, Literal(precio, datatype=XSD.float)))
+        result.add((subject, ONT.precio_externo, Literal(precio_externo, datatype=XSD.float)))
+        result.add((subject, ONT.targeta, Literal(targeta, datatype=XSD.string)))
+        result.add((subject, ONT.enviado, Literal(enviado, datatype=XSD.boolean)))
+
+    ontologia = open('../Data/compras_con_lote.rdf')
+    gr = Graph()
+    gr.parse(ontologia, format="turtle")
+    compra = result.subjects(RDF.type, ONT.Compra)
+    compra = compra.next()
+
+    for s, p, o in result:
+        if s == compra:
+            gr.add((s, p, o))
+
+    gr.serialize(destination='../Data/compras_con_lote.rdf', format='turtle')
+    return gr
 
 def tidyup():
     """

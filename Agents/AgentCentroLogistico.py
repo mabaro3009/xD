@@ -250,7 +250,22 @@ def crear_lote():
             return render_template('crear_lote.html', productos=compras_sin_asignar, productos_lote=compras_asignadas)
 
         if request.form['submit'] == 'Enviar Lote':
-            a = 1
+            for compra in compras_asignadas:
+
+                compra_asignada = ONT['Compra_Asignada_' + compra['id_compra']]
+
+                msgResult = ONT['Asignar_compra_' + str(get_count())]
+
+                gr = Graph()
+                gr.add((msgResult, RDF.type, ONT.Asignar_compra))
+
+                gr.add((compra_asignada, RDF.type, ONT.Compra))
+                gr.add((compra_asignada, ONT.id_lote, Literal(id_lote, datatype=XSD.string)))
+                gr.add((compra_asignada, ONT.id_compra, Literal(compra['id_compra'], datatype=XSD.string)))
+                gr.add((msgResult, ONT.Compra_asignada, compra_asignada))
+                AgentLog = get_agent_info(agn.AgentLogistico, DirectoryAgent, AgentCentroLogistico, get_count())
+
+                infoagent_search_message(AgentLog.address, AgentLog.uri, gr, msgResult)
 
 
 @app.route("/Stop")
