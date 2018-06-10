@@ -169,11 +169,81 @@ def comunicacion():
             elif accion == ONT.Comprar_producto:
                 gr = registrarProductoComprado(gm)
 
+            elif accion == ONT.Busqueda:
+                restricciones = gm.objects(content, ONT.Restringe)
+                restricciones_busqueda = {}
+                for restriccion in restricciones: #nomes hi entrara 1 cop
+                    if gm.value(subject=restriccion, predicate=RDF.type) == ONT.productos_usuario:
+                        usuario = gm.value(subject=restriccion, predicate=ONT.nombre)
+                        restricciones_busqueda['nombre'] = usuario
+
+                    gr = search(**restricciones_busqueda)
+
     mss_cnt += 1
 
     logger.info('Respondemos a la peticion')
 
     return gr.serialize(format='xml')
+
+
+def search(nombre=None, marca=None, precio_max=sys.float_info.max):
+    graph = Graph()
+    ontologyFile = open('../Data/productos_comprados.rdf')
+    graph.parse(ontologyFile, format='turtle')
+    first = second = 0
+    query = """
+        prefix rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        prefix xsd:<http://www.w3.org/2001/XMLSchema#>
+        prefix default:<http://www.ontologia.com/ECSDI-ontologia.owl#>
+        prefix owl:<http://www.w3.org/2002/07/owl#>
+        SELECT DISTINCT ?producto ?nombre ?marca ?precio ?id ?proc ?targeta ?te_feedback
+        where {
+            { ?producto rdf:type default:Producto_Comprado }  .
+            ?producto default:nombre ?nombre .
+            ?producto default:marca ?marca .
+            ?producto default:precio ?precio .
+            ?producto default:id ?id .
+            ?producto default:proc ?proc .
+            ?producto default:targeta ?targeta .
+            ?producto default:te_feedback ?te_feedback .
+            FILTER("""
+
+
+    query += """str(?usuario) = """"'" + str(nombre) + "'"""" )}
+                    order by desc(UCASE(str(?precio)))"""
+
+    logger.info(nombre)
+    logger.info(query)
+    graph_query = graph.query(query)
+    result = Graph()
+    result.bind('ONT', ONT)
+    product_count = 0
+    logger.info("comenco a imprimir coses que trobo:")
+    for row in graph_query:
+        nombre = row.nombre
+        marca = row.marca
+        precio = row.precio
+        id = row.id
+        proc = row.proc
+        targeta = row.targeta
+        te_feedback = row.te_feedback
+        subject = row.producto
+        logger.info(nombre)
+        logger.info(proc)
+        logger.info(te_feedback)
+        logger.info(targeta)
+        product_count += 1
+        result.add((subject, RDF.type, ONT.Producto))
+        result.add((subject, ONT.marca, Literal(marca, datatype=XSD.string)))
+        result.add((subject, ONT.precio, Literal(precio, datatype=XSD.float)))
+        result.add((subject, ONT.nombre, Literal(nombre, datatype=XSD.string)))
+        result.add((subject, ONT.id, Literal(id, datatype=XSD.integer)))
+        result.add((subject, ONT.id, Literal(targeta, datatype=XSD.string)))
+        result.add((subject, ONT.id, Literal(te_feedback, datatype=XSD.bool)))
+        result.add((subject, ONT.proc, Literal(proc, datatype=XSD.string)))
+    return result
+
+
 
 
 def registrarCompra(gm):

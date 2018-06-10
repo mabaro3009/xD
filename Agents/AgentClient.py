@@ -92,6 +92,8 @@ dsgraph = Graph()
 carrito_compra = []
 
 
+
+
 def get_count():
     global mss_cnt
     if not mss_cnt:
@@ -153,6 +155,8 @@ def pagina_princiapl():
         if request.form['submit'] == 'Busqueda':
             return redirect(url_for('buscar'))
         elif request.form['submit'] == 'Ver productos comprados':
+            global nombre_usuario
+            nombre_usuario = request.form['nombre']
             return redirect(url_for('feedback_devolver'))
 
 
@@ -160,11 +164,51 @@ def pagina_princiapl():
 
 @app.route('/feedback_devolver', methods=['GET', 'POST'])
 def feedback_devolver():
-    productos_comprados = carrito_compra
-    if request.method == 'GET':
+    msgResult = ONT['Busqueda' + str(get_count())]
 
-        for i in range(0, len(productos_comprados)):
-            productos_comprados[i]["feedback"] = "hola"
+    gr = Graph()
+    gr.add((msgResult, RDF.type, ONT.Busqueda))
+    body_nombre = ONT['productos_usuario' + str(get_count())]
+    gr.add((body_nombre, RDF.type, ONT.productos_usuario))
+    gr.add((body_nombre, ONT.nombre, Literal(nombre_usuario, datatype=XSD.string)))
+    gr.add((msgResult, ONT.Restringe, URIRef(body_nombre)))
+
+    grAgentVendedor = get_agent_info(agn.AgentVendedor, DirectoryAgent, AgentClient, get_count())
+
+    gr2 = infoagent_search_message(grAgentVendedor.address, grAgentVendedor.uri, gr, msgResult)
+
+
+
+    index = 0
+    subject_pos = {}
+    productos_comprados = []
+    for s, p, o in gr2:
+        if s not in subject_pos:
+            subject_pos[s] = index
+            productos_comprados.append({})
+            index += 1
+        if s in subject_pos:
+            subject_dict = productos_comprados[subject_pos[s]]
+            if p == RDF.type:
+                subject_dict['url'] = s
+            elif p == ONT.marca:
+                subject_dict['marca'] = o
+            elif p == ONT.precio:
+                subject_dict['precio'] = o
+            elif p == ONT.nombre:
+                subject_dict['nombre'] = o
+            elif p == ONT.proc:
+                subject_dict['proc'] = o
+            elif p == ONT.id:
+                subject_dict['id'] = o
+            elif p == ONT.targeta:
+                subject_dict['targeta'] = o
+            elif p == ONT.te_feedback:
+                subject_dict['te_feedback'] = o
+                productos_comprados[subject_pos[s]] = subject_dict
+
+
+    if request.method == 'GET':
         return render_template('feedback_devolver.html', productos = productos_comprados)
 
     else:
@@ -347,11 +391,9 @@ def buscar():
                 gr.add((producto_a_comprar, ONT.proc, Literal(producto['proc'], datatype=XSD.string)))
                 gr.add((producto_a_comprar, ONT.precio, Literal(producto['precio'], datatype=XSD.float)))
                 gr.add((producto_a_comprar, ONT.id, Literal(producto['id'], datatype=XSD.integer)))
-                gr.add((producto_a_comprar, ONT.peso, Literal(producto['peso'], datatype=XSD.float)))
-                gr.add((producto_a_comprar, ONT.id_compra, Literal(id_compra, datatype=XSD.integer)))
-                gr.add((producto_a_comprar, ONT.enviado, Literal("false", datatype=XSD.boolean)))
-                gr.add((producto_a_comprar, ONT.id_lote, Literal(0, datatype=XSD.integer)))
-                gr.add((producto_a_comprar, ONT.prioridad, Literal(prioridad, datatype=XSD.integer)))
+                gr.add((producto_a_comprar, ONT.targeta, Literal(targeta, datatype=XSD.string)))
+                gr.add((producto_a_comprar, ONT.usuario, Literal(nombre, datatype=XSD.string)))
+                gr.add((producto_a_comprar, ONT.te_feedback, Literal(False, datatype=XSD.bool)))
                 gr.add((msgResult, ONT.Compra, producto_a_comprar))
 
 

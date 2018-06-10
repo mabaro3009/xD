@@ -4,16 +4,3 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-ONT:Compra_120558055 a ONT:Compra ;
-    ONT:direccion "sdfsadfsadfas"^^xsd:string ;
-    ONT:enviado false ;
-    ONT:id_compra 120558055 ;
-    ONT:id_lote 178114245 ;
-    ONT:nombre "sdfa"^^xsd:string ;
-    ONT:peso "51.0"^^xsd:float ;
-    ONT:precio "4720.0"^^xsd:float ;
-    ONT:precio_externo "20.0"^^xsd:float ;
-    ONT:prioridad 1 ;
-    ONT:targeta "55165465"^^xsd:string ;
-    ONT:total 3 .
-
