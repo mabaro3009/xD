@@ -148,9 +148,35 @@ def infoagent_search_message(addr, ragn_uri, gmess, msgResult):
 @app.route("/", methods=['GET', 'POST'])
 def pagina_princiapl():
     if request.method == 'GET':
-        return render_template('user_principal.html')
+        return render_template('user_principal.html', productos = carrito_compra)
     else:
-        return redirect(url_for('buscar'))
+        if request.form['submit'] == 'Busqueda':
+            return redirect(url_for('buscar'))
+        elif request.form['submit'] == 'Ver productos comprados':
+            return redirect(url_for('feedback_devolver'))
+
+
+
+
+@app.route('/feedback_devolver', methods=['GET', 'POST'])
+def feedback_devolver():
+    productos_comprados = carrito_compra
+    if request.method == 'GET':
+
+        for i in range(0, len(productos_comprados)):
+            productos_comprados[i]["feedback"] = "hola"
+            productos_comprados[i]["devolver"] = "hola"
+
+        return render_template('feedback_devolver.html', productos = productos_comprados)
+
+    else:
+        if request.form['submit'] == 'Devolver producto':
+            logger.info("hey vull tornar el sida producte")
+            return render_template('feedback_devolver.html', productos = productos_comprados)
+        elif request.form['submit'] == 'Escribir feedback':
+            logger.info("hey vull escriure sobre la merda de producte que he comprat ostia joderr")
+            return render_template('feedback_devolver.html', productos = productos_comprados)
+
 
 @app.route('/buscar', methods=['GET', 'POST'])
 def buscar():

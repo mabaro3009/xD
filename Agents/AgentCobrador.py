@@ -242,6 +242,7 @@ def cobrar(gm):
         logger.info("cobro de:" + str(precio) + "euros al cliente con targeta: " + targeta)
         logger.info("pago de: " + str(precio_externo) + "euros a la tienda externa")
         logger.info("se le paga al transportista: " + str(peso) + "euros")
+        #IDEALMENTE SE COMUNICA CON OTRO AGENTE EXTERNE (BANCO) Y RETORNA SIEMPRE QUE OK
     return result
 
 
