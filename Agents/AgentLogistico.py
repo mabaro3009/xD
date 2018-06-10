@@ -168,6 +168,8 @@ def comunicacion():
                 gr = registrarProducto(gm)
             elif accion == ONT.Registrar_centro:
                 gr = registrarProductoCentro(gm)
+            elif accion == ONT.GetProductos:
+                gr = getProductos(gm)
 
     mss_cnt += 1
 
@@ -203,6 +205,55 @@ def registrarProductoCentro(gm):
 
     gr.serialize(destination='../Data/product.rdf', format='turtle')
     return gm
+
+def getProductos(gm):
+    graph = Graph()
+    ontologyFile = open('../Data/compras.rdf')
+    graph.parse(ontologyFile, format='turtle')
+    query = """
+            prefix rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+            prefix xsd:<http://www.w3.org/2001/XMLSchema#>
+            prefix default:<http://www.ontologia.com/ECSDI-ontologia.owl#>
+            prefix owl:<http://www.w3.org/2002/07/owl#>
+            SELECT DISTINCT ?compra ?direccion ?id_compra ?nombre ?peso ?precio ?precio_externo ?prioridad ?targeta ?total ?id_lote ?enviado
+            where {
+                { ?compra rdf:type default:Compra }  .
+                ?compra default:direccion ?direccion .
+                ?compra default:id_compra ?id_compra .
+                ?compra default:nombre ?nombre .
+                ?compra default:peso ?peso .
+                ?compra default:precio ?precio .
+                ?compra default:precio_externo ?precio_externo .
+                ?compra default:prioridad ?prioridad .
+                ?compra default:targeta ?targeta .
+                ?compra default:total ?total .
+                ?compra default:id_lote ?id_lote .
+                ?compra default:enviado ?enviado .
+                FILTER("""
+
+    query += """str(?enviado) = 'false' """
+    query += """&& str(?id_lote) = '0' )}
+                order by desc(UCASE(str(?precio)))"""
+
+    graph_query = graph.query(query)
+    result = Graph()
+    result.bind('ONT', ONT)
+    product_count = 0
+    for row in graph_query:
+        id_compra = row.id_compra
+        prioridad = row.prioridad
+        direccion = row.direccion
+        peso = row.peso
+        total = row.total
+        subject = row.compra
+        product_count += 1
+        result.add((subject, RDF.type, ONT.Compra))
+        result.add((subject, ONT.id_compra, Literal(id_compra, datatype=XSD.integer)))
+        result.add((subject, ONT.prioridad, Literal(prioridad, datatype=XSD.integer)))
+        result.add((subject, ONT.direccion, Literal(direccion, datatype=XSD.string)))
+        result.add((subject, ONT.peso, Literal(peso, datatype=XSD.float)))
+        result.add((subject, ONT.total, Literal(total, datatype=XSD.integer)))
+    return result
 
 def tidyup():
     """

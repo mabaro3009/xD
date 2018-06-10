@@ -164,11 +164,9 @@ def comunicacion():
             logger.info(accion)
 
             if accion == ONT.Comprar:
-                logger.info('arribo')
                 gr = registrarCompra(gm)
 
             elif accion == ONT.Comprar_producto:
-                logger.info('tambe arribo')
                 gr = registrarProductoComprado(gm)
 
     mss_cnt += 1

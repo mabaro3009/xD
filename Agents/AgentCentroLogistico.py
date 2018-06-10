@@ -88,6 +88,7 @@ DirectoryAgent = Agent('DirectoryAgent',
 # Global dsgraph triplestore
 dsgraph = Graph()
 
+lote = []
 
 def get_count():
     global mss_cnt
@@ -149,6 +150,8 @@ def pagina_princiapl():
     else:
         if request.form['submit'] == 'Dar de alta producto':
             return redirect(url_for('alta'))
+        elif request.form['submit'] == 'Crear Lote':
+            return redirect(url_for('crear_lote'))
 
 @app.route("/alta", methods=['GET', 'POST'])
 def alta():
@@ -188,6 +191,53 @@ def alta():
             return render_template('alta_producto.html', producto=prod)
 
 
+@app.route("/crear_lote", methods=['GET', 'POST'])
+def crear_lote():
+    if request.method == 'GET':
+        msgResult = ONT['getProductos_' + str(get_count())]
+
+        gr = Graph()
+        gr.add((msgResult, RDF.type, ONT.GetProductos))
+
+        AgentLog = get_agent_info(agn.AgentLogistico, DirectoryAgent, AgentCentroLogistico, get_count())
+
+        gr2 = infoagent_search_message(AgentLog.address, AgentLog.uri, gr, msgResult)
+
+        index = 0
+        subject_pos = {}
+        lista = []
+        for s, p, o in gr2:
+            if s not in subject_pos:
+                subject_pos[s] = index
+                lista.append({})
+                index += 1
+            if s in subject_pos:
+                subject_dict = lista[subject_pos[s]]
+                if p == RDF.type:
+                    subject_dict['url'] = s
+                elif p == ONT.direccion:
+                    subject_dict['direccion'] = o
+                elif p == ONT.id_compra:
+                    subject_dict['id_compra'] = o
+                elif p == ONT.peso:
+                    subject_dict['peso'] = o
+                elif p == ONT.total:
+                    subject_dict['total'] = o
+                elif p == ONT.prioridad:
+                    subject_dict['prioridad'] = o
+                    lista[subject_pos[s]] = subject_dict
+
+        return render_template('crear_lote.html', productos=lista)
+    else:
+        if request.form['submit'] == 'Al lote!':
+            item = {}
+            item["id_compra"] = request.form["id_compra"]
+            item["direccion"] = request.form["direccion"]
+            item["peso"] = request.form["peso"]
+            item["total"] = request.form["total"]
+            item["prioridad"] = request.form["prioridad"]
+            lote.append(item)
+            return render_template('crear_lote.html', productos_lote=lote)
 
 @app.route("/Stop")
 def stop():

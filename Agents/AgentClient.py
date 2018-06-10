@@ -231,6 +231,7 @@ def buscar():
             item["marca"] = request.form["marca"]
             item["precio"] = request.form["precio"]
             item["nombre"] = request.form["nombre"]
+            item["peso"] = request.form["peso"]
             logger.info(item["id"])
             logger.info(item["proc"])
             carrito_compra.append(item)
@@ -290,6 +291,7 @@ def buscar():
             compra = ONT['Compra_' + id_compra]
             msgResult2 = ONT['Comprar_' + str(get_count())]
 
+
             gr2.add((msgResult2, RDF.type, ONT.Comprar))
             gr2.add((compra, RDF.type, ONT.Compra))
             gr2.add((compra, ONT.id_compra, Literal(id_compra, datatype=XSD.integer)))
@@ -299,6 +301,9 @@ def buscar():
             gr2.add((compra, ONT.targeta, Literal(targeta, datatype=XSD.string)))
             gr2.add((compra, ONT.direccion, Literal(direccion, datatype=XSD.string)))
             gr2.add((compra, ONT.prioridad, Literal(prioridad, datatype=XSD.integer)))
+            gr2.add((compra, ONT.peso, Literal(getPesoTotal(), datatype=XSD.float)))
+            gr2.add((compra, ONT.enviado, Literal('false', datatype=XSD.boolean)))
+            gr2.add((compra, ONT.id_lote, Literal(0, datatype=XSD.integer)))
             gr2.add((compra, ONT.total, Literal(len(carrito_compra), datatype=XSD.integer)))
 
             AgentVen = get_agent_info(agn.AgentVendedor, DirectoryAgent, AgentClient, get_count())
@@ -318,8 +323,11 @@ def buscar():
                 gr.add((producto_a_comprar, ONT.proc, Literal(producto['proc'], datatype=XSD.string)))
                 gr.add((producto_a_comprar, ONT.precio, Literal(producto['precio'], datatype=XSD.float)))
                 gr.add((producto_a_comprar, ONT.id, Literal(producto['id'], datatype=XSD.integer)))
+                gr.add((producto_a_comprar, ONT.peso, Literal(producto['peso'], datatype=XSD.float)))
                 gr.add((producto_a_comprar, ONT.id_compra, Literal(id_compra, datatype=XSD.integer)))
                 gr.add((producto_a_comprar, ONT.enviado, Literal("false", datatype=XSD.boolean)))
+                gr.add((producto_a_comprar, ONT.id_lote, Literal(0, datatype=XSD.integer)))
+                gr.add((producto_a_comprar, ONT.prioridad, Literal(prioridad, datatype=XSD.integer)))
                 gr.add((msgResult, ONT.Compra, producto_a_comprar))
 
 
@@ -349,6 +357,11 @@ def calcula_precio_externo():
             total += float(carrito_compra[i]["precio"])
     return total
 
+def getPesoTotal():
+    total = 0
+    for i in range(0, len(carrito_compra)):
+        total += float(carrito_compra[i]["peso"])
+    return total
 
 
 

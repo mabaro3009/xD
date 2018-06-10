@@ -227,7 +227,7 @@ def search(nombre=None, marca=None, precio_max=sys.float_info.max):
                 ?precio <= """ + str(precio_max) + """  )}
                 order by desc(UCASE(str(?precio)))"""
 
-
+    logger.info(query)
     graph_query = graph.query(query)
     result = Graph()
     result.bind('ONT', ONT)

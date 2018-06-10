@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Busqueda</title>
+
+</head>
+<body>
+{% if productos %}
+
+            <table cellpadding="5px">
+                <tr>
+                    <th><b>Id Compra</b></th>
+                    <th><b>Direccion</b></th>
+                    <th><b>Peso</b></th>
+                    <th><b>Total</b></th>
+                    <th><b>Prioridad</b></th>
+                </tr>
+                {% for item in productos %}
+                    <form method="post" action="">
+                        <tr>
+                            <td>{{ item.id_compra }}</td>
+                            <td>{{ item.direccion }}</td>
+                            <td>{{ item.peso }}</td>
+                            <td>{{ item.total }}</td>
+                            <td>{{ item.prioridad }}</td>
+                            <td> <input type="hidden" name="direccion" value={{ item.direccion }}></td>
+                            <td> <input type="hidden" name="peso" value={{ item.peso }}></td>
+                            <td> <input type="hidden" name="id_compra" value={{ item.id_compra }}></td>
+                            <td> <input type="hidden" name="prioridad" value={{ item.prioridad }}></td>
+                            <td> <input type="hidden" name="total" value={{ item.total }}></td>
+                            <td><input type="submit" name="submit" value="Al lote!"></td>
+                        </tr>
+                    </form>
+                {% endfor %}
+            </table>
+    {% endif %}
+{% if productos_lote %}
+            <p><label>Lote:</label></p>
+            <table cellpadding="5px">
+                <tr>
+                    <th><b>Id Compra</b></th>
+                    <th><b>Direccion</b></th>
+                    <th><b>Peso</b></th>
+                    <th><b>Total</b></th>
+                    <th><b>Prioridad</b></th>
+                </tr>
+                {% for item in productos_carrito %}
+                        <tr>
+                            <td>{{ item.id_compra }}</td>
+                            <td>{{ item.direccion }}</td>
+                            <td>{{ item.peso }}</td>
+                            <td>{{ item.total }}</td>
+                            <td>{{ item.prioridad }}</td>
+                        </tr>
+
+                {% endfor %}
+            </table>
+
+            ----------------------------
+            <br>
+            <label>Total: {{ total }} </label>
+            <br>
+            ----------------------------
+            <br>
+
+            <form method="post" action="">
+                <input type="submit" name="submit" value ="Comprar">
+            </form>
+    {% endif %}
+</body>
+</html>

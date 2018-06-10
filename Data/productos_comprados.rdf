@@ -4,21 +4,51 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-ONT:Producto_Comprado411922478 a ONT:Producto_comprado ;
+ONT:Producto_Comprado30869312 a ONT:Producto_comprado ;
     ONT:enviado false ;
     ONT:id 839768019 ;
-    ONT:id_compra 704387106 ;
+    ONT:id_compra 822026717 ;
+    ONT:id_lote 0 ;
     ONT:marca "Corsair"^^xsd:string ;
     ONT:nombre "Teclado"^^xsd:string ;
+    ONT:peso "3.0"^^xsd:float ;
     ONT:precio "400.0"^^xsd:float ;
+    ONT:prioridad 1 ;
     ONT:proc "externo"^^xsd:string .
 
-ONT:Producto_Comprado630722553 a ONT:Producto_comprado ;
+ONT:Producto_Comprado460317732 a ONT:Producto_comprado ;
+    ONT:enviado false ;
+    ONT:id 247549838 ;
+    ONT:id_compra 822026717 ;
+    ONT:id_lote 0 ;
+    ONT:marca "Apple"^^xsd:string ;
+    ONT:nombre "iPhone"^^xsd:string ;
+    ONT:peso "1.0"^^xsd:float ;
+    ONT:precio "200.0"^^xsd:float ;
+    ONT:prioridad 1 ;
+    ONT:proc "centro"^^xsd:string .
+
+ONT:Producto_Comprado551396512 a ONT:Producto_comprado ;
+    ONT:enviado false ;
+    ONT:id 90378155 ;
+    ONT:id_compra 763767576 ;
+    ONT:id_lote 0 ;
+    ONT:marca "xD"^^xsd:string ;
+    ONT:nombre "Batamanta"^^xsd:string ;
+    ONT:peso "2.0"^^xsd:float ;
+    ONT:precio "12.0"^^xsd:float ;
+    ONT:prioridad 2 ;
+    ONT:proc "externo"^^xsd:string .
+
+ONT:Producto_Comprado555235077 a ONT:Producto_comprado ;
     ONT:enviado false ;
     ONT:id 158748941 ;
-    ONT:id_compra 704387106 ;
+    ONT:id_compra 763767576 ;
+    ONT:id_lote 0 ;
     ONT:marca "Apple"^^xsd:string ;
     ONT:nombre "TV"^^xsd:string ;
+    ONT:peso "22.0"^^xsd:float ;
     ONT:precio "500.0"^^xsd:float ;
+    ONT:prioridad 2 ;
     ONT:proc "centro"^^xsd:string .
 
