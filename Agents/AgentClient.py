@@ -165,8 +165,6 @@ def feedback_devolver():
 
         for i in range(0, len(productos_comprados)):
             productos_comprados[i]["feedback"] = "hola"
-            productos_comprados[i]["devolver"] = "hola"
-
         return render_template('feedback_devolver.html', productos = productos_comprados)
 
     else:

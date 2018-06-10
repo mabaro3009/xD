@@ -4,34 +4,10 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-ONT:Producto_Comprado111667201 a ONT:Producto_comprado ;
-    ONT:enviado false ;
-    ONT:id 4 ;
-    ONT:id_compra 120558055 ;
-    ONT:id_lote 0 ;
-    ONT:marca "Samsung"^^xsd:string ;
-    ONT:nombre "TV"^^xsd:string ;
-    ONT:peso "20.0"^^xsd:float ;
-    ONT:precio "4200.0"^^xsd:float ;
-    ONT:prioridad 1 ;
-    ONT:proc "centro"^^xsd:string .
-
-ONT:Producto_Comprado144929801 a ONT:Producto_comprado ;
-    ONT:enviado false ;
-    ONT:id 236196053 ;
-    ONT:id_compra 120558055 ;
-    ONT:id_lote 0 ;
-    ONT:marca "Casio"^^xsd:string ;
-    ONT:nombre "Calculadora"^^xsd:string ;
-    ONT:peso "1.0"^^xsd:float ;
-    ONT:precio "20.0"^^xsd:float ;
-    ONT:prioridad 1 ;
-    ONT:proc "externo"^^xsd:string .
-
-ONT:Producto_Comprado562478262 a ONT:Producto_comprado ;
+ONT:Producto_Comprado709175592 a ONT:Producto_comprado ;
     ONT:enviado false ;
     ONT:id 90378155 ;
-    ONT:id_compra 146361411 ;
+    ONT:id_compra 602944931 ;
     ONT:id_lote 0 ;
     ONT:marca "xD"^^xsd:string ;
     ONT:nombre "Batamanta"^^xsd:string ;
@@ -40,39 +16,15 @@ ONT:Producto_Comprado562478262 a ONT:Producto_comprado ;
     ONT:prioridad 1 ;
     ONT:proc "externo"^^xsd:string .
 
-ONT:Producto_Comprado611281381 a ONT:Producto_comprado ;
+ONT:Producto_Comprado724018291 a ONT:Producto_comprado ;
     ONT:enviado false ;
-    ONT:id 839768019 ;
-    ONT:id_compra 626102281 ;
+    ONT:id 6 ;
+    ONT:id_compra 553785866 ;
     ONT:id_lote 0 ;
-    ONT:marca "Corsair"^^xsd:string ;
-    ONT:nombre "Teclado"^^xsd:string ;
-    ONT:peso "3.0"^^xsd:float ;
-    ONT:precio "400.0"^^xsd:float ;
-    ONT:prioridad 2 ;
-    ONT:proc "externo"^^xsd:string .
-
-ONT:Producto_Comprado783603213 a ONT:Producto_comprado ;
-    ONT:enviado false ;
-    ONT:id 2 ;
-    ONT:id_compra 626102281 ;
-    ONT:id_lote 0 ;
-    ONT:marca "Apple"^^xsd:string ;
-    ONT:nombre "iPhone"^^xsd:string ;
-    ONT:peso "2.0"^^xsd:float ;
-    ONT:precio "1000.0"^^xsd:float ;
-    ONT:prioridad 2 ;
-    ONT:proc "centro"^^xsd:string .
-
-ONT:Producto_Comprado825257274 a ONT:Producto_comprado ;
-    ONT:enviado false ;
-    ONT:id 723108807 ;
-    ONT:id_compra 120558055 ;
-    ONT:id_lote 0 ;
-    ONT:marca "Panasonic"^^xsd:string ;
+    ONT:marca "BenQ"^^xsd:string ;
     ONT:nombre "TV"^^xsd:string ;
-    ONT:peso "30.0"^^xsd:float ;
-    ONT:precio "500.0"^^xsd:float ;
+    ONT:peso "10.0"^^xsd:float ;
+    ONT:precio "1200.0"^^xsd:float ;
     ONT:prioridad 1 ;
     ONT:proc "centro"^^xsd:string .
 
