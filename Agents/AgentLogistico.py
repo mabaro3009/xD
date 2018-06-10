@@ -208,6 +208,38 @@ def registrarProductoCentro(gm):
     gr.serialize(destination='../Data/product.rdf', format='turtle')
     return gm
 
+
+def deleteCompra(id_compra):
+    graph = Graph()
+    ontologyFile = open('../Data/compras.rdf')
+    graph.parse(ontologyFile, format='turtle')
+    query = """
+                prefix rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+                prefix xsd:<http://www.w3.org/2001/XMLSchema#>
+                prefix default:<http://www.ontologia.com/ECSDI-ontologia.owl#>
+                prefix owl:<http://www.w3.org/2002/07/owl#>
+                DELETE ?compra ?direccion ?id_compra ?nombre ?peso ?precio ?precio_externo ?prioridad ?targeta ?total ?id_lote ?enviado
+                where {
+                    { ?compra rdf:type default:Compra }  .
+                    ?compra default:direccion ?direccion .
+                    ?compra default:id_compra ?id_compra .
+                    ?compra default:nombre ?nombre .
+                    ?compra default:peso ?peso .
+                    ?compra default:precio ?precio .
+                    ?compra default:precio_externo ?precio_externo .
+                    ?compra default:prioridad ?prioridad .
+                    ?compra default:targeta ?targeta .
+                    ?compra default:total ?total .
+                    ?compra default:id_lote ?id_lote .
+                    ?compra default:enviado ?enviado .
+                    FILTER("""
+
+    query += """str(?id_compra) = """"'" + str(id_compra) + "'"""" )}
+                    order by desc(UCASE(str(?precio)))"""
+
+    return None
+
+
 def getProductos(gm):
     graph = Graph()
     ontologyFile = open('../Data/compras.rdf')
@@ -284,7 +316,8 @@ def asignarCompra(gm):
 
     logger.info(id_lote)
     logger.info(id_compra)
-    graph = query_compra(id_compra, id_lote)
+    query_compra(id_compra, id_lote)
+    deleteCompra(id_compra)
     return gm
 
 
@@ -323,7 +356,6 @@ def query_compra(id_compra, id_lote):
     product_count = 0
     for row in graph_query:
         logger.info('entro')
-        id_compra = row.id_compra
         prioridad = row.prioridad
         direccion = row.direccion
         nombre = row.nombre
@@ -359,7 +391,9 @@ def query_compra(id_compra, id_lote):
             gr.add((s, p, o))
 
     gr.serialize(destination='../Data/compras_con_lote.rdf', format='turtle')
-    return gr
+
+    return None
+
 
 def tidyup():
     """

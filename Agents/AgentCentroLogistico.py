@@ -237,16 +237,18 @@ def crear_lote():
 
     else:
         if request.form['submit'] == 'Al lote!':
-            idd = request.form["id_compra"]
+            idd = int(request.form["id_compra"])
             ii = -1
             for i in range(0, len(compras_sin_asignar)):
-                if compras_sin_asignar[i]["id_compra"] == idd:
+                logger.info(compras_sin_asignar[i]["id_compra"])
+                if int(compras_sin_asignar[i]["id_compra"]) == idd:
                     ii = i
             compras_sin_asignar[ii]["id_lote"] = id_lote
             compras_asignadas.append(compras_sin_asignar[ii])
             del compras_sin_asignar[ii]
-            logger.info(compras_sin_asignar[0]["id_lote"])
-            logger.info(compras_asignadas[0]["id_lote"])
+            if len(compras_sin_asignar) == 0:
+                return render_template('crear_lote.html',
+                                       productos_lote=compras_asignadas)
             return render_template('crear_lote.html', productos=compras_sin_asignar, productos_lote=compras_asignadas)
 
         if request.form['submit'] == 'Enviar Lote':
