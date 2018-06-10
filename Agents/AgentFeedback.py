@@ -41,7 +41,7 @@ args = parser.parse_args()
 
 # Configuration stuff
 if args.port is None:
-    port = 9008
+    port = 9010
 else:
     port = args.port
 
@@ -70,8 +70,8 @@ agn = Namespace("http://www.agentes.org#")
 mss_cnt = 0
 
 # Datos del Agente
-AgentVendedor = Agent('AgentVendedor',
-                  agn.AgentVendedor,
+AgentFeedback = Agent('AgentFeedback',
+                      agn.AgentFeedback,
                   'http://%s:%d/comm' % (hostname, port),
                   'http://%s:%d/Stop' % (hostname, port))
 
@@ -106,7 +106,7 @@ def register_message():
 
     logger.info('Nos registramos')
 
-    gr = register_agent(AgentVendedor, DirectoryAgent, AgentVendedor.uri, get_count())
+    gr = register_agent(AgentFeedback, DirectoryAgent, AgentFeedback.uri, get_count())
     return gr
 
 @app.route("/Stop")
@@ -146,14 +146,14 @@ def comunicacion():
     # Comprobamos que sea un mensaje FIPA ACL
     if msgdic is None:
         # Si no es, respondemos que no hemos entendido el mensaje
-        gr = build_message(Graph(), ACL['not-understood'], sender=AgentVendedor.uri, msgcnt=mss_cnt)
+        gr = build_message(Graph(), ACL['not-understood'], sender=AgentFeedback.uri, msgcnt=mss_cnt)
     else:
         # Obtenemos la performativa
         perf = msgdic['performative']
 
         if perf != ACL.request:
             # Si no es un request, respondemos que no hemos entendido el mensaje
-            gr = build_message(Graph(), ACL['not-understood'], sender=AgentVendedor.uri, msgcnt=mss_cnt)
+            gr = build_message(Graph(), ACL['not-understood'], sender=AgentFeedback.uri, msgcnt=mss_cnt)
         else:
             # Extraemos el objeto del contenido que ha de ser una accion de la ontologia de acciones del agente
             # de registro
@@ -163,21 +163,8 @@ def comunicacion():
             accion = gm.value(subject=content, predicate=RDF.type)
             logger.info(accion)
 
-            if accion == ONT.Comprar:
-                gr = registrarCompra(gm)
-
-            elif accion == ONT.Comprar_producto:
-                gr = registrarProductoComprado(gm)
-
-            elif accion == ONT.Busqueda:
-                restricciones = gm.objects(content, ONT.Restringe)
-                restricciones_busqueda = {}
-                for restriccion in restricciones: #nomes hi entrara 1 cop
-                    if gm.value(subject=restriccion, predicate=RDF.type) == ONT.productos_usuario:
-                        usuario = gm.value(subject=restriccion, predicate=ONT.nombre)
-                        restricciones_busqueda['nombre'] = usuario
-
-                    gr = search(**restricciones_busqueda)
+            if accion == ONT.Registrar_Valoracion:
+                gr = registrarValoracion(gm)
 
     mss_cnt += 1
 
@@ -186,74 +173,20 @@ def comunicacion():
     return gr.serialize(format='xml')
 
 
-def search(nombre=None):
-    graph = Graph()
-    ontologyFile = open('../Data/productos_comprados.rdf')
-    graph.parse(ontologyFile, format='turtle')
-    query = """
-        prefix rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        prefix xsd:<http://www.w3.org/2001/XMLSchema#>
-        prefix default:<http://www.ontologia.com/ECSDI-ontologia.owl#>
-        prefix owl:<http://www.w3.org/2002/07/owl#>
-        SELECT DISTINCT ?producto ?nombre ?marca ?precio ?id ?proc ?targeta ?te_feedback ?usuario
-        where {
-            { ?producto rdf:type default:Producto_comprado }  .
-            ?producto default:nombre ?nombre .
-            ?producto default:marca ?marca .
-            ?producto default:precio ?precio .
-            ?producto default:id ?id .
-            ?producto default:proc ?proc .
-            ?producto default:targeta ?targeta .
-            ?producto default:te_feedback ?te_feedback .
-            ?producto default:usuario ?usuario .
-            FILTER("""
-
-    query += """str(?usuario) = """"'" + str(nombre) + "'"""" )}
-                        order by desc(UCASE(str(?precio)))"""
-
-    logger.info(nombre)
-    logger.info(query)
-    graph_query = graph.query(query)
-    result = Graph()
-    result.bind('ONT', ONT)
-    product_count = 0
-    logger.info("comenco a imprimir coses que trobo:")
-    for row in graph_query:
-        nombre = row.nombre
-        marca = row.marca
-        precio = row.precio
-        id = row.id
-        proc = row.proc
-        targeta = row.targeta
-        te_feedback = row.te_feedback
-        subject = row.producto
-        product_count += 1
-        result.add((subject, RDF.type, ONT.Producto))
-        result.add((subject, ONT.marca, Literal(marca, datatype=XSD.string)))
-        result.add((subject, ONT.precio, Literal(precio, datatype=XSD.float)))
-        result.add((subject, ONT.nombre, Literal(nombre, datatype=XSD.string)))
-        result.add((subject, ONT.id, Literal(id, datatype=XSD.integer)))
-        result.add((subject, ONT.targeta, Literal(targeta, datatype=XSD.string)))
-        result.add((subject, ONT.te_feedback, Literal(te_feedback, datatype=XSD.string)))
-        result.add((subject, ONT.proc, Literal(proc, datatype=XSD.string)))
-    return result
-
-
-
-
-def registrarCompra(gm):
-    ontologia = open('../Data/compras.rdf')
+def registrarValoracion(gm):
+    ontologia = open('../Data/valoraciones.rdf')
     gr = Graph()
     gr.parse(ontologia, format="turtle")
-    compra = gm.subjects(RDF.type, ONT.Compra)
-    compra = compra.next()
+    valoracion = gm.subjects(RDF.type, ONT.Producto_valorado)
+    valoracion = valoracion.next()
 
     for s, p, o in gm:
-        if s == compra:
+        if s == valoracion:
             gr.add((s, p, o))
 
-    gr.serialize(destination='../Data/compras.rdf', format='turtle')
+    gr.serialize(destination='../Data/valoraciones.rdf', format='turtle')
     return gm
+
 
 def registrarProductoComprado(gm):
     ontologia = open('../Data/productos_comprados.rdf')

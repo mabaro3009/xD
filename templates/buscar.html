@@ -7,6 +7,26 @@
 </head>
 <body>
 
+    {% if recomendaciones %}
+
+            <table cellpadding="5px">
+                <tr>
+                    <th><b>Nombre</b></th>
+                    <th><b>Marca</b></th>
+                    <th><b>Precio</b></th>
+                    <th><b>Valoracion</b></th>
+                </tr>
+                {% for item in recomendaciones %}
+                        <tr>
+                            <td>{{ item.nombre }}</td>
+                            <td>{{ item.marca }}</td>
+                            <td>{{ item.precio }}</td>
+                            <td>{{ item.valoracion }}</td>
+                        </tr>
+                {% endfor %}
+            </table>
+    {% endif %}
+
     <form method="post" action="">
         <p><label>Nombre:</label> <input type="text" name="nombre"></p>
         <p><label>Marca:</label> <input type="text" name="marca"></p>

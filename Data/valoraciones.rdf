@@ -1,0 +1,13 @@
+@prefix ONT: <http://www.ontologia.com/ECSDI-ontologia.owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ONT:Producto_valorado_159108752 a ONT:Producto_valorado ;
+    ONT:id 839768019 ;
+    ONT:marca "Corsair"^^xsd:string ;
+    ONT:nombre "Teclado"^^xsd:string ;
+    ONT:precio "400.0"^^xsd:float ;
+    ONT:valoracion 1 .
+

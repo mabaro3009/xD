@@ -5,6 +5,7 @@
     <title>Productos comprados</title>
 </head>
 <body>
+<form method="post" action="">
     {% if productos %}
 
             <table cellpadding="5px">
@@ -14,22 +15,34 @@
                     <th><b>Precio</b></th>
                 </tr>
                 {% for item in productos %}
-                    <form method="post" action="">
                         <tr>
                             <td>{{ item.nombre }}</td>
                             <td>{{ item.marca }}</td>
                             <td>{{ item.precio }}</td>
+                            <td> <input type="hidden" name="id1" value={{ item.id }}></td>
+                            <td><input type="submit" name="submit" value="Devolver producto"></td>
                             {% if not item.te_feedback %}
-                                <td> <input type="hidden" name="id" value={{ item.id }}></td>
+                                <td><label>Valoración:</label>
+                                    <select name="valoracion">
+                                        <option value="1">*</option>
+                                        <option value="2">**</option>
+                                        <option value="3">***</option>
+                                        <option value="4">****</option>
+                                        <option value="5">*****</option>
+                                    </select>
+                                </td>
+                                <td> <input type="hidden" name="id2" value={{ item.id }}></td>
+                                <td> <input type="hidden" name="nombre" value={{ item.nombre }}></td>
+                                <td> <input type="hidden" name="marca" value={{ item.marca }}></td>
+                                <td> <input type="hidden" name="precio" value={{ item.precio }}></td>
                                 <td><input type="submit" name="submit" value="Escribir feedback"></td>
                             {% endif %}
-                                <td> <input type="hidden" name="id" value={{ item.id }}></td>
-                                <td><input type="submit" name="submit" value="Devolver producto"></td>
                         </tr>
-                    </form>
                 {% endfor %}
             </table>
     {% endif %}
+    <input type="submit" name="submit" value ="Volver">
+</form>
 
 
 

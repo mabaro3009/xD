@@ -156,6 +156,7 @@ def pagina_princiapl():
         elif request.form['submit'] == 'Crear Lote':
             return redirect(url_for('crear_lote'))
 
+
 @app.route("/alta", methods=['GET', 'POST'])
 def alta():
     if request.method == 'GET':

@@ -90,8 +90,8 @@ dsgraph = Graph()
 
 #Carrito de la compra
 carrito_compra = []
-
-
+productos_comprados = []
+recomendaciones = []
 
 
 def get_count():
@@ -100,6 +100,7 @@ def get_count():
         mss_cnt = 0
     mss_cnt += 1
     return mss_cnt
+
 
 def directory_search_message(type):
     """
@@ -130,6 +131,7 @@ def directory_search_message(type):
 
     return gr
 
+
 def infoagent_search_message(addr, ragn_uri, gmess, msgResult):
     """
     Envia una accion a un agente de informacion
@@ -150,7 +152,7 @@ def infoagent_search_message(addr, ragn_uri, gmess, msgResult):
 @app.route("/", methods=['GET', 'POST'])
 def pagina_princiapl():
     if request.method == 'GET':
-        return render_template('user_principal.html', productos = carrito_compra)
+        return render_template('user_principal.html')
     else:
         if request.form['submit'] == 'Busqueda':
             return redirect(url_for('buscar'))
@@ -160,66 +162,103 @@ def pagina_princiapl():
             return redirect(url_for('feedback_devolver'))
 
 
-
-
 @app.route('/feedback_devolver', methods=['GET', 'POST'])
 def feedback_devolver():
-    msgResult = ONT['Busqueda' + str(get_count())]
-
-    gr = Graph()
-    gr.add((msgResult, RDF.type, ONT.Busqueda))
-    body_nombre = ONT['productos_usuario' + str(get_count())]
-    gr.add((body_nombre, RDF.type, ONT.productos_usuario))
-    gr.add((body_nombre, ONT.nombre, Literal(nombre_usuario, datatype=XSD.string)))
-    gr.add((msgResult, ONT.Restringe, URIRef(body_nombre)))
-
-    grAgentVendedor = get_agent_info(agn.AgentVendedor, DirectoryAgent, AgentClient, get_count())
-
-    gr2 = infoagent_search_message(grAgentVendedor.address, grAgentVendedor.uri, gr, msgResult)
-
-    index = 0
-    subject_pos = {}
-    productos_comprados = []
-    for s, p, o in gr2:
-        if s not in subject_pos:
-            subject_pos[s] = index
-            productos_comprados.append({})
-            index += 1
-        if s in subject_pos:
-            subject_dict = productos_comprados[subject_pos[s]]
-            if p == RDF.type:
-                subject_dict['url'] = s
-            elif p == ONT.marca:
-                subject_dict['marca'] = o
-            elif p == ONT.precio:
-                subject_dict['precio'] = o
-            elif p == ONT.nombre:
-                subject_dict['nombre'] = o
-            elif p == ONT.proc:
-                subject_dict['proc'] = o
-            elif p == ONT.id:
-                subject_dict['id'] = o
-            elif p == ONT.targeta:
-                subject_dict['targeta'] = o
-            elif p == ONT.te_feedback:
-                subject_dict['te_feedback'] = o
-                productos_comprados[subject_pos[s]] = subject_dict
 
     if request.method == 'GET':
+        msgResult = ONT['Busqueda' + str(get_count())]
+
+        gr = Graph()
+        gr.add((msgResult, RDF.type, ONT.Busqueda))
+        body_nombre = ONT['productos_usuario' + str(get_count())]
+        gr.add((body_nombre, RDF.type, ONT.productos_usuario))
+        gr.add((body_nombre, ONT.nombre, Literal(nombre_usuario, datatype=XSD.string)))
+        gr.add((msgResult, ONT.Restringe, URIRef(body_nombre)))
+
+        grAgentVendedor = get_agent_info(agn.AgentVendedor, DirectoryAgent, AgentClient, get_count())
+
+        gr2 = infoagent_search_message(grAgentVendedor.address, grAgentVendedor.uri, gr, msgResult)
+
+        index = 0
+        subject_pos = {}
+        for s, p, o in gr2:
+            if s not in subject_pos:
+                subject_pos[s] = index
+                productos_comprados.append({})
+                index += 1
+            if s in subject_pos:
+                subject_dict = productos_comprados[subject_pos[s]]
+                if p == RDF.type:
+                    subject_dict['url'] = s
+                elif p == ONT.marca:
+                    subject_dict['marca'] = o
+                elif p == ONT.precio:
+                    subject_dict['precio'] = o
+                elif p == ONT.nombre:
+                    subject_dict['nombre'] = o
+                elif p == ONT.proc:
+                    subject_dict['proc'] = o
+                elif p == ONT.id:
+                    subject_dict['id'] = o
+                elif p == ONT.targeta:
+                    subject_dict['targeta'] = o
+                elif p == ONT.te_feedback:
+                    subject_dict['te_feedback'] = o
+                    productos_comprados[subject_pos[s]] = subject_dict
         return render_template('feedback_devolver.html', productos=productos_comprados)
 
     else:
+
         if request.form['submit'] == 'Devolver producto':
-            logger.info("hey vull tornar el sida producte")
             return render_template('feedback_devolver.html', productos=productos_comprados)
+
         elif request.form['submit'] == 'Escribir feedback':
-            logger.info("hey vull escriure sobre la merda de producte que he comprat ostia joderr")
+            logger.info(int(request.form["id2"]))
+            idd = int(request.form["id2"])
+            ii = -1
+            for i in range(0, len(productos_comprados)):
+                logger.info(int(productos_comprados[i]['id']))
+                if int(productos_comprados[i]['id']) == idd:
+                    ii = i
+            productos_comprados[ii]['te_feedback'] = "si"
+
+
+            id = str(random.randint(1, 1000000000))
+            valoracion = request.form['valoracion']
+            marca = request.form['marca']
+            precio = request.form['precio']
+            nombre = request.form['nombre']
+            proc = 'externo'
+
+            producto = ONT['Producto_valorado_' + id]
+
+            msgResult = ONT['Registrar_prod_Valorado_' + str(get_count())]
+
+            gr = Graph()
+            gr.add((msgResult, RDF.type, ONT.Registrar_Valoracion))
+
+            gr.add((producto, RDF.type, ONT.Producto_valorado))
+            gr.add((producto, ONT.nombre, Literal(nombre, datatype=XSD.string)))
+            gr.add((producto, ONT.marca, Literal(marca, datatype=XSD.string)))
+            gr.add((producto, ONT.precio, Literal(precio, datatype=XSD.float)))
+            gr.add((producto, ONT.id, Literal(idd, datatype=XSD.integer)))
+            gr.add((producto, ONT.valoracion, Literal(valoracion, datatype=XSD.integer)))
+            gr.add((msgResult, ONT.Producto_valorado, producto))
+            AgentFeed = get_agent_info(agn.AgentFeedback, DirectoryAgent, AgentClient, get_count())
+
+            infoagent_search_message(AgentFeed.address, AgentFeed.uri, gr, msgResult)
+
             return render_template('feedback_devolver.html', productos=productos_comprados)
+
+        #elif request.form['submit'] == 'Volver':
+        #   del productos_comprados[:]
+        #    return render_template('user_principal.html')
 
 
 @app.route('/buscar', methods=['GET', 'POST'])
 def buscar():
     if request.method == 'GET':
+
         return render_template('buscar.html')
     else:
         logger.info(request.form['submit'])
@@ -390,7 +429,7 @@ def buscar():
                 gr.add((producto_a_comprar, ONT.id, Literal(producto['id'], datatype=XSD.integer)))
                 gr.add((producto_a_comprar, ONT.targeta, Literal(targeta, datatype=XSD.string)))
                 gr.add((producto_a_comprar, ONT.usuario, Literal(nombre, datatype=XSD.string)))
-                gr.add((producto_a_comprar, ONT.te_feedback, Literal(False, datatype=XSD.bool)))
+                gr.add((producto_a_comprar, ONT.te_feedback, Literal("", datatype=XSD.string)))
                 gr.add((msgResult, ONT.Compra, producto_a_comprar))
 
 
@@ -407,12 +446,12 @@ def buscar():
         #TODO: aquí envia els productes comprats al agente vendedor perquè aquest faci el qu ahgi de fer. No va aqui obviament, despres dels returns
 
 
-
 def calcula_precio_carrito():
     total = 0
     for i in range(0, len(carrito_compra)):
         total += float(carrito_compra[i]["precio"])
     return total
+
 
 def calcula_precio_externo():
     total = 0
@@ -421,12 +460,12 @@ def calcula_precio_externo():
             total += float(carrito_compra[i]["precio"])
     return total
 
+
 def getPesoTotal():
     total = 0
     for i in range(0, len(carrito_compra)):
         total += float(carrito_compra[i]["peso"])
     return total
-
 
 
 @app.route("/iface", methods=['GET', 'POST'])

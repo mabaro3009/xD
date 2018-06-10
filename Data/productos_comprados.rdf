@@ -11,7 +11,7 @@ ONT:Producto_Comprado_11339822 a ONT:Producto_comprado ;
     ONT:precio "400.0"^^xsd:float ;
     ONT:proc "externo"^^xsd:string ;
     ONT:targeta "123123123123"^^xsd:string ;
-    ONT:te_feedback "false"^^xsd:bool ;
+    ONT:te_feedback ""^^xsd:string ;
     ONT:usuario "Marc"^^xsd:string .
 
 ONT:Producto_Comprado_470027270 a ONT:Producto_comprado ;
@@ -21,7 +21,7 @@ ONT:Producto_Comprado_470027270 a ONT:Producto_comprado ;
     ONT:precio "12.0"^^xsd:float ;
     ONT:proc "externo"^^xsd:string ;
     ONT:targeta "123123123123"^^xsd:string ;
-    ONT:te_feedback "false"^^xsd:bool ;
+    ONT:te_feedback ""^^xsd:string ;
     ONT:usuario "Marc"^^xsd:string .
 
 ONT:Producto_Comprado_481784643 a ONT:Producto_comprado ;
@@ -31,7 +31,7 @@ ONT:Producto_Comprado_481784643 a ONT:Producto_comprado ;
     ONT:precio "500.0"^^xsd:float ;
     ONT:proc "centro"^^xsd:string ;
     ONT:targeta "123123123123"^^xsd:string ;
-    ONT:te_feedback "false"^^xsd:bool ;
+    ONT:te_feedback ""^^xsd:string ;
     ONT:usuario "Marc"^^xsd:string .
 
 ONT:Producto_Comprado_683800921 a ONT:Producto_comprado ;
@@ -41,7 +41,7 @@ ONT:Producto_Comprado_683800921 a ONT:Producto_comprado ;
     ONT:precio "200.0"^^xsd:float ;
     ONT:proc "centro"^^xsd:string ;
     ONT:targeta "666"^^xsd:string ;
-    ONT:te_feedback "false"^^xsd:bool ;
+    ONT:te_feedback ""^^xsd:string ;
     ONT:usuario "Dan"^^xsd:string .
 
 ONT:Producto_Comprado_779618566 a ONT:Producto_comprado ;
@@ -51,6 +51,6 @@ ONT:Producto_Comprado_779618566 a ONT:Producto_comprado ;
     ONT:precio "500.0"^^xsd:float ;
     ONT:proc "centro"^^xsd:string ;
     ONT:targeta "666"^^xsd:string ;
-    ONT:te_feedback "false"^^xsd:bool ;
+    ONT:te_feedback ""^^xsd:string ;
     ONT:usuario "Dan"^^xsd:string .
 
