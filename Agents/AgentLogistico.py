@@ -172,6 +172,8 @@ def comunicacion():
                 gr = getProductos(gm)
             elif accion == ONT.Asignar_compra:
                 gr = asignarCompra(gm)
+            elif accion == ONT.GetLotes:
+                gr = getLotes(gm)
 
     mss_cnt += 1
 
@@ -394,6 +396,38 @@ def query_compra(id_compra, id_lote):
 
     return None
 
+def getLotes(gm):
+    graph = Graph()
+    ontologyFile = open('../Data/compras_con_lote.rdf')
+    graph.parse(ontologyFile, format='turtle')
+    query = """
+                    prefix rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+                    prefix xsd:<http://www.w3.org/2001/XMLSchema#>
+                    prefix default:<http://www.ontologia.com/ECSDI-ontologia.owl#>
+                    prefix owl:<http://www.w3.org/2002/07/owl#>
+                    SELECT DISTINCT ?compra ?id_lote 
+                    where {
+                        { ?compra rdf:type default:Compra }  .
+                        ?compra default:id_lote ?id_lote .
+                        }
+                        order by desc(UCASE(str(?id_lote)))"""
+    logger.info(query)
+    graph_query = graph.query(query)
+
+    result = Graph()
+    result.bind('ONT', ONT)
+    product_count = 0
+    lotes = []
+    for row in graph_query:
+        logger.info('entro')
+        id_lote = row.id_lote
+        subject = row.compra
+        product_count += 1
+        if id_lote not in lotes:
+            result.add((subject, RDF.type, ONT.Compra))
+            result.add((subject, ONT.id_lote, Literal(id_lote, datatype=XSD.integer)))
+            lotes.append(id_lote)
+    return result
 
 def tidyup():
     """
