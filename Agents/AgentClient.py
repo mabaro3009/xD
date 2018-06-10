@@ -177,8 +177,6 @@ def feedback_devolver():
 
     gr2 = infoagent_search_message(grAgentVendedor.address, grAgentVendedor.uri, gr, msgResult)
 
-
-
     index = 0
     subject_pos = {}
     productos_comprados = []
@@ -207,17 +205,16 @@ def feedback_devolver():
                 subject_dict['te_feedback'] = o
                 productos_comprados[subject_pos[s]] = subject_dict
 
-
     if request.method == 'GET':
-        return render_template('feedback_devolver.html', productos = productos_comprados)
+        return render_template('feedback_devolver.html', productos=productos_comprados)
 
     else:
         if request.form['submit'] == 'Devolver producto':
             logger.info("hey vull tornar el sida producte")
-            return render_template('feedback_devolver.html', productos = productos_comprados)
+            return render_template('feedback_devolver.html', productos=productos_comprados)
         elif request.form['submit'] == 'Escribir feedback':
             logger.info("hey vull escriure sobre la merda de producte que he comprat ostia joderr")
-            return render_template('feedback_devolver.html', productos = productos_comprados)
+            return render_template('feedback_devolver.html', productos=productos_comprados)
 
 
 @app.route('/buscar', methods=['GET', 'POST'])
@@ -381,7 +378,7 @@ def buscar():
             for producto in carrito_compra:
                 gr = Graph()
                 id_producto = str(random.randint(1, 1000000000))
-                producto_a_comprar = ONT['Producto_Comprado' + id_producto]
+                producto_a_comprar = ONT['Producto_Comprado_' + id_producto]
 
                 msgResult = ONT['Comprar_Producto_' + str(get_count())]
                 gr.add((msgResult, RDF.type, ONT.Comprar_producto))

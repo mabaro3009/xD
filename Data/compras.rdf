@@ -4,6 +4,19 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+ONT:Compra_578001690 a ONT:Compra ;
+    ONT:direccion "casa meva"^^xsd:string ;
+    ONT:enviado false ;
+    ONT:id_compra 578001690 ;
+    ONT:id_lote 0 ;
+    ONT:nombre "Marc"^^xsd:string ;
+    ONT:peso "27.0"^^xsd:float ;
+    ONT:precio "916.95"^^xsd:float ;
+    ONT:precio_externo "412.0"^^xsd:float ;
+    ONT:prioridad 2 ;
+    ONT:targeta "123123123123"^^xsd:string ;
+    ONT:total 3 .
+
 ONT:Compra_855034592 a ONT:Compra ;
     ONT:direccion "cas"^^xsd:string ;
     ONT:enviado false ;

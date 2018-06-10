@@ -4,7 +4,37 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-ONT:Producto_Comprado683800921 a ONT:Producto_comprado ;
+ONT:Producto_Comprado_11339822 a ONT:Producto_comprado ;
+    ONT:id 839768019 ;
+    ONT:marca "Corsair"^^xsd:string ;
+    ONT:nombre "Teclado"^^xsd:string ;
+    ONT:precio "400.0"^^xsd:float ;
+    ONT:proc "externo"^^xsd:string ;
+    ONT:targeta "123123123123"^^xsd:string ;
+    ONT:te_feedback "false"^^xsd:bool ;
+    ONT:usuario "Marc"^^xsd:string .
+
+ONT:Producto_Comprado_470027270 a ONT:Producto_comprado ;
+    ONT:id 90378155 ;
+    ONT:marca "xD"^^xsd:string ;
+    ONT:nombre "Batamanta"^^xsd:string ;
+    ONT:precio "12.0"^^xsd:float ;
+    ONT:proc "externo"^^xsd:string ;
+    ONT:targeta "123123123123"^^xsd:string ;
+    ONT:te_feedback "false"^^xsd:bool ;
+    ONT:usuario "Marc"^^xsd:string .
+
+ONT:Producto_Comprado_481784643 a ONT:Producto_comprado ;
+    ONT:id 158748941 ;
+    ONT:marca "Apple"^^xsd:string ;
+    ONT:nombre "TV"^^xsd:string ;
+    ONT:precio "500.0"^^xsd:float ;
+    ONT:proc "centro"^^xsd:string ;
+    ONT:targeta "123123123123"^^xsd:string ;
+    ONT:te_feedback "false"^^xsd:bool ;
+    ONT:usuario "Marc"^^xsd:string .
+
+ONT:Producto_Comprado_683800921 a ONT:Producto_comprado ;
     ONT:id 247549838 ;
     ONT:marca "Apple"^^xsd:string ;
     ONT:nombre "iPhone"^^xsd:string ;
@@ -14,7 +44,7 @@ ONT:Producto_Comprado683800921 a ONT:Producto_comprado ;
     ONT:te_feedback "false"^^xsd:bool ;
     ONT:usuario "Dan"^^xsd:string .
 
-ONT:Producto_Comprado779618566 a ONT:Producto_comprado ;
+ONT:Producto_Comprado_779618566 a ONT:Producto_comprado ;
     ONT:id 723108807 ;
     ONT:marca "Panasonic"^^xsd:string ;
     ONT:nombre "TV"^^xsd:string ;

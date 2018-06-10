@@ -186,19 +186,18 @@ def comunicacion():
     return gr.serialize(format='xml')
 
 
-def search(nombre=None, marca=None, precio_max=sys.float_info.max):
+def search(nombre=None):
     graph = Graph()
     ontologyFile = open('../Data/productos_comprados.rdf')
     graph.parse(ontologyFile, format='turtle')
-    first = second = 0
     query = """
         prefix rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         prefix xsd:<http://www.w3.org/2001/XMLSchema#>
         prefix default:<http://www.ontologia.com/ECSDI-ontologia.owl#>
         prefix owl:<http://www.w3.org/2002/07/owl#>
-        SELECT DISTINCT ?producto ?nombre ?marca ?precio ?id ?proc ?targeta ?te_feedback
+        SELECT DISTINCT ?producto ?nombre ?marca ?precio ?id ?proc ?targeta ?te_feedback ?usuario
         where {
-            { ?producto rdf:type default:Producto_Comprado }  .
+            { ?producto rdf:type default:Producto_comprado }  .
             ?producto default:nombre ?nombre .
             ?producto default:marca ?marca .
             ?producto default:precio ?precio .
@@ -206,11 +205,11 @@ def search(nombre=None, marca=None, precio_max=sys.float_info.max):
             ?producto default:proc ?proc .
             ?producto default:targeta ?targeta .
             ?producto default:te_feedback ?te_feedback .
+            ?producto default:usuario ?usuario .
             FILTER("""
 
-
     query += """str(?usuario) = """"'" + str(nombre) + "'"""" )}
-                    order by desc(UCASE(str(?precio)))"""
+                        order by desc(UCASE(str(?precio)))"""
 
     logger.info(nombre)
     logger.info(query)
