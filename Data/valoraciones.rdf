@@ -9,5 +9,26 @@ ONT:Producto_valorado_159108752 a ONT:Producto_valorado ;
     ONT:marca "Corsair"^^xsd:string ;
     ONT:nombre "Teclado"^^xsd:string ;
     ONT:precio "400.0"^^xsd:float ;
+    ONT:valoracion 4 .
+
+ONT:Producto_valorado_168360856 a ONT:Producto_valorado ;
+    ONT:id 839768019 ;
+    ONT:marca "Corsair"^^xsd:string ;
+    ONT:nombre "Teclado"^^xsd:string ;
+    ONT:precio "400.0"^^xsd:float ;
     ONT:valoracion 1 .
+
+ONT:Producto_valorado_170005963 a ONT:Producto_valorado ;
+    ONT:id 90378155 ;
+    ONT:marca "xD"^^xsd:string ;
+    ONT:nombre "Batamanta"^^xsd:string ;
+    ONT:precio "12.0"^^xsd:float ;
+    ONT:valoracion 5 .
+
+ONT:Producto_valorado_342681644 a ONT:Producto_valorado ;
+    ONT:id 158748941 ;
+    ONT:marca "Apple"^^xsd:string ;
+    ONT:nombre "TV"^^xsd:string ;
+    ONT:precio "500.0"^^xsd:float ;
+    ONT:valoracion 3 .
 

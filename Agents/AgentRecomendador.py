@@ -163,8 +163,8 @@ def comunicacion():
             accion = gm.value(subject=content, predicate=RDF.type)
             logger.info(accion)
 
-            if accion == ONT.Registrar_Valoracion:
-                gr = registrarValoracion(gm)
+            if accion == ONT.BusquedaRecom:
+                gr = searchRecomendaciones(gm)
 
     mss_cnt += 1
 
@@ -173,19 +173,47 @@ def comunicacion():
     return gr.serialize(format='xml')
 
 
-def registrarValoracion(gm):
-    ontologia = open('../Data/valoraciones.rdf')
-    gr = Graph()
-    gr.parse(ontologia, format="turtle")
-    valoracion = gm.subjects(RDF.type, ONT.Producto_valorado)
-    valoracion = valoracion.next()
+def searchRecomendaciones(gm):
+    graph = Graph()
+    ontologyFile = open('../Data/valoraciones.rdf')
+    graph.parse(ontologyFile, format='turtle')
+    query = """
+                    prefix rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+                    prefix xsd:<http://www.w3.org/2001/XMLSchema#>
+                    prefix default:<http://www.ontologia.com/ECSDI-ontologia.owl#>
+                    prefix owl:<http://www.w3.org/2002/07/owl#>
+                    SELECT DISTINCT ?recomendacion ?nombre ?marca ?precio ?valoracion
+                    where {
+                        { ?recomendacion rdf:type default:Producto_valorado }  .
+                        ?recomendacion default:nombre ?nombre .
+                        ?recomendacion default:marca ?marca .
+                        ?recomendacion default:precio ?precio .
+                        ?recomendacion default:valoracion ?valoracion .
+                        FILTER("""
 
-    for s, p, o in gm:
-        if s == valoracion:
-            gr.add((s, p, o))
+    query += """str(?valoracion) >= """"'" + str(3) + "'"""" )}
+                        order by desc(UCASE(str(?valoracion)))"""
+    logger.info(query)
+    graph_query = graph.query(query)
 
-    gr.serialize(destination='../Data/valoraciones.rdf', format='turtle')
-    return gm
+    result = Graph()
+    result.bind('ONT', ONT)
+    product_count = 0
+    for row in graph_query:
+        logger.info('entro')
+        nombre = row.nombre
+        marca = row.marca
+        precio = row.precio
+        valoracion = row.valoracion
+        subject = row.recomendacion
+        product_count += 1
+        result.add((subject, RDF.type, ONT.Compra))
+        result.add((subject, ONT.nombre, Literal(nombre, datatype=XSD.string)))
+        result.add((subject, ONT.marca, Literal(marca, datatype=XSD.string)))
+        result.add((subject, ONT.precio, Literal(precio, datatype=XSD.float)))
+        result.add((subject, ONT.valoracion, Literal(valoracion, datatype=XSD.integer)))
+
+    return result
 
 
 def registrarProductoComprado(gm):

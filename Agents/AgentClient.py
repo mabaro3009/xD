@@ -222,7 +222,6 @@ def feedback_devolver():
                     ii = i
             productos_comprados[ii]['te_feedback'] = "si"
 
-
             id = str(random.randint(1, 1000000000))
             valoracion = request.form['valoracion']
             marca = request.form['marca']
@@ -258,8 +257,33 @@ def feedback_devolver():
 @app.route('/buscar', methods=['GET', 'POST'])
 def buscar():
     if request.method == 'GET':
+        msgResult = ONT['BusquedaRecom' + str(get_count())]
+        gr3 = Graph()
+        gr3.add((msgResult, RDF.type, ONT.BusquedaRecom))
+        grAgentRecom = get_agent_info(agn.AgentRecomendador, DirectoryAgent, AgentClient, get_count())
+        gr4 = infoagent_search_message(grAgentRecom.address, grAgentRecom.uri, gr3, msgResult)
+        index = 0
+        subject_pos = {}
+        for s, p, o in gr4:
+            if s not in subject_pos:
+                subject_pos[s] = index
+                recomendaciones.append({})
+                index += 1
+            if s in subject_pos:
+                subject_dict = recomendaciones[subject_pos[s]]
+                if p == RDF.type:
+                    subject_dict['url'] = s
+                elif p == ONT.marca:
+                    subject_dict['marca'] = o
+                elif p == ONT.precio:
+                    subject_dict['precio'] = o
+                elif p == ONT.nombre:
+                    subject_dict['nombre'] = o
+                elif p == ONT.valoracion:
+                    subject_dict['valoracion'] = o
+                    recomendaciones[subject_pos[s]] = subject_dict
 
-        return render_template('buscar.html')
+        return render_template('buscar.html', recomendaciones=recomendaciones)
     else:
         logger.info(request.form['submit'])
         if request.form['submit'] == 'Buscar':
@@ -326,7 +350,7 @@ def buscar():
                         lista[subject_pos[s]] = subject_dict
 
             total = calcula_precio_carrito()
-            return render_template('buscar.html', productos=lista, productos_carrito = carrito_compra, total = total)
+            return render_template('buscar.html', productos=lista, productos_carrito=carrito_compra, total=total, recomendaciones=recomendaciones)
 
         elif request.form['submit'] == 'Al carrito!':
             item = {}
@@ -340,7 +364,7 @@ def buscar():
             logger.info(item["proc"])
             carrito_compra.append(item)
             total = calcula_precio_carrito()
-            return render_template('buscar.html', productos_carrito = carrito_compra, total = total)
+            return render_template('buscar.html', productos_carrito=carrito_compra, total=total, recomendaciones=recomendaciones)
 
         elif request.form['submit'] == 'Eliminar':
             idd = request.form["id"]
@@ -350,12 +374,12 @@ def buscar():
                     ii = i
             del carrito_compra[ii]
             total = calcula_precio_carrito()
-            return render_template('buscar.html', productos_carrito = carrito_compra, total = total)
+            return render_template('buscar.html', productos_carrito=carrito_compra, total=total, recomendaciones=recomendaciones)
 
         elif request.form['submit'] == 'Comprar':
             print("comprar")
             total = calcula_precio_carrito()
-            return render_template('datos_cliente.html', productos_carrito = carrito_compra, total = total)
+            return render_template('datos_cliente.html', productos_carrito=carrito_compra, total=total)
 
         elif request.form['submit'] == 'Confirmar compra':
             direccion = str(request.form["direccion"])

@@ -188,22 +188,6 @@ def registrarValoracion(gm):
     return gm
 
 
-def registrarProductoComprado(gm):
-    ontologia = open('../Data/productos_comprados.rdf')
-    gr = Graph()
-    gr.parse(ontologia, format="turtle")
-    producto = gm.subjects(RDF.type, ONT.Producto_comprado)
-    producto = producto.next()
-
-    for s, p, o in gm:
-        if s == producto:
-            gr.add((s, p, o))
-
-    gr.serialize(destination='../Data/productos_comprados.rdf', format='turtle')
-    return gm
-
-
-
 def tidyup():
     """
     Acciones previas a parar el agente
