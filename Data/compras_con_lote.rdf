@@ -4,29 +4,16 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-ONT:Compra_763767576 a ONT:Compra ;
-    ONT:direccion "Campus Nord Omega"^^xsd:string ;
+ONT:Compra_120558055 a ONT:Compra ;
+    ONT:direccion "sdfsadfsadfas"^^xsd:string ;
     ONT:enviado false ;
-    ONT:id_compra 763767576 ;
-    ONT:id_lote 34012354;
-    ONT:nombre "Javier Bejar"^^xsd:string ;
-    ONT:peso "24.0"^^xsd:float ;
-    ONT:precio "516.95"^^xsd:float ;
-    ONT:precio_externo "12.0"^^xsd:float ;
-    ONT:prioridad 2 ;
-    ONT:targeta "123123123"^^xsd:string ;
-    ONT:total 2 .
-
-ONT:Compra_822026717 a ONT:Compra ;
-    ONT:direccion "adeuuu"^^xsd:string ;
-    ONT:enviado false ;
-    ONT:id_compra 822026717 ;
-    ONT:id_lote 34012354;
-    ONT:nombre "holaaaa"^^xsd:string ;
-    ONT:peso "4.0"^^xsd:float ;
-    ONT:precio "600.0"^^xsd:float ;
-    ONT:precio_externo "400.0"^^xsd:float ;
+    ONT:id_compra 120558055 ;
+    ONT:id_lote 178114245 ;
+    ONT:nombre "sdfa"^^xsd:string ;
+    ONT:peso "51.0"^^xsd:float ;
+    ONT:precio "4720.0"^^xsd:float ;
+    ONT:precio_externo "20.0"^^xsd:float ;
     ONT:prioridad 1 ;
-    ONT:targeta "24598230"^^xsd:string ;
-    ONT:total 2 .
+    ONT:targeta "55165465"^^xsd:string ;
+    ONT:total 3 .
 

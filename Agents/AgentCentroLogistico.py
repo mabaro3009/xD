@@ -268,7 +268,7 @@ def crear_lote():
                 AgentLog = get_agent_info(agn.AgentLogistico, DirectoryAgent, AgentCentroLogistico, get_count())
 
                 infoagent_search_message(AgentLog.address, AgentLog.uri, gr, msgResult)
-
+            return redirect(url_for('crear_lote'))
 
 @app.route("/Stop")
 def stop():

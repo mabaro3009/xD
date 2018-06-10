@@ -175,7 +175,20 @@ def pagina_princiapl():
 
         return render_template('transportista.html', lotes = lista)
     else:
-        return redirect(url_for('buscar'))
+        if request.form['submit'] == 'Enviado!':
+
+            msgResult = ONT['cobro_' + str(get_count())]
+
+            id_lot = request.form['id_lote']
+            gr = Graph()
+            body_lote = ONT['id_Lote_' + id_lot]
+            gr.add((msgResult, RDF.type, ONT.ProductoEnviado))
+            gr.add((body_lote, ONT.id_lote, Literal(id_lot, datatype=XSD.integer)))
+            AgentLog = get_agent_info(agn.AgentCobrador, DirectoryAgent, AgentTransportista, get_count())
+
+            gr2 = infoagent_search_message(AgentLog.address, AgentLog.uri, gr, msgResult)
+
+            return "producto enviado xd"
 
 
 @app.route("/Stop")

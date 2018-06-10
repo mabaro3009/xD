@@ -337,6 +337,7 @@ def buscar():
             return render_template('factura.html', productos_carrito=carrito_compra, datos=datos)
 
         elif request.form['submit'] == 'Realizar otra compra':
+            del carrito_compra[:]
             return render_template('buscar.html')
 
 
