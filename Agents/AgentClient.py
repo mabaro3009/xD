@@ -174,9 +174,9 @@ def feedback_devolver():
         gr.add((body_nombre, RDF.type, ONT.productos_usuario))
         gr.add((body_nombre, ONT.nombre, Literal(nombre_usuario, datatype=XSD.string)))
         gr.add((msgResult, ONT.Restringe, URIRef(body_nombre)))
-
+        logger.info("DANI_1111111111111111111111111111111111")
         grAgentVendedor = get_agent_info(agn.AgentVendedor, DirectoryAgent, AgentClient, get_count())
-
+        logger.info("DANI_2222222222222222222222222222222")
         gr2 = infoagent_search_message(grAgentVendedor.address, grAgentVendedor.uri, gr, msgResult)
 
         index = 0

@@ -169,7 +169,7 @@ def comunicacion():
 
             elif accion == ONT.ProductoDevuelto:
                 pagarDev(gm)
-
+                gr = gm
 
 
     mss_cnt += 1

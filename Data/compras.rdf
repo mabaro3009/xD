@@ -4,29 +4,29 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-ONT:Compra_578001690 a ONT:Compra ;
-    ONT:direccion "casa meva"^^xsd:string ;
+ONT:Compra_829636596 a ONT:Compra ;
+    ONT:direccion "666"^^xsd:string ;
     ONT:enviado false ;
-    ONT:id_compra 578001690 ;
+    ONT:id_compra 829636596 ;
     ONT:id_lote 0 ;
-    ONT:nombre "Marc"^^xsd:string ;
-    ONT:peso "27.0"^^xsd:float ;
-    ONT:precio "916.95"^^xsd:float ;
-    ONT:precio_externo "412.0"^^xsd:float ;
+    ONT:nombre "DT"^^xsd:string ;
+    ONT:peso "67.5"^^xsd:float ;
+    ONT:precio "9916.95"^^xsd:float ;
+    ONT:precio_externo "1112.0"^^xsd:float ;
     ONT:prioridad 2 ;
-    ONT:targeta "123123123123"^^xsd:string ;
-    ONT:total 3 .
-
-ONT:Compra_855034592 a ONT:Compra ;
-    ONT:direccion "cas"^^xsd:string ;
-    ONT:enviado false ;
-    ONT:id_compra 855034592 ;
-    ONT:id_lote 0 ;
-    ONT:nombre "Dan"^^xsd:string ;
-    ONT:peso "31.0"^^xsd:float ;
-    ONT:precio "700.0"^^xsd:float ;
-    ONT:precio_externo "0.0"^^xsd:float ;
-    ONT:prioridad 1 ;
     ONT:targeta "666"^^xsd:string ;
-    ONT:total 2 .
+    ONT:total 9 .
+
+ONT:Compra_915900856 a ONT:Compra ;
+    ONT:direccion "666"^^xsd:string ;
+    ONT:enviado false ;
+    ONT:id_compra 915900856 ;
+    ONT:id_lote 0 ;
+    ONT:nombre "DT"^^xsd:string ;
+    ONT:peso "67.5"^^xsd:float ;
+    ONT:precio "9916.95"^^xsd:float ;
+    ONT:precio_externo "1112.0"^^xsd:float ;
+    ONT:prioridad 2 ;
+    ONT:targeta "666"^^xsd:string ;
+    ONT:total 9 .
 
