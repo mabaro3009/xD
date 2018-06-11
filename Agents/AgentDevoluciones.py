@@ -181,13 +181,10 @@ def comunicacion():
             # Averiguamos el tipo de la accion
             content = msgdic['content']
             accion = gm.value(subject=content, predicate=RDF.type)
-            logger.info(accion)
 
             if accion == ONT.ProductoDevuelto:
                gr = contactarCobrador(gm)
-#msgResult = ONT['pago_dev_' + str(get_count())]
-#AgentCobr = get_agent_info(agn.AgentCobrador, DirectoryAgent, AgentDevoluciones, get_count())
-#gr = infoagent_search_message(AgentCobr.address, AgentCobr.uri, gm, msgResult)
+
 
     mss_cnt += 1
 
@@ -227,7 +224,6 @@ def contactarCobrador(gm):
                 usuario = subject_dict['usuario'] = o
                 lista[subject_pos[s]] = subject_dict
 
-
     msgResult = ONT['cobro2_' + str(get_count())]
     gr = Graph()
     body_prod_dev = ONT['id_Dev_' + id]
@@ -240,19 +236,8 @@ def contactarCobrador(gm):
     gr.add((body_prod_dev, ONT.usuario, Literal(usuario, datatype=XSD.string)))
     gr.add((msgResult, ONT.DevolverProducto, URIRef(body_prod_dev)))
     AgentCobr = get_agent_info(agn.AgentCobrador, DirectoryAgent, AgentDevoluciones, get_count())
-    logger.info(AgentCobr.address)
-    logger.info(AgentCobr.uri)
-    logger.info(msgResult)
-    logger.info(id)
-    logger.info(procedencia)
-    logger.info(precio)
-    logger.info(targeta)
-    logger.info(usuario)
-    logger.info(AgentDevoluciones.uri)
-
 
     gr2 = infoagent_search_message(AgentCobr.address, AgentCobr.uri, gr, msgResult)
-
 
     return gm
 

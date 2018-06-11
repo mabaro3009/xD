@@ -161,7 +161,6 @@ def comunicacion():
             # Averiguamos el tipo de la accion
             content = msgdic['content']
             accion = gm.value(subject=content, predicate=RDF.type)
-            logger.info(accion)
 
             if accion == ONT.Comprar:
                 gr = registrarCompra(gm)
@@ -211,13 +210,10 @@ def search(nombre=None):
     query += """str(?usuario) = """"'" + str(nombre) + "'"""" )}
                         order by desc(UCASE(str(?precio)))"""
 
-    logger.info(nombre)
-    logger.info(query)
     graph_query = graph.query(query)
     result = Graph()
     result.bind('ONT', ONT)
     product_count = 0
-    logger.info("comenco a imprimir coses que trobo:")
     for row in graph_query:
         nombre = row.nombre
         marca = row.marca

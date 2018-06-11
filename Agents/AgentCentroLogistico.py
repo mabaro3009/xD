@@ -242,7 +242,6 @@ def crear_lote():
             idd = int(request.form["id_compra"])
             ii = -1
             for i in range(0, len(compras_sin_asignar)):
-                logger.info(compras_sin_asignar[i]["id_compra"])
                 if int(compras_sin_asignar[i]["id_compra"]) == idd:
                     ii = i
             compras_sin_asignar[ii]["id_lote"] = id_lote
@@ -270,6 +269,8 @@ def crear_lote():
                 AgentLog = get_agent_info(agn.AgentLogistico, DirectoryAgent, AgentCentroLogistico, get_count())
 
                 infoagent_search_message(AgentLog.address, AgentLog.uri, gr, msgResult)
+            del compras_sin_asignar[:]
+            del compras_asignadas[:]
             return redirect(url_for('crear_lote'))
 
 @app.route("/Stop")

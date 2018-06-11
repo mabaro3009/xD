@@ -236,11 +236,9 @@ def feedback_devolver():
             return render_template('feedback_devolver.html', productos=productos_comprados)
 
         elif request.form['submit'] == 'Escribir feedback':
-            logger.info(int(request.form["id"]))
             idd = int(request.form["id"])
             ii = -1
             for i in range(0, len(productos_comprados)):
-                logger.info(int(productos_comprados[i]['id']))
                 if int(productos_comprados[i]['id']) == idd:
                     ii = i
             productos_comprados[ii]['te_feedback'] = "si"
@@ -317,7 +315,6 @@ def buscar():
         return render_template('buscar.html', recomendaciones=recomendaciones)
 
     else:
-        logger.info(request.form['submit'])
         if request.form['submit'] == 'Buscar':
             logger.info("Petición de búsqueda enviada")
 
@@ -392,8 +389,6 @@ def buscar():
             item["precio"] = request.form["precio"]
             item["nombre"] = request.form["nombre"]
             item["peso"] = request.form["peso"]
-            logger.info(item["id"])
-            logger.info(item["proc"])
             carrito_compra.append(item)
             total = calcula_precio_carrito()
             return render_template('buscar.html', productos_carrito=carrito_compra, total=total, recomendaciones=recomendaciones)
@@ -409,7 +404,6 @@ def buscar():
             return render_template('buscar.html', productos_carrito=carrito_compra, total=total, recomendaciones=recomendaciones)
 
         elif request.form['submit'] == 'Comprar':
-            print("comprar")
             total = calcula_precio_carrito()
             return render_template('datos_cliente.html', productos_carrito=carrito_compra, total=total)
 

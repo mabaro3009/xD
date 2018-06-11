@@ -285,8 +285,6 @@ def asignarCompra(gm):
                 id_compra = subject_dict['id_compra']
                 lista[subject_pos[s]] = subject_dict
 
-    logger.info(id_lote)
-    logger.info(id_compra)
     query_compra(id_compra, id_lote)
     return gm
 
@@ -318,14 +316,12 @@ def query_compra(id_compra, id_lote):
 
     query += """str(?id_compra) = """"'" + str(id_compra) + "'"""" )}
                     order by desc(UCASE(str(?precio)))"""
-    logger.info(query)
     graph_query = graph.query(query)
     ids = []
     result = Graph()
     result.bind('ONT', ONT)
     product_count = 0
     for row in graph_query:
-        logger.info('entro')
         prioridad = row.prioridad
         direccion = row.direccion
         nombre = row.nombre
@@ -363,7 +359,6 @@ def query_compra(id_compra, id_lote):
 
 
     for s, p, o in result:
-        logger.info(s)
         if s == compra:
             gr.add((s, p, o))
             graph.remove((s, None, None))
@@ -371,6 +366,7 @@ def query_compra(id_compra, id_lote):
     gr.serialize(destination='../Data/compras_con_lote.rdf', format='turtle')
 
     return None
+
 
 def getLotes(gm):
     graph = Graph()
@@ -387,7 +383,6 @@ def getLotes(gm):
                         ?compra default:id_lote ?id_lote .
                         }
                         order by desc(UCASE(str(?id_lote)))"""
-    logger.info(query)
     graph_query = graph.query(query)
 
     result = Graph()
@@ -395,7 +390,6 @@ def getLotes(gm):
     product_count = 0
     lotes = []
     for row in graph_query:
-        logger.info('entro')
         id_lote = row.id_lote
         subject = row.compra
         product_count += 1

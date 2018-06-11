@@ -257,15 +257,12 @@ def cobrar(gm):
 
     query += """str(?id_lote) = """"'" + str(id_lote) + "'"""" )}
                     order by desc(UCASE(str(?precio)))"""
-    logger.info(query)
     graph_query = graph.query(query)
-
     result = Graph()
     result.bind('ONT', ONT)
     product_count = 0
     lotes = []
     for row in graph_query:
-        logger.info('entro')
         id_lote = row.id_lote
         precio_externo = row.precio_externo
         precio = row.precio
@@ -287,7 +284,6 @@ def cobrar(gm):
         #IDEALMENTE SE COMUNICA CON OTRO AGENTE EXTERNE (BANCO) Y RETORNA SIEMPRE QUE OK
 
     for s, p, o in result:
-        logger.info(s)
         graph.remove((s, None, None))
     graph.serialize(destination='../Data/compras_con_lote.rdf', format='turtle')
     return result

@@ -161,7 +161,6 @@ def comunicacion():
             # Averiguamos el tipo de la accion
             content = msgdic['content']
             accion = gm.value(subject=content, predicate=RDF.type)
-            logger.info(accion)
 
             if accion == ONT.Registrar_Valoracion:
                 gr = registrarValoracion(gm)

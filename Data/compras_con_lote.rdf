@@ -4,29 +4,94 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-ONT:Compra_274724725 a ONT:Compra ;
-    ONT:direccion "gfdgdfg"^^xsd:string ;
+ONT:Compra_140913612 a ONT:Compra ;
+    ONT:direccion "Casa Badia"^^xsd:string ;
     ONT:enviado false ;
-    ONT:id_compra 274724725 ;
-    ONT:id_lote 542468345 ;
-    ONT:nombre "dgdfgdfgd"^^xsd:string ;
-    ONT:peso "20.0"^^xsd:float ;
-    ONT:precio "4200.0"^^xsd:float ;
-    ONT:precio_externo "0.0"^^xsd:float ;
-    ONT:prioridad 1 ;
-    ONT:targeta "34234234234"^^xsd:string ;
-    ONT:total 1 .
+    ONT:id_compra 140913612 ;
+    ONT:id_lote 633893236 ;
+    ONT:nombre "Badia"^^xsd:string ;
+    ONT:peso "5.0"^^xsd:float ;
+    ONT:precio "604.95"^^xsd:float ;
+    ONT:precio_externo "600.0"^^xsd:float ;
+    ONT:prioridad 2 ;
+    ONT:targeta "1111111111111111"^^xsd:string ;
+    ONT:total 2 .
 
-ONT:Compra_499992093 a ONT:Compra ;
-    ONT:direccion "holaaa"^^xsd:string ;
+ONT:Compra_158230338 a ONT:Compra ;
+    ONT:direccion "UPC"^^xsd:string ;
     ONT:enviado false ;
-    ONT:id_compra 499992093 ;
-    ONT:id_lote 542468345 ;
-    ONT:nombre "Marc"^^xsd:string ;
-    ONT:peso "6.0"^^xsd:float ;
-    ONT:precio "1015.0"^^xsd:float ;
+    ONT:id_compra 158230338 ;
+    ONT:id_lote 250142281 ;
+    ONT:nombre "Bejar"^^xsd:string ;
+    ONT:peso "9.5"^^xsd:float ;
+    ONT:precio "2115.0"^^xsd:float ;
     ONT:precio_externo "0.0"^^xsd:float ;
     ONT:prioridad 3 ;
-    ONT:targeta "432243234"^^xsd:string ;
+    ONT:targeta "1234567812345678"^^xsd:string ;
+    ONT:total 3 .
+
+ONT:Compra_233948194 a ONT:Compra ;
+    ONT:direccion "Calle Cervantes 2"^^xsd:string ;
+    ONT:enviado false ;
+    ONT:id_compra 233948194 ;
+    ONT:id_lote 325835558 ;
+    ONT:nombre "Marc"^^xsd:string ;
+    ONT:peso "29.0"^^xsd:float ;
+    ONT:precio "5432.0"^^xsd:float ;
+    ONT:precio_externo "32.0"^^xsd:float ;
+    ONT:prioridad 1 ;
+    ONT:targeta "1234123412341234"^^xsd:string ;
+    ONT:total 4 .
+
+ONT:Compra_24928566 a ONT:Compra ;
+    ONT:direccion "UPC"^^xsd:string ;
+    ONT:enviado false ;
+    ONT:id_compra 24928566 ;
+    ONT:id_lote 325835558 ;
+    ONT:nombre "Bejar"^^xsd:string ;
+    ONT:peso "4.2"^^xsd:float ;
+    ONT:precio "524.0"^^xsd:float ;
+    ONT:precio_externo "24.0"^^xsd:float ;
+    ONT:prioridad 1 ;
+    ONT:targeta "1234567812345678"^^xsd:string ;
+    ONT:total 3 .
+
+ONT:Compra_368680752 a ONT:Compra ;
+    ONT:direccion "Casa Dani"^^xsd:string ;
+    ONT:enviado false ;
+    ONT:id_compra 368680752 ;
+    ONT:id_lote 141628204 ;
+    ONT:nombre "Dan"^^xsd:string ;
+    ONT:peso "0.2"^^xsd:float ;
+    ONT:precio "515.0"^^xsd:float ;
+    ONT:precio_externo "0.0"^^xsd:float ;
+    ONT:prioridad 3 ;
+    ONT:targeta "4321432143214321"^^xsd:string ;
     ONT:total 1 .
+
+ONT:Compra_602426118 a ONT:Compra ;
+    ONT:direccion "Calle Cervantes 2"^^xsd:string ;
+    ONT:enviado false ;
+    ONT:id_compra 602426118 ;
+    ONT:id_lote 169194613 ;
+    ONT:nombre "Marc"^^xsd:string ;
+    ONT:peso "32.0"^^xsd:float ;
+    ONT:precio "1504.95"^^xsd:float ;
+    ONT:precio_externo "0.0"^^xsd:float ;
+    ONT:prioridad 2 ;
+    ONT:targeta "1234123412341234"^^xsd:string ;
+    ONT:total 2 .
+
+ONT:Compra_8232051 a ONT:Compra ;
+    ONT:direccion "Casa Dani"^^xsd:string ;
+    ONT:enviado false ;
+    ONT:id_compra 8232051 ;
+    ONT:id_lote 169194613 ;
+    ONT:nombre "Dan"^^xsd:string ;
+    ONT:peso "9.5"^^xsd:float ;
+    ONT:precio "2124.95"^^xsd:float ;
+    ONT:precio_externo "20.0"^^xsd:float ;
+    ONT:prioridad 2 ;
+    ONT:targeta "4321432143214321"^^xsd:string ;
+    ONT:total 3 .
 

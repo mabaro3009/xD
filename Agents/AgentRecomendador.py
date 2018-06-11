@@ -161,7 +161,6 @@ def comunicacion():
             # Averiguamos el tipo de la accion
             content = msgdic['content']
             accion = gm.value(subject=content, predicate=RDF.type)
-            logger.info(accion)
 
             if accion == ONT.BusquedaRecom:
                 gr = searchRecomendaciones(gm)
@@ -193,24 +192,17 @@ def searchRecomendaciones(gm):
                         }
                         GROUP BY ?id
                         """
-    logger.info(query)
     graph_query = graph.query(query)
 
     result = Graph()
     result.bind('ONT', ONT)
     product_count = 0
     for row in graph_query:
-        logger.info('ROWS HERE A CONTINUACION!')
         nombre = row.nombre
         marca = row.marca
         precio = row.precio
         nvotes = row.nvotes
         valoracion = row.valoracionmedia
-        #valoracion = row.valoracion
-        logger.info(nombre)
-        logger.info(marca)
-        logger.info(precio)
-        logger.info(valoracion)
         subject = row.recomendacion
         product_count += 1
         result.add((subject, RDF.type, ONT.Compra))
