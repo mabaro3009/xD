@@ -31,7 +31,7 @@ ONT:Producto_2 a ONT:Producto ;
 ONT:Producto_247549838 a ONT:Producto ;
     ONT:id 247549838 ;
     ONT:marca "Apple"^^xsd:string ;
-    ONT:nombre "iPhone 2"^^xsd:string ;
+    ONT:nombre "iPhone2"^^xsd:string ;
     ONT:peso "1.0"^^xsd:float ;
     ONT:precio "200.0"^^xsd:float ;
     ONT:proc "centro"^^xsd:string .
@@ -39,7 +39,7 @@ ONT:Producto_247549838 a ONT:Producto ;
 ONT:Producto_3 a ONT:Producto ;
     ONT:id 3 ;
     ONT:marca "Samsung"^^xsd:string ;
-    ONT:nombre "Galaxy S9"^^xsd:string ;
+    ONT:nombre "GalaxyS9"^^xsd:string ;
     ONT:peso "2.5"^^xsd:float ;
     ONT:precio "900.0"^^xsd:float ;
     ONT:proc "centro"^^xsd:string .
@@ -119,7 +119,7 @@ ONT:Producto_externo_90378155 a ONT:Producto_externo ;
 ONT:Producto_externo_93224245 a ONT:Producto_externo ;
     ONT:id 93224245 ;
     ONT:marca "Samsung"^^xsd:string ;
-    ONT:nombre "Galaxy S9+"^^xsd:string ;
+    ONT:nombre "GalaxyS9+"^^xsd:string ;
     ONT:peso "1.0"^^xsd:float ;
     ONT:precio "900.0"^^xsd:float ;
     ONT:proc "externo"^^xsd:string .

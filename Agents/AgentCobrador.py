@@ -168,9 +168,7 @@ def comunicacion():
                 gr = gm
 
             elif accion == ONT.ProductoDevuelto:
-                pagarDev(gm)
-                gr = gm
-
+                gr = pagarDev(gm)
 
     mss_cnt += 1
 
@@ -199,8 +197,7 @@ def pagarDev(gm):
             elif p == ONT.id:
                 subject_dict['id'] = o
             elif p == ONT.proc:
-                subject_dict['proc'] = o
-                procedencia = subject_dict['proc']
+                procedencia = subject_dict['proc'] = o
             elif p == ONT.precio:
                 precio = subject_dict['precio'] = o
             elif p == ONT.targeta:
@@ -209,11 +206,11 @@ def pagarDev(gm):
                 usuario = subject_dict['usuario'] = o
                 lista[subject_pos[s]] = subject_dict
 
-    if procedencia == "centro":
+    if str(procedencia) == "centro":
         logger.info("Pagamos al usuario de nombre " + usuario + " la cantidad de " + str(
             precio) + "EUROS y lo abonamos a la targeta: " + targeta)
 
-    elif procedencia == "externa":
+    elif str(procedencia) == "externo":
         logger.info("Pagamos al usuario de nombre " + usuario + " la cantidad de " + str(
             precio) + "EUROS y lo abonamos a la targeta: " + targeta + " cobrado de la tienda externa")
 

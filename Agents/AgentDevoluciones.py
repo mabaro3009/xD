@@ -184,10 +184,10 @@ def comunicacion():
             logger.info(accion)
 
             if accion == ONT.ProductoDevuelto:
-               # gr = contactarCobrador(gm)
-                msgResult = ONT['pago_dev_' + str(get_count())]
-                AgentCobr = get_agent_info(agn.AgentCobrador, DirectoryAgent, AgentDevoluciones, get_count())
-                gr = infoagent_search_message(AgentCobr.address, AgentCobr.uri, gm, msgResult)
+               gr = contactarCobrador(gm)
+#msgResult = ONT['pago_dev_' + str(get_count())]
+#AgentCobr = get_agent_info(agn.AgentCobrador, DirectoryAgent, AgentDevoluciones, get_count())
+#gr = infoagent_search_message(AgentCobr.address, AgentCobr.uri, gm, msgResult)
 
     mss_cnt += 1
 

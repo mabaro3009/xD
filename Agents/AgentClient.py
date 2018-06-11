@@ -174,9 +174,7 @@ def feedback_devolver():
         gr.add((body_nombre, RDF.type, ONT.productos_usuario))
         gr.add((body_nombre, ONT.nombre, Literal(nombre_usuario, datatype=XSD.string)))
         gr.add((msgResult, ONT.Restringe, URIRef(body_nombre)))
-        logger.info("DANI_1111111111111111111111111111111111")
         grAgentVendedor = get_agent_info(agn.AgentVendedor, DirectoryAgent, AgentClient, get_count())
-        logger.info("DANI_2222222222222222222222222222222")
         gr2 = infoagent_search_message(grAgentVendedor.address, grAgentVendedor.uri, gr, msgResult)
 
         index = 0
@@ -212,7 +210,7 @@ def feedback_devolver():
         if request.form['submit'] == 'Devolver producto':
             msgResult = ONT['cobro_' + str(get_count())]
 
-            id = request.form['id1']
+            idd = id = request.form['id']
             proc = request.form['proc']
             precio = request.form['precio']
             targeta = request.form['targeta']
@@ -229,19 +227,17 @@ def feedback_devolver():
 
             gr2 = infoagent_search_message(AgentDev.address, AgentDev.uri, gr, msgResult)
 
-            idd = int(request.form["id1"])
             ii = -1
             for i in range(0, len(productos_comprados)):
-                logger.info(int(productos_comprados[i]['id']))
-                if int(productos_comprados[i]['id']) == idd:
+                if int(productos_comprados[i]["id"]) == int(idd):
                     ii = i
             del productos_comprados[ii]
 
             return render_template('feedback_devolver.html', productos=productos_comprados)
 
         elif request.form['submit'] == 'Escribir feedback':
-            logger.info(int(request.form["id2"]))
-            idd = int(request.form["id2"])
+            logger.info(int(request.form["id"]))
+            idd = int(request.form["id"])
             ii = -1
             for i in range(0, len(productos_comprados)):
                 logger.info(int(productos_comprados[i]['id']))
