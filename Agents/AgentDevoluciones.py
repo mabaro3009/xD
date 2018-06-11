@@ -13,7 +13,7 @@ import socket
 import argparse
 
 from flask import Flask, request
-from rdflib import Graph, Namespace, Literal
+from rdflib import Graph, Namespace, Literal, URIRef
 from rdflib.namespace import FOAF, RDF, XSD
 
 from AgentUtil.OntoNamespaces import ACL, DSO
@@ -184,10 +184,10 @@ def comunicacion():
             logger.info(accion)
 
             if accion == ONT.ProductoDevuelto:
-                gr = contactarCobrador(gm)
-#msgResult = ONT['pago_dev_' + str(get_count())]
-#AgentCobr = get_agent_info(agn.AgentCobrador, DirectoryAgent, AgentDevoluciones, get_count())
-#gr2 = infoagent_search_message(AgentCobr.address, AgentCobr.uri, gm, msgResult)
+               # gr = contactarCobrador(gm)
+                msgResult = ONT['pago_dev_' + str(get_count())]
+                AgentCobr = get_agent_info(agn.AgentCobrador, DirectoryAgent, AgentDevoluciones, get_count())
+                gr = infoagent_search_message(AgentCobr.address, AgentCobr.uri, gm, msgResult)
 
     mss_cnt += 1
 
@@ -232,15 +232,25 @@ def contactarCobrador(gm):
     gr = Graph()
     body_prod_dev = ONT['id_Dev_' + id]
     gr.add((msgResult, RDF.type, ONT.ProductoDevuelto))
+    gr.add((body_prod_dev, RDF.type, ONT.Producto_devuelto))
     gr.add((body_prod_dev, ONT.id, Literal(id, datatype=XSD.integer)))
     gr.add((body_prod_dev, ONT.proc, Literal(procedencia, datatype=XSD.string)))
     gr.add((body_prod_dev, ONT.precio, Literal(precio, datatype=XSD.float)))
     gr.add((body_prod_dev, ONT.targeta, Literal(targeta, datatype=XSD.string)))
     gr.add((body_prod_dev, ONT.usuario, Literal(usuario, datatype=XSD.string)))
+    gr.add((msgResult, ONT.DevolverProducto, URIRef(body_prod_dev)))
     AgentCobr = get_agent_info(agn.AgentCobrador, DirectoryAgent, AgentDevoluciones, get_count())
     logger.info(AgentCobr.address)
     logger.info(AgentCobr.uri)
     logger.info(msgResult)
+    logger.info(id)
+    logger.info(procedencia)
+    logger.info(precio)
+    logger.info(targeta)
+    logger.info(usuario)
+    logger.info(AgentDevoluciones.uri)
+
+
     gr2 = infoagent_search_message(AgentCobr.address, AgentCobr.uri, gr, msgResult)
 
 
