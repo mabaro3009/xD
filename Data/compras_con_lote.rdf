@@ -3,3 +3,30 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ONT:Compra_274724725 a ONT:Compra ;
+    ONT:direccion "gfdgdfg"^^xsd:string ;
+    ONT:enviado false ;
+    ONT:id_compra 274724725 ;
+    ONT:id_lote 542468345 ;
+    ONT:nombre "dgdfgdfgd"^^xsd:string ;
+    ONT:peso "20.0"^^xsd:float ;
+    ONT:precio "4200.0"^^xsd:float ;
+    ONT:precio_externo "0.0"^^xsd:float ;
+    ONT:prioridad 1 ;
+    ONT:targeta "34234234234"^^xsd:string ;
+    ONT:total 1 .
+
+ONT:Compra_499992093 a ONT:Compra ;
+    ONT:direccion "holaaa"^^xsd:string ;
+    ONT:enviado false ;
+    ONT:id_compra 499992093 ;
+    ONT:id_lote 542468345 ;
+    ONT:nombre "Marc"^^xsd:string ;
+    ONT:peso "6.0"^^xsd:float ;
+    ONT:precio "1015.0"^^xsd:float ;
+    ONT:precio_externo "0.0"^^xsd:float ;
+    ONT:prioridad 3 ;
+    ONT:targeta "432243234"^^xsd:string ;
+    ONT:total 1 .
+

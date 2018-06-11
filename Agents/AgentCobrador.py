@@ -285,6 +285,11 @@ def cobrar(gm):
         logger.info("pago de: " + str(precio_externo) + "euros a la tienda externa")
         logger.info("se le paga al transportista: " + str(peso) + "euros")
         #IDEALMENTE SE COMUNICA CON OTRO AGENTE EXTERNE (BANCO) Y RETORNA SIEMPRE QUE OK
+
+    for s, p, o in result:
+        logger.info(s)
+        graph.remove((s, None, None))
+    graph.serialize(destination='../Data/compras_con_lote.rdf', format='turtle')
     return result
 
 

@@ -320,7 +320,7 @@ def query_compra(id_compra, id_lote):
                     order by desc(UCASE(str(?precio)))"""
     logger.info(query)
     graph_query = graph.query(query)
-
+    ids = []
     result = Graph()
     result.bind('ONT', ONT)
     product_count = 0
@@ -337,6 +337,7 @@ def query_compra(id_compra, id_lote):
         enviado = row.enviado
         subject = row.compra
         product_count += 1
+        ids.append(id_compra)
         result.add((subject, RDF.type, ONT.Compra))
         result.add((subject, ONT.id_compra, Literal(id_compra, datatype=XSD.integer)))
         result.add((subject, ONT.id_lote, Literal(id_lote, datatype=XSD.integer)))
@@ -350,16 +351,23 @@ def query_compra(id_compra, id_lote):
         result.add((subject, ONT.targeta, Literal(targeta, datatype=XSD.string)))
         result.add((subject, ONT.enviado, Literal(enviado, datatype=XSD.boolean)))
 
+    #graph.parse(ontologyFile, format='turtle')
+    #for id in ids:
+     #   graph.remove()
+
     ontologia = open('../Data/compras_con_lote.rdf')
     gr = Graph()
     gr.parse(ontologia, format="turtle")
     compra = result.subjects(RDF.type, ONT.Compra)
     compra = compra.next()
 
+
     for s, p, o in result:
+        logger.info(s)
         if s == compra:
             gr.add((s, p, o))
-
+            graph.remove((s, None, None))
+    graph.serialize(destination='../Data/compras.rdf', format='turtle')
     gr.serialize(destination='../Data/compras_con_lote.rdf', format='turtle')
 
     return None

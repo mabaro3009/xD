@@ -3,3 +3,64 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ONT:Producto_Comprado_154120175 a ONT:Producto_comprado ;
+    ONT:id 4 ;
+    ONT:marca "Samsung"^^xsd:string ;
+    ONT:nombre "TV"^^xsd:string ;
+    ONT:precio "4200.0"^^xsd:float ;
+    ONT:proc "centro"^^xsd:string ;
+    ONT:targeta "34234234234"^^xsd:string ;
+    ONT:te_feedback ""^^xsd:string ;
+    ONT:usuario "dgdfgdfgd"^^xsd:string .
+
+ONT:Producto_Comprado_293073669 a ONT:Producto_comprado ;
+    ONT:id 5 ;
+    ONT:marca "Sony"^^xsd:string ;
+    ONT:nombre "PS4"^^xsd:string ;
+    ONT:precio "1000.0"^^xsd:float ;
+    ONT:proc "centro"^^xsd:string ;
+    ONT:targeta "1324234324234234"^^xsd:string ;
+    ONT:te_feedback ""^^xsd:string ;
+    ONT:usuario "aaaaa"^^xsd:string .
+
+ONT:Producto_Comprado_399006985 a ONT:Producto_comprado ;
+    ONT:id 93224245 ;
+    ONT:marca "Samsung"^^xsd:string ;
+    ONT:nombre "GalaxyS9+"^^xsd:string ;
+    ONT:precio "900.0"^^xsd:float ;
+    ONT:proc "externo"^^xsd:string ;
+    ONT:targeta "2124321354234"^^xsd:string ;
+    ONT:te_feedback ""^^xsd:string ;
+    ONT:usuario "Bejar"^^xsd:string .
+
+ONT:Producto_Comprado_544193427 a ONT:Producto_comprado ;
+    ONT:id 723108807 ;
+    ONT:marca "Panasonic"^^xsd:string ;
+    ONT:nombre "TV"^^xsd:string ;
+    ONT:precio "500.0"^^xsd:float ;
+    ONT:proc "centro"^^xsd:string ;
+    ONT:targeta "1324234324234234"^^xsd:string ;
+    ONT:te_feedback ""^^xsd:string ;
+    ONT:usuario "aaaaa"^^xsd:string .
+
+ONT:Producto_Comprado_891113268 a ONT:Producto_comprado ;
+    ONT:id 90378155 ;
+    ONT:marca "xD"^^xsd:string ;
+    ONT:nombre "Batamanta"^^xsd:string ;
+    ONT:precio "12.0"^^xsd:float ;
+    ONT:proc "externo"^^xsd:string ;
+    ONT:targeta "2124321354234"^^xsd:string ;
+    ONT:te_feedback ""^^xsd:string ;
+    ONT:usuario "Bejar"^^xsd:string .
+
+ONT:Producto_Comprado_939106970 a ONT:Producto_comprado ;
+    ONT:id 5 ;
+    ONT:marca "Sony"^^xsd:string ;
+    ONT:nombre "PS4"^^xsd:string ;
+    ONT:precio "1000.0"^^xsd:float ;
+    ONT:proc "centro"^^xsd:string ;
+    ONT:targeta "432243234"^^xsd:string ;
+    ONT:te_feedback ""^^xsd:string ;
+    ONT:usuario "Marc"^^xsd:string .
+
