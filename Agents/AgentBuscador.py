@@ -227,7 +227,6 @@ def search(nombre=None, marca=None, precio_max=sys.float_info.max):
                 ?precio <= """ + str(precio_max) + """  )}
                 order by desc(UCASE(str(?precio)))"""
 
-    logger.info(query)
     graph_query = graph.query(query)
     result = Graph()
     result.bind('ONT', ONT)
@@ -237,12 +236,8 @@ def search(nombre=None, marca=None, precio_max=sys.float_info.max):
         marca = row.marca
         precio = row.precio
         id = row.id
-        logger.info(nombre)
-        logger.info(marca)
-        logger.info(precio)
         peso = row.peso
         proc = row.proc
-        logger.info(proc)
         subject = row.producto
         product_count += 1
         result.add((subject, RDF.type, ONT.Producto))

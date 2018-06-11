@@ -182,17 +182,17 @@ def searchRecomendaciones(gm):
                     prefix xsd:<http://www.w3.org/2001/XMLSchema#>
                     prefix default:<http://www.ontologia.com/ECSDI-ontologia.owl#>
                     prefix owl:<http://www.w3.org/2002/07/owl#>
-                    SELECT DISTINCT ?recomendacion ?nombre ?marca ?precio ?valoracion
+                    SELECT DISTINCT ?recomendacion ?id ?nombre ?marca ?precio (AVG(?valoracion) AS ?valoracionmedia) (COUNT(?id) AS ?nvotes)
                     where {
                         { ?recomendacion rdf:type default:Producto_valorado }  .
+                        ?recomendacion default:id ?id .
                         ?recomendacion default:nombre ?nombre .
                         ?recomendacion default:marca ?marca .
                         ?recomendacion default:precio ?precio .
                         ?recomendacion default:valoracion ?valoracion .
-                        FILTER("""
-
-    query += """str(?valoracion) >= """"'" + str(3) + "'"""" )}
-                        order by desc(UCASE(str(?valoracion)))"""
+                        }
+                        GROUP BY ?id
+                        """
     logger.info(query)
     graph_query = graph.query(query)
 
@@ -200,18 +200,25 @@ def searchRecomendaciones(gm):
     result.bind('ONT', ONT)
     product_count = 0
     for row in graph_query:
-        logger.info('entro')
+        logger.info('ROWS HERE A CONTINUACION!')
         nombre = row.nombre
         marca = row.marca
         precio = row.precio
-        valoracion = row.valoracion
+        nvotes = row.nvotes
+        valoracion = row.valoracionmedia
+        #valoracion = row.valoracion
+        logger.info(nombre)
+        logger.info(marca)
+        logger.info(precio)
+        logger.info(valoracion)
         subject = row.recomendacion
         product_count += 1
         result.add((subject, RDF.type, ONT.Compra))
         result.add((subject, ONT.nombre, Literal(nombre, datatype=XSD.string)))
         result.add((subject, ONT.marca, Literal(marca, datatype=XSD.string)))
         result.add((subject, ONT.precio, Literal(precio, datatype=XSD.float)))
-        result.add((subject, ONT.valoracion, Literal(valoracion, datatype=XSD.integer)))
+        result.add((subject, ONT.valoracion, Literal(valoracion, datatype=XSD.float)))
+        result.add((subject, ONT.nvotes, Literal(nvotes, datatype=XSD.integer)))
 
     return result
 

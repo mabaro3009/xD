@@ -15,6 +15,7 @@
                 <th><b>Marca</b></th>
                 <th><b>Precio</b></th>
                 <th><b>Valoracion Media</b></th>
+                <th><b>Numero de valoraciones</b></th>
             </tr>
             {% for item in recomendaciones %}
                     <tr>
@@ -22,6 +23,7 @@
                         <td>{{ item.marca }}</td>
                         <td>{{ item.precio }}</td>
                         <td>{{ item.valoracion }}</td>
+                        <td>{{ item.nvotes }}</td>
                     </tr>
             {% endfor %}
         </table>

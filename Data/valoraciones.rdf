@@ -3,3 +3,53 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ONT:Producto_valorado_35237522 a ONT:Producto_valorado ;
+    ONT:id 90378155 ;
+    ONT:marca "xD"^^xsd:string ;
+    ONT:nombre "Batamanta"^^xsd:string ;
+    ONT:precio "12.0"^^xsd:float ;
+    ONT:valoracion 3 .
+
+ONT:Producto_valorado_498743920 a ONT:Producto_valorado ;
+    ONT:id 93224245 ;
+    ONT:marca "Samsung"^^xsd:string ;
+    ONT:nombre "GalaxyS9+"^^xsd:string ;
+    ONT:precio "900.0"^^xsd:float ;
+    ONT:valoracion 5 .
+
+ONT:Producto_valorado_716449920 a ONT:Producto_valorado ;
+    ONT:id 5 ;
+    ONT:marca "Sony"^^xsd:string ;
+    ONT:nombre "PS4"^^xsd:string ;
+    ONT:precio "1000.0"^^xsd:float ;
+    ONT:valoracion 5 .
+
+ONT:Producto_valorado_927466993 a ONT:Producto_valorado ;
+    ONT:id 5 ;
+    ONT:marca "Sony"^^xsd:string ;
+    ONT:nombre "PS4"^^xsd:string ;
+    ONT:precio "1000.0"^^xsd:float ;
+    ONT:valoracion 2 .
+
+ONT:Producto_valorado_927466994 a ONT:Producto_valorado ;
+    ONT:id 5 ;
+    ONT:marca "Sony"^^xsd:string ;
+    ONT:nombre "PS4"^^xsd:string ;
+    ONT:precio "1000.0"^^xsd:float ;
+    ONT:valoracion 3 .
+
+ONT:Producto_valorado_927466995 a ONT:Producto_valorado ;
+    ONT:id 5 ;
+    ONT:marca "Sony"^^xsd:string ;
+    ONT:nombre "PS4"^^xsd:string ;
+    ONT:precio "1000.0"^^xsd:float ;
+    ONT:valoracion 5 .
+
+ONT:Producto_valorado_927466998 a ONT:Producto_valorado ;
+    ONT:id 5 ;
+    ONT:marca "Sony"^^xsd:string ;
+    ONT:nombre "PS4"^^xsd:string ;
+    ONT:precio "1000.0"^^xsd:float ;
+    ONT:valoracion 4 .
+

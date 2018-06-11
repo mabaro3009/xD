@@ -44,6 +44,26 @@ ONT:Producto_Comprado_544193427 a ONT:Producto_comprado ;
     ONT:te_feedback ""^^xsd:string ;
     ONT:usuario "aaaaa"^^xsd:string .
 
+ONT:Producto_Comprado_581390845 a ONT:Producto_comprado ;
+    ONT:id 723108807 ;
+    ONT:marca "Panasonic"^^xsd:string ;
+    ONT:nombre "TV"^^xsd:string ;
+    ONT:precio "500.0"^^xsd:float ;
+    ONT:proc "centro"^^xsd:string ;
+    ONT:targeta "123123123123"^^xsd:string ;
+    ONT:te_feedback ""^^xsd:string ;
+    ONT:usuario "Marc"^^xsd:string .
+
+ONT:Producto_Comprado_86421640 a ONT:Producto_comprado ;
+    ONT:id 4 ;
+    ONT:marca "Samsung"^^xsd:string ;
+    ONT:nombre "TV"^^xsd:string ;
+    ONT:precio "4200.0"^^xsd:float ;
+    ONT:proc "centro"^^xsd:string ;
+    ONT:targeta "123123123123"^^xsd:string ;
+    ONT:te_feedback ""^^xsd:string ;
+    ONT:usuario "Marc"^^xsd:string .
+
 ONT:Producto_Comprado_891113268 a ONT:Producto_comprado ;
     ONT:id 90378155 ;
     ONT:marca "xD"^^xsd:string ;

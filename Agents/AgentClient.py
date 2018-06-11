@@ -286,14 +286,16 @@ def buscar():
         grAgentRecom = get_agent_info(agn.AgentRecomendador, DirectoryAgent, AgentClient, get_count())
         gr4 = infoagent_search_message(grAgentRecom.address, grAgentRecom.uri, gr3, msgResult)
         index = 0
+        recomendaciones1 = []
+        del recomendaciones[:]
         subject_pos = {}
         for s, p, o in gr4:
             if s not in subject_pos:
                 subject_pos[s] = index
-                recomendaciones.append({})
+                recomendaciones1.append({})
                 index += 1
             if s in subject_pos:
-                subject_dict = recomendaciones[subject_pos[s]]
+                subject_dict = recomendaciones1[subject_pos[s]]
                 if p == RDF.type:
                     subject_dict['url'] = s
                 elif p == ONT.marca:
@@ -302,11 +304,18 @@ def buscar():
                     subject_dict['precio'] = o
                 elif p == ONT.nombre:
                     subject_dict['nombre'] = o
+                elif p == ONT.nvotes:
+                    subject_dict['nvotes'] = o
                 elif p == ONT.valoracion:
                     subject_dict['valoracion'] = o
-                    recomendaciones[subject_pos[s]] = subject_dict
+                    recomendaciones1[subject_pos[s]] = subject_dict
+
+        for i in range(0, len(recomendaciones1)):
+            if float(recomendaciones1[i]['valoracion']) > 3.4:
+                recomendaciones.append(recomendaciones1[i])
 
         return render_template('buscar.html', recomendaciones=recomendaciones)
+
     else:
         logger.info(request.form['submit'])
         if request.form['submit'] == 'Buscar':
@@ -487,7 +496,7 @@ def buscar():
 
         elif request.form['submit'] == 'Realizar otra compra':
             del carrito_compra[:]
-            return render_template('buscar.html')
+            return render_template('buscar.html', recomendaciones=recomendaciones)
 
 
         #TODO: aquí envia els productes comprats al agente vendedor perquè aquest faci el qu ahgi de fer. No va aqui obviament, despres dels returns
