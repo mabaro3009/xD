@@ -129,6 +129,7 @@ def directory_search_message(type):
 
     return gr
 
+
 def infoagent_search_message(addr, ragn_uri, gmess, msgResult):
     """
     Envia una accion a un agente de informacion

@@ -18,7 +18,7 @@ from rdflib.namespace import FOAF, RDF, XSD
 
 from AgentUtil.OntoNamespaces import ACL, DSO
 from AgentUtil.FlaskServer import shutdown_server
-from AgentUtil.ACLMessages import build_message, send_message, get_message_properties, register_agent
+from AgentUtil.ACLMessages import build_message, send_message, get_message_properties, register_agent, get_agent_info
 from AgentUtil.Agent import Agent
 from AgentUtil.Logging import config_logger
 from AgentUtil.OntoNamespaces import ONT
@@ -41,7 +41,7 @@ args = parser.parse_args()
 
 # Configuration stuff
 if args.port is None:
-    port = 9018
+    port = 9023
 else:
     port = args.port
 
@@ -70,8 +70,8 @@ agn = Namespace("http://www.agentes.org#")
 mss_cnt = 0
 
 # Datos del Agente
-AgentFeedback = Agent('AgentFeedback',
-                      agn.AgentFeedback,
+AgentDevoluciones = Agent('AgentDevoluciones',
+                          agn.AgentDevoluciones,
                   'http://%s:%d/comm' % (hostname, port),
                   'http://%s:%d/Stop' % (hostname, port))
 
@@ -90,9 +90,11 @@ cola1 = Queue()
 messages_cnt = 0
 
 def get_count():
-    global messages_cnt
-    messages_cnt += 1
-    return messages_cnt
+    global mss_cnt
+    if not mss_cnt:
+        mss_cnt = 0
+    mss_cnt += 1
+    return mss_cnt
 
 
 def register_message():
@@ -106,8 +108,26 @@ def register_message():
 
     logger.info('Nos registramos')
 
-    gr = register_agent(AgentFeedback, DirectoryAgent, AgentFeedback.uri, get_count())
+    gr = register_agent(AgentDevoluciones, DirectoryAgent, AgentDevoluciones.uri, get_count())
     return gr
+
+
+def infoagent_search_message(addr, ragn_uri, gmess, msgResult):
+    """
+    Envia una accion a un agente de informacion
+    """
+    logger.info('Hacemos una peticion al servicio de informacion')
+
+    msg = build_message(gmess, perf=ACL.request,
+                        sender=AgentDevoluciones.uri,
+                        receiver=ragn_uri,
+                        msgcnt=get_count(),
+                        content=msgResult)
+    gr = send_message(msg, addr)
+    logger.info('Recibimos respuesta a la peticion al servicio de informacion')
+
+    return gr
+
 
 @app.route("/Stop")
 def stop():
@@ -146,14 +166,14 @@ def comunicacion():
     # Comprobamos que sea un mensaje FIPA ACL
     if msgdic is None:
         # Si no es, respondemos que no hemos entendido el mensaje
-        gr = build_message(Graph(), ACL['not-understood'], sender=AgentFeedback.uri, msgcnt=mss_cnt)
+        gr = build_message(Graph(), ACL['not-understood'], sender=AgentDevoluciones.uri, msgcnt=mss_cnt)
     else:
         # Obtenemos la performativa
         perf = msgdic['performative']
 
         if perf != ACL.request:
             # Si no es un request, respondemos que no hemos entendido el mensaje
-            gr = build_message(Graph(), ACL['not-understood'], sender=AgentFeedback.uri, msgcnt=mss_cnt)
+            gr = build_message(Graph(), ACL['not-understood'], sender=AgentDevoluciones.uri, msgcnt=mss_cnt)
         else:
             # Extraemos el objeto del contenido que ha de ser una accion de la ontologia de acciones del agente
             # de registro
@@ -163,8 +183,11 @@ def comunicacion():
             accion = gm.value(subject=content, predicate=RDF.type)
             logger.info(accion)
 
-            if accion == ONT.Registrar_Valoracion:
-                gr = registrarValoracion(gm)
+            if accion == ONT.ProductoDevuelto:
+                gr = contactarCobrador(gm)
+#msgResult = ONT['pago_dev_' + str(get_count())]
+#AgentCobr = get_agent_info(agn.AgentCobrador, DirectoryAgent, AgentDevoluciones, get_count())
+#gr2 = infoagent_search_message(AgentCobr.address, AgentCobr.uri, gm, msgResult)
 
     mss_cnt += 1
 
@@ -173,18 +196,54 @@ def comunicacion():
     return gr.serialize(format='xml')
 
 
-def registrarValoracion(gm):
-    ontologia = open('../Data/valoraciones.rdf')
-    gr = Graph()
-    gr.parse(ontologia, format="turtle")
-    valoracion = gm.subjects(RDF.type, ONT.Producto_valorado)
-    valoracion = valoracion.next()
-
+def contactarCobrador(gm):
+    index = 0
+    subject_pos = {}
+    lista = []
+    procedencia = ""
+    usuario = ""
+    targeta = ""
+    id = ""
+    precio = 0.0
     for s, p, o in gm:
-        if s == valoracion:
-            gr.add((s, p, o))
+        if s not in subject_pos:
+            subject_pos[s] = index
+            lista.append({})
+            index += 1
+        if s in subject_pos:
+            subject_dict = lista[subject_pos[s]]
+            if p == RDF.type:
+                subject_dict['url'] = s
+            elif p == ONT.id:
+                id = subject_dict['id'] = o
+            elif p == ONT.proc:
+                subject_dict['proc'] = o
+                procedencia = subject_dict['proc']
+            elif p == ONT.precio:
+                precio = subject_dict['precio'] = o
+            elif p == ONT.targeta:
+                targeta = subject_dict['targeta'] = o
+            elif p == ONT.usuario:
+                usuario = subject_dict['usuario'] = o
+                lista[subject_pos[s]] = subject_dict
 
-    gr.serialize(destination='../Data/valoraciones.rdf', format='turtle')
+
+    msgResult = ONT['cobro2_' + str(get_count())]
+    gr = Graph()
+    body_prod_dev = ONT['id_Dev_' + id]
+    gr.add((msgResult, RDF.type, ONT.ProductoDevuelto))
+    gr.add((body_prod_dev, ONT.id, Literal(id, datatype=XSD.integer)))
+    gr.add((body_prod_dev, ONT.proc, Literal(procedencia, datatype=XSD.string)))
+    gr.add((body_prod_dev, ONT.precio, Literal(precio, datatype=XSD.float)))
+    gr.add((body_prod_dev, ONT.targeta, Literal(targeta, datatype=XSD.string)))
+    gr.add((body_prod_dev, ONT.usuario, Literal(usuario, datatype=XSD.string)))
+    AgentCobr = get_agent_info(agn.AgentCobrador, DirectoryAgent, AgentDevoluciones, get_count())
+    logger.info(AgentCobr.address)
+    logger.info(AgentCobr.uri)
+    logger.info(msgResult)
+    gr2 = infoagent_search_message(AgentCobr.address, AgentCobr.uri, gr, msgResult)
+
+
     return gm
 
 

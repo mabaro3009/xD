@@ -167,6 +167,9 @@ def comunicacion():
                 cobrar(gm)
                 gr = gm
 
+            elif accion == ONT.ProductoDevuelto:
+                pagarDev(gm)
+
 
 
     mss_cnt += 1
@@ -174,6 +177,48 @@ def comunicacion():
     logger.info('Respondemos a la peticion')
 
     return gr.serialize(format='xml')
+
+
+def pagarDev(gm):
+    index = 0
+    subject_pos = {}
+    lista = []
+    procedencia = ""
+    usuario = ""
+    targeta = ""
+    precio = 0.0
+    for s, p, o in gm:
+        if s not in subject_pos:
+            subject_pos[s] = index
+            lista.append({})
+            index += 1
+        if s in subject_pos:
+            subject_dict = lista[subject_pos[s]]
+            if p == RDF.type:
+                subject_dict['url'] = s
+            elif p == ONT.id:
+                subject_dict['id'] = o
+            elif p == ONT.proc:
+                subject_dict['proc'] = o
+                procedencia = subject_dict['proc']
+            elif p == ONT.precio:
+                precio = subject_dict['precio'] = o
+            elif p == ONT.targeta:
+                targeta = subject_dict['targeta'] = o
+            elif p == ONT.usuario:
+                usuario = subject_dict['usuario'] = o
+                lista[subject_pos[s]] = subject_dict
+
+    if procedencia == "centro":
+        logger.info("Pagamos al usuario de nombre " + usuario + " la cantidad de " + str(
+            precio) + "EUROS y lo abonamos a la targeta: " + targeta)
+
+    elif procedencia == "externa":
+        logger.info("Pagamos al usuario de nombre " + usuario + " la cantidad de " + str(
+            precio) + "EUROS y lo abonamos a la targeta: " + targeta + " cobrado de la tienda externa")
+
+    return gm
+
 
 def cobrar(gm):
     index = 0

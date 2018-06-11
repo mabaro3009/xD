@@ -4,6 +4,13 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+ONT:Producto_valorado_143617339 a ONT:Producto_valorado ;
+    ONT:id 247549838 ;
+    ONT:marca "Apple"^^xsd:string ;
+    ONT:nombre "iPhone"^^xsd:string ;
+    ONT:precio "200.0"^^xsd:float ;
+    ONT:valoracion 5 .
+
 ONT:Producto_valorado_159108752 a ONT:Producto_valorado ;
     ONT:id 839768019 ;
     ONT:marca "Corsair"^^xsd:string ;
@@ -25,10 +32,31 @@ ONT:Producto_valorado_170005963 a ONT:Producto_valorado ;
     ONT:precio "12.0"^^xsd:float ;
     ONT:valoracion 5 .
 
+ONT:Producto_valorado_312474868 a ONT:Producto_valorado ;
+    ONT:id 723108807 ;
+    ONT:marca "Panasonic"^^xsd:string ;
+    ONT:nombre "TV"^^xsd:string ;
+    ONT:precio "500.0"^^xsd:float ;
+    ONT:valoracion 3 .
+
 ONT:Producto_valorado_342681644 a ONT:Producto_valorado ;
     ONT:id 158748941 ;
     ONT:marca "Apple"^^xsd:string ;
     ONT:nombre "TV"^^xsd:string ;
     ONT:precio "500.0"^^xsd:float ;
     ONT:valoracion 3 .
+
+ONT:Producto_valorado_453260007 a ONT:Producto_valorado ;
+    ONT:id 158748941 ;
+    ONT:marca "Apple"^^xsd:string ;
+    ONT:nombre "TV"^^xsd:string ;
+    ONT:precio "500.0"^^xsd:float ;
+    ONT:valoracion 1 .
+
+ONT:Producto_valorado_675624030 a ONT:Producto_valorado ;
+    ONT:id 90378155 ;
+    ONT:marca "xD"^^xsd:string ;
+    ONT:nombre "Batamanta"^^xsd:string ;
+    ONT:precio "12.0"^^xsd:float ;
+    ONT:valoracion 1 .
 
